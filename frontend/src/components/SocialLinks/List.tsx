@@ -23,6 +23,7 @@ export default function SocialLinksList() {
             theme="light"
             count={SOCIAL_LINKS.length}
             slug={link.slug}
+            tooltip
           />
         </li>
       ))}

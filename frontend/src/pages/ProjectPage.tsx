@@ -6,7 +6,7 @@ export default function ProjectPage() {
   return (
     <>
       <Header back="/">
-        <h1>Projekt</h1>
+        <h1 className="h-size-2">Projekt</h1>
       </Header>
 
       <main>

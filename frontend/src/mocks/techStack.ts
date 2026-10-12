@@ -2,6 +2,7 @@ import type { TechStack } from '../types/TechStackType'
 
 export const MOCK_TECH_STACK: TechStack[] = [
   {
+    type: 'frontend',
     title: 'Frontend',
     technologies: [
       {
@@ -55,6 +56,7 @@ export const MOCK_TECH_STACK: TechStack[] = [
     ]
   },
   {
+    type: 'backend',
     title: 'Backend',
     technologies: [
       {
@@ -84,7 +86,8 @@ export const MOCK_TECH_STACK: TechStack[] = [
     ]
   },
   {
-    title: 'Databaser',
+    type: 'database',
+    title: 'Databas',
     technologies: [
       {
         name: 'PostgreSQL',
@@ -121,6 +124,7 @@ export const MOCK_TECH_STACK: TechStack[] = [
     ]
   },
   {
+    type: 'native',
     title: 'Native',
     technologies: [
       {
@@ -158,6 +162,7 @@ export const MOCK_TECH_STACK: TechStack[] = [
     ]
   },
   {
+    type: 'devops',
     title: 'DevOps',
     technologies: [
       {

@@ -8,7 +8,12 @@ export default function ProjectsSection() {
   return (
     <section className="projects" aria-labelledby="projects-heading">
       <Header>
-        <h2 id="projects-heading">Projekt i urval</h2>
+        <h2
+          className="h-size-2"
+          id="projects-heading"
+        >
+          Projekt i urval
+        </h2>
       </Header>
 
       <ProjectsGrid />

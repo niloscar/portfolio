@@ -1,0 +1,20 @@
+.footer {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 2rem 0;
+  background-color: #f1f1f1;
+  color: var(--text-color);
+
+  text-align: center;
+}
+
+.copyright {
+  margin: 0;
+
+  font-size: .8rem;
+  color: var(--text-color);
+  text-align: center;
+}

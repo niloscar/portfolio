@@ -33,16 +33,48 @@
   }
 }
 
-.box svg {
+.box > svg {
   width: var(--icon-size);
   height: var(--icon-size);
 }
 
 .box:hover {
   background-color: var(--bg-color, var(--accent));
+}
+
+.box:hover > svg {
   color: #fff;
 }
 
 .box:active {
   scale: 0.95;
+}
+
+.box > .tooltip {
+  display: flex;
+  align-items: center;
+  gap: .125em;
+
+  position: absolute;
+  right: 100%;
+  padding: var(--padding);
+  
+  font-size: 0.75rem;
+  line-height: 1rem;
+  white-space: nowrap;
+  
+  pointer-events: none;
+  opacity: 0;
+  translate: -.5rem 0;
+
+  transition: 
+    opacity 0.2s ease-in-out, 
+    translate 0.2s ease-in-out;
+}
+
+.box:hover > .tooltip {
+  pointer-events: auto;
+
+  opacity: 1;
+  translate: 0;
 }

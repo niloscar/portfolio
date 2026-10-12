@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import ExternalLinks from './ExternalLinks'
-import TechStack from './TechStack'
+import TechStack from './CardTechStack'
+import { EyeglassesIcon } from '@phosphor-icons/react'
 
 import type { CSSProperties } from 'react'
 import type { Project } from '../../types/ProjectType'
@@ -48,7 +49,14 @@ export default function Card({ project, index }: { project: Project, index: numb
         className={styles.links}
         aria-label={`Länkar för projektet ${project.name}`}
       >
-        <Link to={`/project/${project.id}`}>Läs mer</Link>
+        <Link 
+          to={`/project/${project.id}`}
+          className={styles['read-more']}
+          aria-label={`Läs mer om projektet ${project.name}`}
+        >
+          <EyeglassesIcon />
+          <span>Läs mer</span>
+        </Link>
       </nav>
     </article>
   )

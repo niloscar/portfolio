@@ -20,7 +20,7 @@ export default function Header({ back, children }: HeaderProps) {
         </Link>
       )}
       {children ?? (
-        <h1 className={styles.title}>
+        <h1 className={`${styles.title} h-size-1`}>
           <span>Oscar Nilsson</span>
           <span className={styles.subtitle}>Fullstackutvecklare · Portfolio</span>
         </h1>

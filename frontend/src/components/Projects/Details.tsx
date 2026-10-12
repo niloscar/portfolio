@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import type { Project } from '../../types/ProjectType'
 import { MOCK_PROJECTS } from '../../mocks/projects'
 import { MOCK_TECH_STACK } from '../../mocks/techStack'
 import TechStackList from '../TechStack/List'
-import Ellipsis from '../ui/Ellipsis'
+import Spinner from '../ui/Spinner'
 
 export default function ProjectDetails() {
   const { id } = useParams<{ id: string }>()
@@ -50,44 +50,45 @@ export default function ProjectDetails() {
   ).filter((technology) => project?.techStack?.includes(technology.slug))
 
   return (
-    <div className="project-details">
+    <>
       {errorMessage && <p>{errorMessage}</p>}
 
-      {isLoading && !errorMessage && <p>
-        Laddar projekt<Ellipsis />
-      </p>}
+      {isLoading && !errorMessage && <Spinner />}
 
       {!isLoading && !errorMessage && project && (
         <>
-          <h2>{project.name}</h2>
+          <h2 className="h-size-3">{project.name}</h2>
           <p>{project.description}</p>
-          {/* {project.image && <p>{project.image}</p>} */}
 
-          {project.technicalOverview && <p>{project.technicalOverview}</p>}
+          {project.technicalOverview && (
+            <>
+              <h3 className="h-size-4">Teknisk översikt</h3>
+              <p>{project.technicalOverview}</p>
+            </>
+          )}
 
           {project.responsibility && (
             <>
-              <h3>Ansvar</h3>
+              <h3 className="h-size-4">Ansvar</h3>
               <p>{project.responsibility}</p>
             </>
           )}
 
           {project.technicalChallenges && (
             <>
-              <h3>Tekniska utmaningar</h3>
+              <h3 className="h-size-4">Tekniska utmaningar</h3>
               <p>{project.technicalChallenges}</p>
             </>
           )}
 
           {technologies.length > 0 && (
             <>
-              <h3>Teknikstack</h3>
+              <h3 className="h-size-4">Teknikstack</h3>
               <TechStackList technologies={technologies} />
             </>
           )}
         </>
       )}
-      <Link to="/">← Tillbaka</Link>
-    </div>
+    </>
   )
 }

@@ -63,7 +63,7 @@ export const MOCK_PROJECTS: Project[] = [
           name: 'Bubbles',
           description: 'Community-forum där användare kan skapa egna diskussionsgrupper och bjuda in andra att delta. Det går även att ansöka om medlemskap i befintliga grupper eller gå med direkt via en delad inbjudningslänk.',
           technicalOverview: 'Bubbles är byggd med TypeScript och PHP med PostgreSQL som databas. Applikationen är containeriserad med Docker och har funktionalitet för användare, grupper, medlemsansökningar och inbjudningar via delbara länkar.',
-          techStack: ['typescript', 'php', 'postgresql', 'docker'],
+          techStack: ['php', 'postgresql', 'docker'],
           links: [
             {
               type: 'preview',

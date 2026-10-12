@@ -3,7 +3,7 @@ import IconBox from '../ui/IconBox'
 
 import type { TechType } from '../../types/ProjectType'
 
-import styles from './TechStack.module.css'
+import styles from './CardTechStack.module.css'
 
 interface TechStackProps {
   techStack: TechType[]

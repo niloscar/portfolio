@@ -54,8 +54,8 @@
 
 .title {
   margin: 0;
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 400;
   text-align: left;
   color: #333;
 }
@@ -138,4 +138,10 @@
 
 nav {
   margin: 1rem 2rem 2rem 2rem;
+}
+
+.read-more {
+  display: flex;
+  align-items: center;
+  gap: .25rem;
 }

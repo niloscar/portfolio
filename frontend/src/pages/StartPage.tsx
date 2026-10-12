@@ -7,7 +7,7 @@ export default function StartPage() {
   return (
     <>
       <Header />
-      <main>
+      <main className="start-page-main">
         <PresentationSection />
         <ProjectsSection />
         <TechStackSection />

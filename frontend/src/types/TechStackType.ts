@@ -1,6 +1,7 @@
 import type { TechType } from './ProjectType'
 
 export interface TechStack {
+  type: TechStackType
   title: string
   technologies: Technology[]
 }
@@ -13,3 +14,10 @@ export interface Technology {
   weight: number
   color?: string
 }
+
+type TechStackType = 
+  | 'frontend' 
+  | 'backend' 
+  | 'database' 
+  | 'native' 
+  | 'devops'
