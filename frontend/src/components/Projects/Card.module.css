@@ -1,0 +1,141 @@
+.card {
+  --padding: 1rem;
+  --clip-percentage: 20%;
+  --image-shape: polygon(
+    100% 0,
+    100% 100%,
+    var(--clip-percentage) 100%,
+    0 0
+  );
+  
+  --card-duration: .25s;
+  --card-stagger: .5s;
+  --card-enter-end: calc(
+    var(--card-duration) +
+    var(--card-index) * var(--card-stagger)
+  );
+
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+
+  background-color: #fff;
+
+  opacity: 1;
+
+  transition: opacity var(--card-duration) ease-in-out;
+  transition-delay: calc(var(--card-index) * var(--card-stagger));
+
+  @starting-style {
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+
+  @media (max-width: 768px) {
+    --image-shape: polygon(
+      100% 0,
+      100% 100%,
+      0 90%,
+      0 0
+    );
+  }
+}
+
+.card > header {
+  margin: 2rem 2rem 1rem 2rem;
+}
+
+.title-link {
+  display: inline;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: left;
+  color: #333;
+}
+
+.description {
+  text-align: left;
+  margin: 1rem 2rem;
+}
+
+.visuals {
+  position: relative;
+  float: right;
+
+  width: min(100%, 440px);
+  aspect-ratio: 1;
+
+  margin-left: 1rem;
+
+  shape-outside: var(--image-shape);
+  clip-path: var(--image-shape);
+
+  @media (max-width: 768px) {
+    float: none;
+    width: 100%;
+    aspect-ratio: 2/1;
+    margin-left: 0;
+
+    shape-outside: none;
+    clip-path: none;
+  }
+}
+
+.visuals figure {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+
+  overflow: hidden;
+
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+
+  clip-path: var(--image-shape);
+  
+  @media (max-width: 768px) {
+    border-top-left-radius: 4px;
+    border-bottom-right-radius: 0;
+  }
+}
+
+.visuals figure::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+
+  /* background: linear-gradient(
+    79deg,
+    rgba(255, 255, 255, .5) 32%,
+    rgba(255, 255, 255, .25) 32%,
+    rgba(255, 255, 255, .25) 48%,
+    rgba(255, 255, 255, 0) 48%
+  ); */
+}
+
+.image {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: block;
+
+  object-fit: cover;
+  object-position: 40% center;
+
+  @media (max-width: 768px) {
+    object-position: center center;
+  }
+}
+
+nav {
+  margin: 1rem 2rem 2rem 2rem;
+}

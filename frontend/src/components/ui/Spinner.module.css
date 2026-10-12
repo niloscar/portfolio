@@ -1,0 +1,28 @@
+.spinnerWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid var(--spinner-color, var(--accent));
+  border-top-color: transparent;
+  border-radius: 50%;
+  will-change: transform;
+  animation: spin .8s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,31 @@
+.ellipsis {
+  position: relative;
+  display: inline-block;
+  text-align: left;
+}
+
+.ellipsis::before {
+  content: '...';
+  visibility: hidden;
+}
+
+.ellipsis::after {
+  position: absolute;
+  left: 0;
+  content: '';
+  animation: ellipsis 1.2s step-end infinite;
+}
+
+@keyframes ellipsis {
+  25% {
+    content: '.';
+  }
+
+  50% {
+    content: '..';
+  }
+
+  75% {
+    content: '...';
+  }
+}

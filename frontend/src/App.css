@@ -1,0 +1,167 @@
+:root {
+  --header-height: 6rem;
+  --page-padding-y: 4rem;
+  --page-padding-x: 2rem;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 
+    var(--page-padding-y) 
+    var(--page-padding-x)
+    0
+    var(--page-padding-x)
+    ;
+  margin: 0;
+  background: radial-gradient(circle at 50% 50%, #fff 0%, #f8f8f8 100%);
+}
+
+#root {
+  margin: 0;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+main > section {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  &:first-child {
+    min-height: calc(100svh - var(--header-height) - var(--page-padding-y));
+  }
+}
+
+.projects-card:not(:last-child) {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+}
+
+.projects-card-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  label {
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+}
+
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+h1 {
+  font-size: 3rem;
+  line-height: 1.1;
+  font-weight: 400;
+  margin: 0;
+}
+
+h1 small {
+  display: block;
+  margin-top: 1rem;
+
+  &::before {
+    content: '— ';
+  }
+}
+
+h1, h2, h3 {
+  text-align: center;
+  text-wrap-style: balance;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+p {
+  text-align: center;
+  text-wrap-style: pretty;
+}
+
+section > header + p {
+  margin-top: 0;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* @property --index {
+  syntax: '<integer>';
+  inherits: true;
+  initial-value: 0;
+}
+
+section {
+  --index: calc(sibling-index() - 1);
+  display: contents;
+}
+
+section > header {
+  --height: 4rem;
+
+  position: sticky;
+  top: calc(var(--height) * var(--index));
+  height: var(--height);
+
+  background: #fff;
+
+
+
+  padding: 1rem 0;
+  margin: 0;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+section > header > h2 {
+  margin: 0;
+} */
+
+p:last-child {
+  margin-bottom: 0;
+}

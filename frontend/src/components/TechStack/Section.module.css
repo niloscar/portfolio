@@ -1,0 +1,32 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  justify-self: center;
+
+  @media (max-width: 768px) {
+    justify-self: start;
+  }
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .25rem;
+}
+
+.stack h3 {
+  display: flex;
+  align-items: center;
+  gap: .25rem;
+  text-align: left;
+  font-size: .8rem;
+  font-weight: 400;
+  margin: 0;
+  color: #111;
+}
+
+.stack h3 svg {
+  margin-top: 0.35rem;
+}

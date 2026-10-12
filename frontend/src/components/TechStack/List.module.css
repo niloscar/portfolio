@@ -1,0 +1,12 @@
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: .5rem;
+}
+
+.list a {
+  --icon-size: 1.5rem;
+  --padding: .5rem;
+}

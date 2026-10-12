@@ -1,0 +1,48 @@
+.box {
+  --padding: .25rem;
+  --icon-size: 1rem;
+
+  display: flex;
+  align-items: center;
+
+  position: relative;
+  padding: var(--padding);
+
+  border-radius: 4px;
+
+  color: #fff;
+  backdrop-filter: blur(15px);
+
+  transition: 
+    background-color .2s ease-in-out,
+    color .2s ease-in-out;
+
+  &[data-theme='dark'] {
+    background-color: #f5f5f511;
+    background-color: #1113;
+  }
+
+  &[data-theme='light'] {
+    background-color: #1111;
+    color: #111;
+  }
+
+  @media (max-width: 768px) {
+    --padding: .25rem;
+    --icon-size: 1.25rem;
+  }
+}
+
+.box svg {
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
+.box:hover {
+  background-color: var(--bg-color, var(--accent));
+  color: #fff;
+}
+
+.box:active {
+  scale: 0.95;
+}

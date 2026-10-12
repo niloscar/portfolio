@@ -1,1 +1,37 @@
+# Dependencies
+node_modules
+
+# Build output
+dist
+dist-ssr
+build
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Test coverage
+coverage
+
+# Cache
+.cache
+.eslintcache
+
+# Deployment
+.vercel
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+
+# OS files
 .DS_Store
+Thumbs.db
