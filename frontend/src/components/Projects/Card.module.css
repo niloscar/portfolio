@@ -7,13 +7,9 @@
     var(--clip-percentage) 100%,
     0 0
   );
-  
+
   --card-duration: .25s;
-  --card-stagger: .5s;
-  --card-enter-end: calc(
-    var(--card-duration) +
-    var(--card-index) * var(--card-stagger)
-  );
+  --card-enter-end: var(--card-duration);
 
   position: relative;
   border: 1px solid var(--border);
@@ -21,18 +17,18 @@
 
   background-color: #fff;
 
-  opacity: 1;
+  opacity: 0;
+  will-change: opacity;
 
   transition: opacity var(--card-duration) ease-in-out;
-  transition-delay: calc(var(--card-index) * var(--card-stagger));
 
-  @starting-style {
-    opacity: 0;
+  &[data-visible='true'] {
+    opacity: 1;
   }
 
-  @media (prefers-reduced-motion: reduce) {
+  /* @media (prefers-reduced-motion: reduce) {
     transition: none;
-  }
+  } */
 
   @media (max-width: 768px) {
     --image-shape: polygon(
@@ -141,7 +137,16 @@ nav {
 }
 
 .read-more {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: .25rem;
+}
+
+.figureBottomSentinel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  pointer-events: none;
 }

@@ -29,51 +29,26 @@
 }
 
 .links a {
-  will-change: transform, opacity;
-  flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-
-  position: relative;
-  padding: var(--padding);
-
-  border-radius: 4px;
-
-  color: #fff;
-  background-color: #f5f5f511;
-  backdrop-filter: blur(15px);
-
-  transform: translateX(0);
-  opacity: 1;
-  pointer-events: auto;
+  transform: translateX(calc(-100cqi + var(--box-width)));
+  opacity: 0;
+  pointer-events: none;
 
   transition:
     background-color .2s ease-in-out,
-
     transform var(--translate-duration) ease-in-out
-      calc(
-        var(--card-enter-end) +
-        var(--box-index) * var(--stagger)
-      ),
-
+      calc(var(--box-index) * var(--stagger)),
     opacity var(--opacity-duration) ease-in-out
-      calc(
-        var(--card-enter-end) +
-        var(--box-index) * var(--stagger)
-      ),
-
+      calc(var(--box-index) * var(--stagger)),
     pointer-events 0s linear
       calc(
-        var(--card-enter-end) +
         var(--translate-duration) +
         var(--box-index) * var(--stagger)
       )
       allow-discrete;
+}
 
-  @starting-style {
-    transform: translateX(calc(-100cqi + var(--box-width)));
-    opacity: 0;
-    pointer-events: none;
-  }
+[data-links-visible='true'] .links a {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
 }

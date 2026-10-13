@@ -39,9 +39,8 @@ export default function ProjectsGrid() {
 
       {!isLoading && !error && (
         <>
-          {projects.map((project, index) => (
+          {projects.map((project) => (
             <Card 
-              index={index}
               key={project.id} 
               project={project}
             />
