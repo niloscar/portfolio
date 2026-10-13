@@ -1,5 +1,6 @@
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 
+import ScrollToHash from './components/ScrollToHash'
 import PublicLayout from './layouts/PublicLayout'
 
 import StartPage from './pages/StartPage'
@@ -12,6 +13,7 @@ import './App.css'
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToHash />
       <Routes>
         <Route path="/" element={<PublicLayout />}>
           <Route index element={<StartPage />} />
