@@ -66,10 +66,6 @@ export const MOCK_PROJECTS: Project[] = [
           techStack: ['php', 'postgresql', 'docker'],
           links: [
             {
-              type: 'preview',
-              url: 'https://bubbles.vercel.app'
-            },
-            {
               type: 'github',
               url: 'https://github.com/niloscar/bubbles'
             },
