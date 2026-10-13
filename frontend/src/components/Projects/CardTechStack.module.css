@@ -24,7 +24,7 @@
   gap: var(--gap);
 
   @media (max-width: 768px) {
-    left: 50%;
+    left: 40%;
   }
 }
 

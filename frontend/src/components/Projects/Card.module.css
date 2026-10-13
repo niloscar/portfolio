@@ -76,7 +76,7 @@
   @media (max-width: 768px) {
     float: none;
     width: 100%;
-    aspect-ratio: 2/1;
+    aspect-ratio: 16 / 9;
     margin-left: 0;
 
     shape-outside: none;
