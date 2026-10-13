@@ -74,6 +74,34 @@ export const MOCK_PROJECTS: Project[] = [
         },
         {
           id: 5,
+          name: 'Pizza Arcade',
+          description: 'Webbplattform kring arkadspelet Pizza Arcade med användarkonton, produktnivåer, annonser, power-ups, topplista och administrationsfunktioner. Spelupplevelsen är integrerad med plattformens användar- och åtkomstsystem.',
+          technicalOverview: 'Projektet är byggt som ett monorepo med React och TypeScript i frontend och Node.js, Express och TypeScript i backend. PostgreSQL via Neon används för datalagring. Pizza Arcade ligger som en separat spelmodul med egen game loop, rendering och spellogik. Frontend och backend är driftsatta på Vercel.',
+          responsibility: 'Projektledning, projektstruktur och teknisk planering. Ansvarade för databasdesign och uppsättning av PostgreSQL-databasen samt byggde backend-API:et med routes och tillhörande logik. I frontend arbetade jag främst med Pizza Arcade och med att hålla spelet så fristående som möjligt från plattformens övriga funktionalitet.',
+          technicalChallenges: 'Att strukturera ett större gruppprojekt med tydlig ansvarsfördelning mellan frontend, backend, databas och spelmodul. En central utmaning var att hålla Pizza Arcade relativt fristående från plattformen samtidigt som spelåtkomst, annonser, power-ups och resultat kunde integreras via gemensamma typer och API.',
+          techStack: [
+            'react',
+            'typescript',
+            'nodejs',
+            'express',
+            'postgresql',
+            'vercel',
+            'neon'
+          ],
+          links: [
+            {
+              type: 'production',
+              url: 'https://game-monetization.vercel.app/'
+            },
+            {
+              type: 'github',
+              url: 'https://github.com/niloscar/game-monetization'
+            }
+          ],
+          image: 'pizza-arcade.png'
+        },
+        {
+          id: 6,
           name: 'Portfolio 2026',
           description: 'Den här portfolion är byggd för att samla mina projekt, erfarenheter och tekniska kompetenser på ett lättöverskådligt sätt. Fokus ligger på att snabbt ge en bild av vad jag har arbetat med och vilka tekniker jag använder.',
           technicalOverview: 'Portfolion är byggd med React och TypeScript i frontend och har ett separat API i Node.js och Express med PostgreSQL som databas. Frontend är driftsatt på Vercel.',
