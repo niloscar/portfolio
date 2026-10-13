@@ -6,6 +6,9 @@ import { MOCK_TECH_STACK } from '../../mocks/techStack'
 import TechStackList from '../TechStack/List'
 import UiBox from '../ui/UiBox'
 import Ellipsis from '../ui/Ellipsis'
+import SmallHeading from '../ui/SmallHeading'
+
+import styles from './Details.module.css'
 
 export default function ProjectDetails() {
   const { id } = useParams<{ id: string }>()
@@ -60,7 +63,20 @@ export default function ProjectDetails() {
       {!isLoading && !errorMessage && project && (
         <>
           <h2 className="h-size-3">{project.name}</h2>
+
           <p>{project.description}</p>
+
+          {/* {project.links && (
+            <ul className={styles['external-links']}>
+              {project.links.map((link, index) => (
+                <li key={index}>
+                  <a href={link.url} target="_blank" rel="noopener">
+                    {cleanUrl(link.url)}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )} */}
 
           {project.technicalOverview && (
             <>
@@ -84,16 +100,26 @@ export default function ProjectDetails() {
           )}
 
           {technologies.length > 0 && (
-            <>
-              <h3 className="h-size-4">Teknikstack</h3>
+            <div className={styles['tech-stack-section']}>
+              <SmallHeading
+                align="center"
+              >
+                Teknikstack
+              </SmallHeading>
               <TechStackList 
                 technologies={technologies} 
                 align="center"
               />
-            </>
+            </div>
           )}
         </>
       )}
     </>
   )
+}
+
+export function cleanUrl(url: string) {
+  return url
+    .replace(/^https?:\/\//, '')
+    .replace(/\/+$/, '')
 }

@@ -15,18 +15,3 @@
   align-items: flex-start;
   gap: .25rem;
 }
-
-.stack h3 {
-  display: flex;
-  align-items: center;
-  gap: .25rem;
-  text-align: left;
-  font-size: .8rem;
-  font-weight: 400;
-  margin: 0;
-  color: #111;
-}
-
-.arrow {
-  margin-top: 0.35rem;
-}

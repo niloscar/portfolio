@@ -14,13 +14,3 @@
   font-size: 1rem;
   color: var(--text);
 }
-
-.back {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}

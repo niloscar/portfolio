@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
-import { ArrowDownIcon, ArrowLeftIcon } from '@phosphor-icons/react'
+import { LinkBack } from '../components/ui/Link'
+import { ArrowDownIcon } from '@phosphor-icons/react'
 
 import type { ReactNode } from 'react'
 
@@ -14,10 +14,13 @@ export default function Header({ back, children }: HeaderProps) {
   return (
     <header className={styles.header}>
       {back && (
-        <Link to={back} className={styles.back}>
-          <ArrowLeftIcon />
-          <span>Tillbaka</span>
-        </Link>
+        <LinkBack
+          to={back}
+          ariaLabel="Tillbaka"
+          position="absolute"
+        >
+          Tillbaka
+        </LinkBack>
       )}
       {children ?? (
         <h1 className={`${styles.title} h-size-1`}>

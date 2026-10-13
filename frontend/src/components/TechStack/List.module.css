@@ -16,10 +16,6 @@
   justify-content: center;
 }
 
-main > section .list {
-  justify-content: flex-start;
-}
-
 .list a {
   --icon-size: 1.5rem;
   --padding: .5rem;

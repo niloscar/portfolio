@@ -136,12 +136,6 @@ nav {
   margin: 1rem 2rem 2rem 2rem;
 }
 
-.read-more {
-  display: inline-flex;
-  align-items: center;
-  gap: .25rem;
-}
-
 .figureBottomSentinel {
   position: absolute;
   left: 0;

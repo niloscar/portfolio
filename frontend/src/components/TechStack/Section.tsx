@@ -1,6 +1,6 @@
 import Header from '../../parts/Header'
 import TechStackList from './List'
-import { ArrowElbowRightDownIcon } from '@phosphor-icons/react'
+import SmallHeading from '../ui/SmallHeading'
 import { MOCK_TECH_STACK, TECHS_VISIBLE_IN_SECTION } from '../../mocks/techStack'
 
 import styles from './Section.module.css'
@@ -40,10 +40,7 @@ export default function TechStackSection() {
 
           return (
             <div className={styles.stack} key={stack.type}>
-              <h3>
-                <span>{stack.title}</span>
-                <ArrowElbowRightDownIcon className={styles.arrow} />
-              </h3>
+              <SmallHeading>{stack.title}</SmallHeading>
 
               <TechStackList
                 technologies={stack.technologies}

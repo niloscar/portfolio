@@ -1,0 +1,34 @@
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: .125rem;
+
+  text-decoration: none;
+}
+
+.link svg {
+  translate: 0 0;
+  transition: translate .18s ease-in-out;
+}
+
+.link:hover {
+  text-decoration: none;
+}
+
+.link:active {
+  transform: scale(.95);
+}
+
+.link.linkBack:hover svg {
+  translate: -.25rem 0;
+}
+
+.link.linkForward:hover svg {
+  translate: .25rem 0;
+}
+
+.absolute {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}

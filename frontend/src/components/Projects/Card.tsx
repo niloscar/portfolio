@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import ExternalLinks from './ExternalLinks'
 import TechStack from './CardTechStack'
-import { EyeglassesIcon } from '@phosphor-icons/react'
+import { LinkForward } from '../ui/Link'
 
 import type { Project } from '../../types/ProjectType'
 
@@ -117,14 +117,12 @@ export default function Card({ project }: { project: Project }) {
         className={styles.links}
         aria-label={`Länkar för projektet ${project.name}`}
       >
-        <Link
+        <LinkForward 
           to={`/project/${project.id}`}
-          className={styles['read-more']}
-          aria-label={`Läs mer om projektet ${project.name}`}
+          ariaLabel={`Läs mer om projektet ${project.name}`}
         >
-          <EyeglassesIcon />
-          <span>Läs mer</span>
-        </Link>
+          Läs mer
+        </LinkForward>
       </nav>
     </article>
   )
