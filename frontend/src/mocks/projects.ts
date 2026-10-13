@@ -109,8 +109,12 @@ export const MOCK_PROJECTS: Project[] = [
           links: [
             {
               type: 'production',
-              url: 'https://localhost:5173'
+              url: 'https://niloscar.vercel.app/'
             },
+            {
+              type: 'github',
+              url: 'https://github.com/niloscar/portfolio'
+            }
           ],
           image: 'portfolio.png'
         }
