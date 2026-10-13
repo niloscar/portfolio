@@ -4,7 +4,11 @@ import styles from './Section.module.css'
 
 export default function PresentationSection() {
   return (
-    <section className={styles.presentation} aria-labelledby="presentation-heading">
+    <section 
+      className={styles.presentation} 
+      aria-labelledby="presentation-heading"
+      id="presentation"
+    >
       <Header>
         <h2 
           className="h-size-2"
@@ -13,16 +17,20 @@ export default function PresentationSection() {
             Presentation
           </h2>
       </Header>
-      <p>Hej!</p>
-      <p>
-        Jag är fullstackutvecklare med fokus på att bygga genomtänkta digitala produkter – från systemarkitektur och affärslogik till användarupplevelse.
-      </p>
-      <p>
-        Det jag gillar mest med att vara utvecklare är att förstå helheten i ett projekt: hur tekniken, strukturen och själva idén samverkar för att lösa ett verkligt problem.</p>
-      <p>
-        Min nyfikenhet gör att jag gärna sätter mig in i nya områden och försöker förstå problemen på djupet innan jag väljer hur jag vill angripa dem.
-      </p>
-      <SocialLinksList />
+      <div className={styles['text-container']}>
+        <p>Hej!</p>
+        <p>
+          Jag gillar att bygga digitala produkter som löser problem i verkliga livet.
+        </p>
+        <p>
+          För mig innebär det att i första hand förstå behovet och därefter tekniken – och att se hur idé, arkitektur, logik och användarupplevelse påverkar varandra.</p>
+        <p>
+          Det är också där jag trivs bäst: när jag får arbeta med flera delar av samma produkt.
+        </p>
+      </div>
+      <footer>
+        <SocialLinksList />
+      </footer>
     </section>
   )
 }

@@ -24,7 +24,7 @@ export const MOCK_PROJECTS: Project[] = [
           technicalOverview: 'Appen är byggd native i Swift och SwiftUI för Apple Watch. Core Location används för att läsa in position, hastighet och kurs i realtid samt för att spela in seglingspass.',
           responsibility: 'Produktutveckling, apparkitektur och implementation av hela Apple Watch-appen.',
           technicalChallenges: 'Att hantera kontinuerlig positionsdata på ett tillförlitligt sätt, filtrera bort osäkra mätvärden och samtidigt hålla appen lätt och tydlig att använda under pågående segling.',
-          techStack: ['watchos', 'swift', 'swiftui', 'core-location'],
+          techStack: ['watchos', 'swift', 'core-location'],
           links: [
             {
               type: 'appstore',

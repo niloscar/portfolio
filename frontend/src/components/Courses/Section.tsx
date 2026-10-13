@@ -1,6 +1,10 @@
 export default function CoursesSection() {
   return (
-    <section className="courses" aria-labelledby="courses-heading">
+    <section 
+      className="courses" 
+      aria-labelledby="courses-heading" 
+      id="courses"
+    >
       <header>
         <h2 id="courses-heading">Kurser</h2>
       </header>

@@ -6,7 +6,11 @@ import styles from "./Section.module.css";
 
 export default function ProjectsSection() {
   return (
-    <section className="projects" aria-labelledby="projects-heading">
+    <section 
+      className="projects full-height-section" 
+      id="projects"
+      aria-labelledby="projects-heading"
+    >
       <Header>
         <h2
           className="h-size-2"
