@@ -16,7 +16,11 @@ export default function TechStackSection() {
     .filter((stack) => stack.technologies.length > 0)
 
   return (
-    <section className={styles.section}>
+    <section 
+      className='full-height-section' 
+      aria-labelledby="tech-stack-section-header" 
+      id="tech-stack-section"
+    >
       <Header>
         <h2
           className="h-size-2"

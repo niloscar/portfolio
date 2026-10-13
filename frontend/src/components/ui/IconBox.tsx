@@ -42,6 +42,7 @@ export default function IconBox({
       className={styles.box}
       data-theme={theme}
       aria-label={resolvedName}
+      title={!tooltip ? resolvedName : undefined}
       target="_blank"
       rel="noopener"
       style={

@@ -1,6 +1,10 @@
 export default function EducationSection() {
   return (
-    <section className="education" aria-labelledby="education-heading">
+    <section 
+      className="education" 
+      aria-labelledby="education-heading" 
+      id="education"
+    >
       <header>
         <h2 id="education-heading">Utbildning</h2>
       </header>

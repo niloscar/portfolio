@@ -1,4 +1,17 @@
+.presentation {
+  padding-bottom: 2rem;
+}
+
 p {
   max-width: 500px;
   margin: 1rem auto;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+
+  margin-top: 4rem;
 }
