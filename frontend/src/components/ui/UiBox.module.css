@@ -1,0 +1,18 @@
+.uiBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: .5rem 1rem;
+  margin: 0 auto;
+
+  backdrop-filter: blur(15px);
+  background-color: #11111111;
+  border-radius: 4px;
+
+  font-size: .8rem;
+}
+
+.uiBox > * {
+  margin: 0;
+}
