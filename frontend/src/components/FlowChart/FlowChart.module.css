@@ -1,0 +1,201 @@
+.flowchart {
+  box-sizing: content-box;
+  width: 2rem;
+
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-items: center;
+
+  backdrop-filter: blur(15px);
+  background-color: #11111111;
+  border-radius: 4px;
+
+  padding: 1rem .5rem;
+  margin: 0 auto;
+  gap: .5rem;
+
+  --initial-color: #333;
+  --activity-color: #fff;
+  --active-color: #777;
+  --success-color: #333;
+
+  --step-duration: .75s;
+  --cycle-duration: 9s;
+}
+
+.flowchart.horizontal {
+  width: auto;
+
+  grid-template-columns:
+    auto
+    1rem
+    auto
+    1rem
+    auto
+    1rem
+    auto;
+
+  padding: .5rem .75rem;
+}
+
+.flowchart svg {
+  height: auto;
+  color: var(--initial-color);
+}
+
+.flowchart .user {
+  width: 1.5rem;
+  color: var(--success-color);
+}
+
+.frontend,
+.backend {
+  animation:
+    node-state .7s ease-in-out both,
+    response-node-state .7s ease-in-out forwards;
+
+  animation-delay:
+    calc(var(--step) * var(--step-duration)),
+    calc(var(--response-step) * var(--step-duration));
+}
+
+.database {
+  animation: node-state .6s ease-in-out both;
+  animation-delay: calc(var(--step) * var(--step-duration));
+}
+
+.request-arrow {
+  animation: request-state .4s ease-in-out both;
+  animation-delay: calc(var(--step) * var(--step-duration));
+}
+
+.response-arrow {
+  animation: response-state .4s ease-in-out both;
+  animation-delay: calc(var(--step) * var(--step-duration));
+}
+
+.double-arrow {
+  position: relative;
+  width: 1rem;
+  height: 1rem;
+}
+
+.double-arrow svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.user {
+  width: 1.5rem;
+  color: var(--success-color);
+}
+
+.arrow-1 {
+  --step: 0;
+  width: 1rem;
+}
+
+.frontend {
+  --step: 1;
+  --response-step: 9;
+  width: 1.5rem;
+}
+
+.arrow-2 {
+  --step: 2;
+}
+
+.backend {
+  --step: 3;
+  --response-step: 7;
+  width: 1.5rem;
+}
+
+.arrow-3 {
+  --step: 4;
+}
+
+.database {
+  --step: 5;
+  width: 1.5rem;
+}
+
+.arrow-4 {
+  --step: 6;
+}
+
+.arrow-5 {
+  --step: 8;
+}
+
+.horizontal .arrow-1,
+.horizontal .double-arrow svg {
+  transform: rotate(-90deg);
+}
+
+@keyframes request-state {
+  0% {
+    color: var(--initial-color);
+  }
+
+  50% {
+    color: var(--activity-color);
+  }
+
+  100% {
+    color: var(--success-color);
+  }
+}
+
+@keyframes response-state {
+  0% {
+    color: var(--initial-color);
+  }
+
+  50% {
+    color: var(--activity-color);
+  }
+
+  100% {
+    color: var(--success-color);
+  }
+}
+
+@keyframes node-state {
+  0% {
+    color: var(--initial-color);
+  }
+
+  35% {
+    color: var(--activity-color);
+  }
+
+  60% {
+    color: var(--active-color);
+  }
+
+  100% {
+    color: var(--success-color);
+  }
+}
+
+@keyframes response-node-state {
+  0% {
+    color: var(--success-color);
+  }
+
+  35% {
+    color: var(--activity-color);
+  }
+
+  60% {
+    color: var(--active-color);
+  }
+
+  100% {
+    color: var(--success-color);
+  }
+}
