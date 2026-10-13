@@ -1,4 +1,8 @@
 .links {
+  --fade-delay: .5s;
+  --fade-duration: .5s;
+  --stagger: .25s;
+
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -7,4 +11,31 @@
   flex-direction: column;
   gap: .5rem;
   align-items: flex-start;
+
+  pointer-events: none;
+}
+
+.links a {
+  opacity: 0;
+  will-change: opacity;
+  pointer-events: none;
+
+  transition:
+    opacity var(--fade-duration) ease-in-out
+      calc(
+        var(--fade-delay) +
+        var(--box-index) * var(--stagger)
+      ),
+    pointer-events 0s linear
+      calc(
+        var(--fade-delay) +
+        var(--fade-duration) +
+        var(--box-index) * var(--stagger)
+      )
+      allow-discrete;
+}
+
+[data-visible='true'] .links a {
+  opacity: 1;
+  pointer-events: auto;
 }
