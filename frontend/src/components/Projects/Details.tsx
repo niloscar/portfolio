@@ -4,7 +4,8 @@ import type { Project } from '../../types/ProjectType'
 import { MOCK_PROJECTS } from '../../mocks/projects'
 import { MOCK_TECH_STACK } from '../../mocks/techStack'
 import TechStackList from '../TechStack/List'
-import Spinner from '../ui/Spinner'
+import UiBox from '../ui/UiBox'
+import Ellipsis from '../ui/Ellipsis'
 
 export default function ProjectDetails() {
   const { id } = useParams<{ id: string }>()
@@ -38,11 +39,7 @@ export default function ProjectDetails() {
       }
     }
 
-    const timeout = setTimeout(() => {
-      fetchProjects()
-    }, 500)
-
-    return () => clearTimeout(timeout)
+    fetchProjects()
   }, [projectId, idError])
 
   const technologies = MOCK_TECH_STACK.flatMap(
@@ -53,7 +50,12 @@ export default function ProjectDetails() {
     <>
       {errorMessage && <p>{errorMessage}</p>}
 
-      {isLoading && !errorMessage && <Spinner />}
+      {isLoading && !errorMessage && (
+        <UiBox>
+            <span>Hämtar projekt</span>
+            <Ellipsis />
+        </UiBox>
+      )}
 
       {!isLoading && !errorMessage && project && (
         <>
