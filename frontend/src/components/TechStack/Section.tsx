@@ -1,5 +1,5 @@
 import Header from '../../parts/Header'
-import TechStackSectionList from './List'
+import TechStackList from './List'
 import { ArrowElbowRightDownIcon } from '@phosphor-icons/react'
 import { MOCK_TECH_STACK, TECHS_VISIBLE_IN_SECTION } from '../../mocks/techStack'
 
@@ -45,9 +45,9 @@ export default function TechStackSection() {
                 <ArrowElbowRightDownIcon className={styles.arrow} />
               </h3>
 
-              <TechStackSectionList
+              <TechStackList
                 technologies={stack.technologies}
-                isWeighted={true}
+                align="start"
               />
             </div>
           )

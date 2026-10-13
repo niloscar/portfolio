@@ -86,7 +86,10 @@ export default function ProjectDetails() {
           {technologies.length > 0 && (
             <>
               <h3 className="h-size-4">Teknikstack</h3>
-              <TechStackList technologies={technologies} />
+              <TechStackList 
+                technologies={technologies} 
+                align="center"
+              />
             </>
           )}
         </>

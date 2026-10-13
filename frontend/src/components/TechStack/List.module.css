@@ -4,9 +4,20 @@
   margin: 0;
 
   display: flex;
-  justify-content: flex-start;
   gap: .5rem;
   flex-wrap: wrap;
+}
+
+.start {
+  justify-content: flex-start;
+}
+
+.center {
+  justify-content: center;
+}
+
+main > section .list {
+  justify-content: flex-start;
 }
 
 .list a {

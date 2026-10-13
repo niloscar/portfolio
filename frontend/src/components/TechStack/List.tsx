@@ -4,9 +4,14 @@ import type { Technology } from '../../types/TechStackType'
 
 import styles from './List.module.css'
 
-export default function TechStackList({ technologies }: { technologies: Technology[], isWeighted?: boolean }) {
+interface TechStackListProps {
+  technologies: Technology[]
+  align?: 'center' | 'start'
+}
+
+export default function TechStackList({ technologies, align = 'start' }: TechStackListProps) {
   return (
-    <ul className={styles.list}>
+    <ul className={`${styles.list} ${styles[align]}`}>
       {technologies.map((technology, index) => (
         <li key={technology.name}>
           <IconBox
