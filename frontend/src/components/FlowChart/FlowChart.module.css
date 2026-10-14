@@ -26,7 +26,7 @@
     var(--arrow-duration) + var(--arrival-delay)
   );
 
-  --node-duration: 800ms;
+  --node-duration: 300ms;
 }
 
 .flowchart.horizontal {
@@ -179,12 +179,12 @@
     color: var(--initial-color);
   }
 
-  5% {
+  20% {
     color: var(--activity-color);
   }
 
-  10% {
-    color: var(--activity-color);
+  50% {
+    color: var(--active-color);
   }
 
   100% {
@@ -197,12 +197,12 @@
     color: var(--initial-color);
   }
 
-  5% {
+  20% {
     color: var(--activity-color);
   }
 
-  10% {
-    color: var(--activity-color);
+  50% {
+    color: var(--active-color);
   }
 
   100% {
