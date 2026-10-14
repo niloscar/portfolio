@@ -16,12 +16,17 @@
   gap: .5rem;
 
   --initial-color: #333;
-  --activity-color: #fff;
+  --activity-color: #f5f5f5;
   --active-color: #777;
   --success-color: #333;
 
-  --step-duration: .75s;
-  --cycle-duration: 9s;
+  --arrow-duration: 600ms;
+  --arrival-delay: -110ms;
+  --step-duration: calc(
+    var(--arrow-duration) + var(--arrival-delay)
+  );
+
+  --node-duration: 800ms;
 }
 
 .flowchart.horizontal {
@@ -44,7 +49,7 @@
   color: var(--initial-color);
 }
 
-.flowchart .user {
+.user {
   width: 1.5rem;
   color: var(--success-color);
 }
@@ -52,8 +57,8 @@
 .frontend,
 .backend {
   animation:
-    node-state .7s ease-in-out both,
-    response-node-state .7s ease-in-out forwards;
+    node-state var(--node-duration) ease-in-out both,
+    response-node-state var(--node-duration) ease-in-out forwards;
 
   animation-delay:
     calc(var(--step) * var(--step-duration)),
@@ -61,46 +66,77 @@
 }
 
 .database {
-  animation: node-state .6s ease-in-out both;
+  animation: node-state var(--node-duration) ease-in-out both;
   animation-delay: calc(var(--step) * var(--step-duration));
 }
 
-.request-arrow {
-  animation: request-state .4s ease-in-out both;
+.arrow {
+  position: relative;
+
+  width: 1rem;
+  height: 1rem;
+
+  overflow: hidden;
+
+  background-color: var(--initial-color);
+
+  mask-image: var(--arrow-mask);
+  mask-position: center;
+  mask-repeat: no-repeat;
+  mask-size: contain;
+
+  -webkit-mask-image: var(--arrow-mask);
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+}
+
+.arrow::after {
+  content: '';
+
+  position: absolute;
+  top: -50%;
+  left: 0;
+
+  width: 100%;
+  height: 50%;
+
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--activity-color) 30%,
+    var(--activity-color) 70%,
+    transparent 100%
+  );
+
+  animation: arrow-flow-down var(--arrow-duration) ease-in-out both;
   animation-delay: calc(var(--step) * var(--step-duration));
 }
 
-.response-arrow {
-  animation: response-state .4s ease-in-out both;
-  animation-delay: calc(var(--step) * var(--step-duration));
+.response-arrow::after {
+  animation-name: arrow-flow-up;
 }
 
 .double-arrow {
   position: relative;
+
   width: 1rem;
   height: 1rem;
 }
 
-.double-arrow svg {
+.double-arrow > .arrow {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.user {
-  width: 1.5rem;
-  color: var(--success-color);
 }
 
 .arrow-1 {
   --step: 0;
-  width: 1rem;
 }
 
 .frontend {
   --step: 1;
   --response-step: 9;
+
   width: 1.5rem;
 }
 
@@ -111,6 +147,7 @@
 .backend {
   --step: 3;
   --response-step: 7;
+
   width: 1.5rem;
 }
 
@@ -120,6 +157,7 @@
 
 .database {
   --step: 5;
+
   width: 1.5rem;
 }
 
@@ -132,36 +170,8 @@
 }
 
 .horizontal .arrow-1,
-.horizontal .double-arrow svg {
+.horizontal .double-arrow {
   transform: rotate(-90deg);
-}
-
-@keyframes request-state {
-  0% {
-    color: var(--initial-color);
-  }
-
-  50% {
-    color: var(--activity-color);
-  }
-
-  100% {
-    color: var(--success-color);
-  }
-}
-
-@keyframes response-state {
-  0% {
-    color: var(--initial-color);
-  }
-
-  50% {
-    color: var(--activity-color);
-  }
-
-  100% {
-    color: var(--success-color);
-  }
 }
 
 @keyframes node-state {
@@ -169,12 +179,12 @@
     color: var(--initial-color);
   }
 
-  35% {
+  5% {
     color: var(--activity-color);
   }
 
-  60% {
-    color: var(--active-color);
+  10% {
+    color: var(--activity-color);
   }
 
   100% {
@@ -184,18 +194,38 @@
 
 @keyframes response-node-state {
   0% {
-    color: var(--success-color);
+    color: var(--initial-color);
   }
 
-  35% {
+  5% {
     color: var(--activity-color);
   }
 
-  60% {
-    color: var(--active-color);
+  10% {
+    color: var(--activity-color);
   }
 
   100% {
     color: var(--success-color);
+  }
+}
+
+@keyframes arrow-flow-down {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(300%);
+  }
+}
+
+@keyframes arrow-flow-up {
+  from {
+    transform: translateY(300%);
+  }
+
+  to {
+    transform: translateY(0);
   }
 }

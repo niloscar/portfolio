@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type CSSProperties } from 'react'
 import User from '../../assets/icons/User.svg?react'
-import ArrowDownC from '../../assets/icons/ArrowDownC.svg?react'
+import ArrowDownC from '../../assets/icons/ArrowDownC.svg?url'
 import Frontend from '../../assets/icons/Frontend.svg?react'
-import ArrowDownL from '../../assets/icons/ArrowDownL.svg?react'
-import ArrowUpR from '../../assets/icons/ArrowUpR.svg?react'
+import ArrowDownL from '../../assets/icons/ArrowDownL.svg?url'
+import ArrowUpR from '../../assets/icons/ArrowUpR.svg?url'
 import Backend from '../../assets/icons/Backend.svg?react'
 import Database from '../../assets/icons/Database.svg?react'
 import styles from './FlowChart.module.css'
@@ -12,45 +12,78 @@ interface FlowChartProps {
   direction?: 'horizontal' | 'vertical'
 }
 
-export default function FlowChart({ direction }: FlowChartProps) {
+interface FlowArrowProps {
+  icon: string
+  className?: string
+}
+
+function FlowArrow({ icon, className }: FlowArrowProps) {
+  return (
+    <div
+      className={`${styles.arrow} ${className ?? ''}`}
+      style={{
+        '--arrow-mask': `url("${icon}")`
+      } as CSSProperties}
+      aria-hidden="true"
+    />
+  )
+}
+
+export default function FlowChart({
+  direction = 'vertical'
+}: FlowChartProps) {
   const [cycle, setCycle] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCycle((cycle) => cycle + 1)
-    }, 12000)
+    }, 7500)
 
     return () => clearInterval(interval)
   }, [])
 
-  const classNames = [
-    styles.flowchart,
-    direction === 'horizontal'
-      ? styles.horizontal
-      : styles.vertical
-  ].filter(Boolean).join(' ')
+  useEffect(() => {
+    console.log('cycle', cycle)
+  }, [cycle])
 
   return (
-    <div 
+    <div
       key={cycle}
-      className={classNames}
+      className={`${styles.flowchart} ${styles[direction]}`}
     >
       <User className={styles.user} />
 
-      <ArrowDownC className={`${styles['request-arrow']} ${styles['arrow-1']}`} />
+      <FlowArrow
+        icon={ArrowDownC}
+        className={styles['arrow-1']}
+      />
 
       <Frontend className={styles.frontend} />
 
-      <div className={`${styles['double-arrow']} ${styles['double-arrow-1']}`}>
-        <ArrowDownL className={`${styles['request-arrow']} ${styles['arrow-2']}`} />
-        <ArrowUpR className={`${styles['response-arrow']} ${styles['arrow-5']}`} />
+      <div className={styles['double-arrow']}>
+        <FlowArrow
+          icon={ArrowDownL}
+          className={`${styles['request-arrow']} ${styles['arrow-2']}`}
+        />
+
+        <FlowArrow
+          icon={ArrowUpR}
+          className={`${styles['response-arrow']} ${styles['arrow-5']}`}
+        />
       </div>
 
       <Backend className={styles.backend} />
 
-      <div className={`${styles['double-arrow']} ${styles['double-arrow-2']}`}>
-        <ArrowDownL className={`${styles['request-arrow']} ${styles['arrow-3']}`} />
-        <ArrowUpR className={`${styles['response-arrow']} ${styles['arrow-4']}`} />
+      <div className={styles['double-arrow']}>
+        <FlowArrow
+          icon={ArrowDownL}
+          className={`${styles['request-arrow']} ${styles['arrow-3']}`}
+        />
+
+        <FlowArrow
+          icon={ArrowUpR}
+          className={`${styles['response-arrow']} ${styles['arrow-4']}`}
+        />
       </div>
 
       <Database className={styles.database} />

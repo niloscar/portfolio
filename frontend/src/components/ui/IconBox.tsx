@@ -1,4 +1,3 @@
-import type { CSSProperties, ElementType } from 'react'
 import LINK_CONFIG from '../linkConfig'
 import {
   ArrowLeftIcon,
@@ -6,6 +5,9 @@ import {
   ArrowElbowRightDownIcon,
   ArrowElbowRightUpIcon
 } from '@phosphor-icons/react'
+
+import type { CSSProperties, ElementType } from 'react'
+import type { LinkConfig } from '../linkConfig'
 
 import styles from './IconBox.module.css'
 
@@ -37,12 +39,13 @@ export default function IconBox({
   tooltip,
   tooltipPosition = 'left'
 }: IconBoxProps) {
-  const config = LINK_CONFIG[slug]
+  const config: LinkConfig = LINK_CONFIG[slug]
 
   const Icon = icon ?? config.icon
   const resolvedName = name ?? config.name
   const resolvedHref = href ?? ('url' in config ? config.url : undefined)
   const resolvedColor = color ?? config.color
+  const resolvedWeight = config.weight
 
   const tooltipText =
     slug === 'production' && resolvedHref
@@ -75,7 +78,7 @@ export default function IconBox({
         } as CSSProperties
       }
     >
-      <Icon />
+      <Icon weight={resolvedWeight} />
       {tooltip && (
         <span
           className={styles.tooltip}

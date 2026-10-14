@@ -28,17 +28,19 @@ import {
   EnvelopeSimpleIcon,
   GlobeIcon,
   CrosshairIcon,
-  LinkedinLogoIcon,
+  LinkedinLogoIcon
 } from '@phosphor-icons/react'
 
 import type { ElementType } from 'react'
 import type { LinkType } from '../types/ProjectType'
+import type { IconWeight } from '@phosphor-icons/react'
 
-interface LinkConfig {
+export interface LinkConfig {
   name: string
   icon: ElementType
   color: string
   url?: string
+  weight?: IconWeight
 }
 
 const LINK_CONFIG = {
@@ -194,21 +196,25 @@ const LINK_CONFIG = {
   preview: {
     name: 'Förhandsvisning',
     icon: GlobeIcon,
+    weight: 'light',
     color: '#111111'
   },
   production: {
     name: 'Produktion',
     icon: GlobeIcon,
+    weight: 'light',
     color: '#339933'
   },
   linkedin: {
     name: 'LinkedIn',
     icon: LinkedinLogoIcon,
+    weight: 'light',
     color: '#0077b5'
   },
   mailto: {
     name: 'E-post',
     icon: EnvelopeSimpleIcon,
+    weight: 'light',
     color: '#d14836'
   }
 } satisfies Record<LinkType, LinkConfig>
