@@ -6,7 +6,7 @@ import {
   ArrowElbowRightUpIcon
 } from '@phosphor-icons/react'
 
-import type { CSSProperties, ElementType } from 'react'
+import type { CSSProperties } from 'react'
 import type { LinkConfig } from '../linkConfig'
 
 import styles from './IconBox.module.css'
@@ -22,7 +22,6 @@ interface IconBoxProps {
   color?: string
   theme?: 'light' | 'dark'
   name?: string
-  icon?: ElementType
   tooltip?: boolean
   tooltipPosition?: TooltipPosition
 }
@@ -35,13 +34,14 @@ export default function IconBox({
   color,
   theme = 'light',
   name,
-  icon,
   tooltip,
   tooltipPosition = 'left'
 }: IconBoxProps) {
+
+  console.log('slug:', slug, 'config:', LINK_CONFIG[slug])
   const config: LinkConfig = LINK_CONFIG[slug]
 
-  const Icon = icon ?? config.icon
+  const Icon = config.icon
   const resolvedName = name ?? config.name
   const resolvedHref = href ?? ('url' in config ? config.url : undefined)
   const resolvedColor = color ?? config.color

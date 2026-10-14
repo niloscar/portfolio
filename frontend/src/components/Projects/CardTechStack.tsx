@@ -1,12 +1,11 @@
-import LINK_CONFIG from '../linkConfig'
 import IconBox from '../ui/IconBox'
 
-import type { TechType } from '@portfolio/shared'
+import type { Technology } from '@portfolio/shared'
 
 import styles from './CardTechStack.module.css'
 
 interface TechStackProps {
-  techStack: TechType[]
+  techStack: Technology[]
 }
 
 export default function TechStack({ techStack }: TechStackProps) {
@@ -15,23 +14,18 @@ export default function TechStack({ techStack }: TechStackProps) {
   return (
     <div className={styles.links}>
       {reversedTechStack.map((tech, index) => {
-        const config = LINK_CONFIG[tech]
-
-        if (!config) return null
-
-        const Icon = config.icon
 
         return (
           <IconBox
-            key={tech}
+            key={tech.slug}
             index={index}
-            slug={tech}
+            slug={tech.slug}
             count={techStack.length}
-            href={config.url}
+            href={tech.link}
             theme="dark"
-            color={config.color}
-            name={config.name}
-            icon={Icon}
+            color={tech.color}
+            name={tech.name}
+            // icon={Icon}
           />
         )
       })}

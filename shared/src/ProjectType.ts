@@ -1,15 +1,19 @@
 import type { Technology } from './TechStackType'
 
-export interface Project {
+export interface ProjectData {
   id: number
   name: string
   description: string
   technicalOverview: string
   responsibility?: string | string[]
   technicalChallenges?: string
-  techStack: Technology[]
+  techStack: TechType[]
   links?: ExternalLink[]
   image?: string
+}
+
+export interface Project extends Omit<ProjectData, 'techStack'> {
+  techStack: Technology[]
 }
 
 export interface ProjectLink {
