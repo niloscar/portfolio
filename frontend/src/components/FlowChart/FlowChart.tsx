@@ -42,10 +42,6 @@ export default function FlowChart({
     return () => clearInterval(interval)
   }, [])
 
-  useEffect(() => {
-    console.log('cycle', cycle)
-  }, [cycle])
-
   return (
     <div
       key={cycle}

@@ -1,55 +1,80 @@
+import { useState, useEffect } from 'react'
+import { getVisibleTechs } from '../../api/techStackApi'
 import Header from '../../parts/Header'
 import TechStackList from './List'
 import SmallHeading from '../ui/SmallHeading'
-import { MOCK_TECH_STACK, TECHS_VISIBLE_IN_SECTION } from '../../mocks/techStack'
 
 import styles from './Section.module.css'
+import UiBox from '../ui/UiBox'
+import Ellipsis from '../ui/Ellipsis'
+import ErrorBox from '../ui/ErrorBox'
+
+import type { TechStack } from '@portfolio/shared'
 
 export default function TechStackSection() {
-  const visibleTechStack = MOCK_TECH_STACK
-    .map((stack) => ({
-      ...stack,
-      technologies: stack.technologies.filter((technology) =>
-        TECHS_VISIBLE_IN_SECTION.includes(technology.slug)
-      )
-    }))
-    .filter((stack) => stack.technologies.length > 0)
+  const [techStack, setTechStack] = useState<TechStack[]>([])
+  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const fetchTechStack = async () => {
+      try {
+        const data = await getVisibleTechs()
+        setTechStack(data)
+      } catch (error) {
+        setError('Fel vid hämtning av tekniker')
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchTechStack()
+  }, [])
 
   return (
-    <section 
-      className='full-height-section' 
-      aria-labelledby="tech-stack-section-header" 
+    <section
+      className="full-height-section"
+      aria-labelledby="tech-stack-section-header"
       id="tech-stack-section"
     >
       <Header>
-        <h2
-          className="h-size-2"
-          id="tech-stack-section-header"
-        >
+        <h2 className="h-size-2" id="tech-stack-section-header">
           Teknikstack
         </h2>
       </Header>
 
-      <p>
-        Här är ett urval av de teknologier och verktyg som jag har
-        erfarenhet av och använder i mina projekt.
-      </p>
+      {isLoading && (
+        <UiBox>
+          <span>Hämtar tekniker</span>
+          <Ellipsis />
+        </UiBox>
+      )}
 
-      <div className={styles.grid}>
-        {visibleTechStack.map((stack) => {
+      {error && <ErrorBox message={error} />}
 
-          return (
-            <div className={styles.stack} key={stack.type}>
-              <SmallHeading>{stack.title}</SmallHeading>
+      {!isLoading && !error && (
+        <>
+          <p>
+            Här är ett urval av de teknologier och verktyg som jag har
+            erfarenhet av och använder i mina projekt.
+          </p>
 
-              <TechStackList
-                technologies={stack.technologies}
-                align="start"
-              />
-            </div>
-          )
-        })}
-      </div>
+          <div className={styles.grid}>
+            {techStack.map((stack) => {
+              return (
+                <div className={styles.stack} key={stack.type}>
+                  <SmallHeading>{stack.title}</SmallHeading>
+
+                  <TechStackList
+                    technologies={stack.technologies}
+                    align="start"
+                  />
+                </div>
+              )
+            })}
+          </div>
+        </>
+      )}
     </section>
   )
 }

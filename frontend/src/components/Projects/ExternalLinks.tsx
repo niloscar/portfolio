@@ -2,7 +2,7 @@ import IconBox from '../ui/IconBox'
 import LINK_CONFIG from '../linkConfig'
 import linkTooltipPosition from '../../utils/linkTooltipPosition'
 
-import type { ExternalLinkType } from '../../types/ProjectType'
+import type { ExternalLinkType } from '@portfolio/shared'
 
 import styles from './ExternalLinks.module.css'
 

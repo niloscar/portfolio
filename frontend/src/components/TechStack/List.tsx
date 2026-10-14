@@ -1,6 +1,6 @@
 import IconBox from '../ui/IconBox'
 
-import type { Technology } from '../../types/TechStackType'
+import type { Technology } from '@portfolio/shared'
 
 import styles from './List.module.css'
 

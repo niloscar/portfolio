@@ -1,19 +1,23 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { MOCK_PROJECTS } from '../../mocks/projects'
-import { MOCK_TECH_STACK } from '../../mocks/techStack'
 import ExternalLinks from './ExternalLinks'
 import TechStackList from '../TechStack/List'
 import UiBox from '../ui/UiBox'
 import Ellipsis from '../ui/Ellipsis'
 import SmallHeading from '../ui/SmallHeading'
 
-import type { Project } from '../../types/ProjectType'
+import type { Project } from '@portfolio/shared'
 
 import styles from './Details.module.css'
+import { getProjectById } from '../../api/projectsApi'
+import ErrorBox from '../ui/ErrorBox'
 
 export default function ProjectDetails() {
   const { id } = useParams<{ id: string }>()
+
+  const [project, setProject] = useState<Project | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   const projectId = Number(id)
 
@@ -22,10 +26,6 @@ export default function ProjectDetails() {
       ? 'Ogiltigt projekt-ID.'
       : null
 
-  const [project, setProject] = useState<Project | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-
   const errorMessage = idError ?? error
 
   useEffect(() => {
@@ -33,12 +33,11 @@ export default function ProjectDetails() {
 
     const fetchProjects = async () => {
       try {
-        const data = await Promise.resolve(MOCK_PROJECTS)
+        const data = await getProjectById(projectId)
 
-        setProject(data.find((p) => p.id === projectId) || null)
+        setProject(data)
       } catch (error) {
-        console.error('Fel vid hämtning av projekt:', error)
-        setError('Fel vid hämtning av projekt.')
+        setError('Fel vid hämtning av projekt')
       } finally {
         setIsLoading(false)
       }
@@ -47,13 +46,18 @@ export default function ProjectDetails() {
     fetchProjects()
   }, [projectId, idError])
 
-  const technologies = MOCK_TECH_STACK.flatMap(
-    (stack) => stack.technologies
-  ).filter((technology) => project?.techStack?.includes(technology.slug))
-
   return (
     <>
-      {errorMessage && <p>{errorMessage}</p>}
+      {errorMessage && (
+        <ErrorBox message={errorMessage} />
+      )}
+
+      {isLoading && !errorMessage && (
+        <UiBox>
+            <span>Hämtar projekt</span>
+            <Ellipsis />
+        </UiBox>
+      )}
 
       {isLoading && !errorMessage && (
         <UiBox>
@@ -106,7 +110,7 @@ export default function ProjectDetails() {
             </>
           )}
 
-          {technologies.length > 0 && (
+          {project.techStack.length > 0 && (
             <div className={styles['tech-stack-section']}>
               <SmallHeading
                 align="center"
@@ -114,7 +118,7 @@ export default function ProjectDetails() {
                 Teknikstack
               </SmallHeading>
               <TechStackList 
-                technologies={technologies} 
+                technologies={project.techStack} 
                 align="center"
                 tooltips
               />

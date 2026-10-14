@@ -1,7 +1,7 @@
 import LINK_CONFIG from '../linkConfig'
 import IconBox from '../ui/IconBox'
 
-import type { TechType } from '../../types/ProjectType'
+import type { TechType } from '@portfolio/shared'
 
 import styles from './CardTechStack.module.css'
 

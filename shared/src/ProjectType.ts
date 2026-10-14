@@ -1,3 +1,5 @@
+import type { Technology } from './TechStackType'
+
 export interface Project {
   id: number
   name: string
@@ -5,7 +7,7 @@ export interface Project {
   technicalOverview: string
   responsibility?: string | string[]
   technicalChallenges?: string
-  techStack: TechType[]
+  techStack: Technology[]
   links?: ExternalLink[]
   image?: string
 }

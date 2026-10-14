@@ -1,4 +1,4 @@
-import type { TechStack } from '../types/TechStackType'
+import type { TechStack } from '@portfolio/shared'
 
 export const MOCK_TECH_STACK: TechStack[] = [
   {
