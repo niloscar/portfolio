@@ -47,6 +47,7 @@ export type ExternalLinkType =
   | 'github'
   | 'preview'
   | 'production'
+  | 'testflight'
 
 export type SocialLinkType =
   | 'github'

@@ -25,7 +25,7 @@ export const MOCK_PROJECTS: Project[] = [
     id: 2,
     name: 'SailTell för Apple Watch',
     description:
-      'App för Apple Watch som hjälper seglare att hålla koll på hastighet och kurs direkt på handleden. Appen kan även spela in seglingspass och sammanställa statistik över bland annat distans, medel- och maxhastighet samt personliga rekord.',
+      'App för Apple Watch som hjälper seglare att hålla koll på hastighet och kurs direkt på handleden. Appen kan även spela in seglingspass och sammanställa statistik över bland annat distans, medel- och maxhastighet samt personliga rekord. Appen är under aktiv utveckling och testas för närvarande via TestFlight.',
     technicalOverview:
       'Appen är byggd med Swift och SwiftUI för watchOS. Core Location används för att läsa in position, hastighet och kurs i realtid samt för att spela in seglingspass.',
     responsibility:

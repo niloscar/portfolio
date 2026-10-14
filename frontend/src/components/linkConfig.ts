@@ -45,11 +45,16 @@ export interface LinkConfig {
 }
 
 const LINK_CONFIG = {
-  html: {
-    name: 'HTML',
-    icon: SiHtml5,
-    url: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
-    color: '#e34f26'
+  appstore: {
+    name: 'App Store',
+    icon: AppStoreLogoIcon,
+    color: '#0d96f6'
+  },
+  'core-location': {
+    name: 'Core Location',
+    icon: CrosshairIcon,
+    url: 'https://developer.apple.com/documentation/corelocation',
+    color: '#000000'
   },
   css: {
     name: 'CSS',
@@ -57,17 +62,35 @@ const LINK_CONFIG = {
     url: 'https://developer.mozilla.org/en-US/docs/Web/CSS',
     color: '#1572b6'
   },
-  react: {
-    name: 'React',
-    icon: SiReact,
-    url: 'https://react.dev',
-    color: '#61dafb'
+  docker: {
+    name: 'Docker',
+    icon: SiDocker,
+    url: 'https://www.docker.com',
+    color: '#2496ed'
   },
-  maplibre: {
-    name: 'MapLibre',
-    icon: MapTrifoldIcon,
-    url: 'https://maplibre.org',
-    color: '#95befa'
+  express: {
+    name: 'Express',
+    icon: SiExpress,
+    url: 'https://expressjs.com',
+    color: '#000000'
+  },
+  git: {
+    name: 'Git',
+    icon: SiGit,
+    url: 'https://git-scm.com',
+    color: '#f05032'
+  },
+  github: {
+    name: 'GitHub',
+    icon: SiGithub,
+    url: 'https://github.com',
+    color: '#101411'
+  },
+  html: {
+    name: 'HTML',
+    icon: SiHtml5,
+    url: 'https://developer.mozilla.org/en-US/docs/Web/HTML',
+    color: '#e34f26'
   },
   javascript: {
     name: 'JavaScript',
@@ -75,23 +98,23 @@ const LINK_CONFIG = {
     url: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript',
     color: '#f7df1e'
   },
-  typescript: {
-    name: 'TypeScript',
-    icon: SiTypescript,
-    url: 'https://www.typescriptlang.org',
-    color: '#3178c6'
+  linkedin: {
+    name: 'LinkedIn',
+    icon: LinkedinLogoIcon,
+    weight: 'light',
+    color: '#0077b5'
   },
-  vite: {
-    name: 'Vite',
-    icon: SiVite,
-    url: 'https://vite.dev',
-    color: '#646cff'
+  mailto: {
+    name: 'E-post',
+    icon: EnvelopeSimpleIcon,
+    weight: 'light',
+    color: '#d14836'
   },
-  express: {
-    name: 'Express',
-    icon: SiExpress,
-    url: 'https://expressjs.com',
-    color: '#000000'
+  maplibre: {
+    name: 'MapLibre',
+    icon: MapTrifoldIcon,
+    url: 'https://maplibre.org',
+    color: '#95befa'
   },
   mariadb: {
     name: 'MariaDB',
@@ -111,11 +134,17 @@ const LINK_CONFIG = {
     url: 'https://www.mysql.com',
     color: '#4479a1'
   },
-  postgresql: {
-    name: 'PostgreSQL',
-    icon: SiPostgresql,
-    url: 'https://www.postgresql.org',
-    color: '#336791'
+  neon: {
+    name: 'Neon',
+    icon: SiNeon,
+    url: 'https://neon.tech',
+    color: '#000000'
+  },
+  nginx: {
+    name: 'NGINX',
+    icon: SiNginx,
+    url: 'https://nginx.org',
+    color: '#009639'
   },
   nodejs: {
     name: 'Node.js',
@@ -129,76 +158,11 @@ const LINK_CONFIG = {
     url: 'https://www.php.net',
     color: '#777bb4'
   },
-  watchos: {
-    name: 'watchOS',
-    icon: SiApple,
-    url: 'https://developer.apple.com/watchos/',
-    color: '#000000'
-  },
-  swift: {
-    name: 'Swift',
-    icon: SiSwift,
-    url: 'https://www.swift.org',
-    color: '#f05138'
-  },
-  swiftui: {
-    name: 'SwiftUI',
-    icon: SiSwift,
-    url: 'https://developer.apple.com/xcode/swiftui/',
-    color: '#f05138'
-  },
-  'core-location': {
-    name: 'Core Location',
-    icon: CrosshairIcon,
-    url: 'https://developer.apple.com/documentation/corelocation',
-    color: '#000000'
-  },
-  docker: {
-    name: 'Docker',
-    icon: SiDocker,
-    url: 'https://www.docker.com',
-    color: '#2496ed'
-  },
-  nginx: {
-    name: 'NGINX',
-    icon: SiNginx,
-    url: 'https://nginx.org',
-    color: '#009639'
-  },
-  vercel: {
-    name: 'Vercel',
-    icon: SiVercel,
-    url: 'https://vercel.com',
-    color: '#000000'
-  },
-  railway: {
-    name: 'Railway',
-    icon: SiRailway,
-    url: 'https://railway.com',
-    color: '#000000'
-  },
-  neon: {
-    name: 'Neon',
-    icon: SiNeon,
-    url: 'https://neon.tech',
-    color: '#000000'
-  },
-  git: {
-    name: 'Git',
-    icon: SiGit,
-    url: 'https://git-scm.com',
-    color: '#f05032'
-  },
-  github: {
-    name: 'GitHub',
-    icon: SiGithub,
-    url: 'https://github.com',
-    color: '#101411'
-  },
-  appstore: {
-    name: 'App Store',
-    icon: AppStoreLogoIcon,
-    color: '#0d96f6'
+  postgresql: {
+    name: 'PostgreSQL',
+    icon: SiPostgresql,
+    url: 'https://www.postgresql.org',
+    color: '#336791'
   },
   preview: {
     name: 'Förhandsvisning',
@@ -212,17 +176,59 @@ const LINK_CONFIG = {
     weight: 'light',
     color: '#339933'
   },
-  linkedin: {
-    name: 'LinkedIn',
-    icon: LinkedinLogoIcon,
-    weight: 'light',
-    color: '#0077b5'
+  railway: {
+    name: 'Railway',
+    icon: SiRailway,
+    url: 'https://railway.com',
+    color: '#000000'
   },
-  mailto: {
-    name: 'E-post',
-    icon: EnvelopeSimpleIcon,
-    weight: 'light',
-    color: '#d14836'
+  react: {
+    name: 'React',
+    icon: SiReact,
+    url: 'https://react.dev',
+    color: '#61dafb'
+  },
+  swift: {
+    name: 'Swift',
+    icon: SiSwift,
+    url: 'https://www.swift.org',
+    color: '#f05138'
+  },
+  swiftui: {
+    name: 'SwiftUI',
+    icon: SiSwift,
+    url: 'https://developer.apple.com/xcode/swiftui/',
+    color: '#f05138'
+  },
+  testflight: {
+    name: 'TestFlight',
+    icon: SiApple,
+    url: 'https://testflight.apple.com',
+    color: '#0d96f6'
+  },
+  typescript: {
+    name: 'TypeScript',
+    icon: SiTypescript,
+    url: 'https://www.typescriptlang.org',
+    color: '#3178c6'
+  },
+  vercel: {
+    name: 'Vercel',
+    icon: SiVercel,
+    url: 'https://vercel.com',
+    color: '#000000'
+  },
+  vite: {
+    name: 'Vite',
+    icon: SiVite,
+    url: 'https://vite.dev',
+    color: '#646cff'
+  },
+  watchos: {
+    name: 'watchOS',
+    icon: SiApple,
+    url: 'https://developer.apple.com/watchos/',
+    color: '#000000'
   }
 } satisfies Record<LinkType, LinkConfig>
 
