@@ -94,12 +94,10 @@
 
 .tooltip[data-position='top'] svg {
   margin-top: .35rem;
-  margin-top: 8%;
 }
 
 .tooltip[data-position='bottom'] svg {
   margin-bottom: .25rem;
-  margin-bottom: 10%;
 }
 
 .tooltip[data-position='top'] {
@@ -108,4 +106,25 @@
 
 .tooltip[data-position='bottom'] {
   top: 100%;
+}
+
+@media (max-width: 768px) {
+  .tooltip {
+    max-width: 9rem;
+  }
+
+  [data-links-position='absolute'] .tooltip {
+    max-width: none;
+  }
+
+  .tooltip > span {
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .tooltip > svg {
+    flex-shrink: 0;
+  }
 }

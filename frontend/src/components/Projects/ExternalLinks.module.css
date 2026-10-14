@@ -19,6 +19,9 @@
 }
 
 .links a {
+  --icon-size: 1.5rem;
+  --padding: .5rem;
+
   opacity: 1;
   pointer-events: auto;
 }

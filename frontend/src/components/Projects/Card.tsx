@@ -102,7 +102,7 @@ export default function Card({ project }: { project: Project }) {
             theme="dark" 
             animate={true} 
             position="absolute"
-            direction="vertical"
+            tooltipPosition="bottom"
           />
         )}
         {project.techStack && <TechStack techStack={project.techStack} />}

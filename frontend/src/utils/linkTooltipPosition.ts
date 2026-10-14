@@ -1,4 +1,4 @@
-export default function tooltipPosition(index: number, length: number) {
+export default function linkTooltipPosition(index: number, length: number) {
   switch (index) {
     case 0:
       return 'left'

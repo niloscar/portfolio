@@ -1,5 +1,5 @@
 import IconBox from '../ui/IconBox'
-import tooltipPosition from '../../utils/tooltipPosition'
+import tooltipPosition from '../../utils/linkTooltipPosition'
 
 import styles from './List.module.css'
 
