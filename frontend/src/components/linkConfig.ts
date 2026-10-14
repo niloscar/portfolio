@@ -25,6 +25,7 @@ import {
 
 import {
   AppStoreLogoIcon,
+  EnvelopeSimpleIcon,
   GlobeIcon,
   CrosshairIcon,
   LinkedinLogoIcon,
@@ -183,12 +184,11 @@ const LINK_CONFIG = {
     name: 'GitHub',
     icon: SiGithub,
     url: 'https://github.com',
-    color: '#181717'
+    color: '#101411'
   },
   appstore: {
     name: 'App Store',
     icon: AppStoreLogoIcon,
-    url: '',
     color: '#0d96f6'
   },
   preview: {
@@ -199,12 +199,17 @@ const LINK_CONFIG = {
   production: {
     name: 'Produktion',
     icon: GlobeIcon,
-    color: '#111111'
+    color: '#339933'
   },
   linkedin: {
     name: 'LinkedIn',
     icon: LinkedinLogoIcon,
     color: '#0077b5'
+  },
+  mailto: {
+    name: 'E-post',
+    icon: EnvelopeSimpleIcon,
+    color: '#d14836'
   }
 } satisfies Record<LinkType, LinkConfig>
 

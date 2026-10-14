@@ -49,6 +49,10 @@ main.start-page-main {
   gap: 2rem;
 }
 
+main.center {
+  align-items: center;
+}
+
 main > section {
   &.full-height-section:last-child {
     min-height: calc(100svh - var(--page-padding-y));

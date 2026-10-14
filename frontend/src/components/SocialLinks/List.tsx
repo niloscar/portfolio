@@ -1,4 +1,6 @@
 import IconBox from '../ui/IconBox'
+import tooltipPosition from '../../utils/tooltipPosition'
+
 import styles from './List.module.css'
 
 const SOCIAL_LINKS = [
@@ -9,6 +11,10 @@ const SOCIAL_LINKS = [
   {
     slug: 'linkedin',
     href: 'https://linkedin.com/in/oscar-nilsson1'
+  },
+  {
+    slug: 'mailto',
+    href: 'mailto:oscar+portfolio@ondproduktion.se'
   }
 ] as const
 
@@ -24,6 +30,7 @@ export default function SocialLinksList() {
             count={SOCIAL_LINKS.length}
             slug={link.slug}
             tooltip
+            tooltipPosition={tooltipPosition(index, SOCIAL_LINKS.length)}
           />
         </li>
       ))}

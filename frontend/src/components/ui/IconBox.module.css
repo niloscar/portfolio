@@ -56,25 +56,56 @@
   gap: .125em;
 
   position: absolute;
-  right: 100%;
   padding: var(--padding);
-  
-  font-size: 0.75rem;
+
+  font-size: .8rem;
   line-height: 1rem;
   white-space: nowrap;
-  
+
   pointer-events: none;
   opacity: 0;
-  translate: -.5rem 0;
 
-  transition: 
-    opacity 0.2s ease-in-out, 
-    translate 0.2s ease-in-out;
+  transition:
+    opacity .2s ease-in-out,
+    translate .2s ease-in-out;
 }
 
 .box:hover > .tooltip {
   pointer-events: auto;
-
   opacity: 1;
   translate: 0;
+}
+
+.tooltip[data-position='left'] {
+  right: 100%;
+  translate: -.5rem 0;
+}
+
+.tooltip[data-position='right'] {
+  left: 100%;
+  flex-direction: row-reverse;
+  translate: .5rem 0;
+}
+
+.tooltip[data-position='top'], .tooltip[data-position='bottom'] {
+  right: calc(50% - (var(--icon-size) / 2));
+  translate: -.5rem 0;
+}
+
+.tooltip[data-position='top'] svg {
+  margin-top: .35rem;
+  margin-top: 8%;
+}
+
+.tooltip[data-position='bottom'] svg {
+  margin-bottom: .25rem;
+  margin-bottom: 10%;
+}
+
+.tooltip[data-position='top'] {
+  bottom: 100%;
+}
+
+.tooltip[data-position='bottom'] {
+  top: 100%;
 }

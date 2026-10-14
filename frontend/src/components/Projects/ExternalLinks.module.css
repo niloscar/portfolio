@@ -3,19 +3,31 @@
   --fade-duration: .5s;
   --stagger: .25s;
 
+  display: flex;
+  gap: .5rem;
+  align-items: flex-start;
+}
+
+.absolute {
   position: absolute;
   top: 1rem;
   right: 1rem;
+}
 
-  display: flex;
+.vertical {
   flex-direction: column;
-  gap: .5rem;
-  align-items: flex-start;
-
-  pointer-events: none;
 }
 
 .links a {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.animate {
+  pointer-events: none;
+}
+
+.animate a {
   opacity: 0;
   will-change: opacity;
   pointer-events: none;
@@ -35,7 +47,11 @@
       allow-discrete;
 }
 
-[data-visible='true'] .links a {
+[data-visible='true'] .animate {
+  pointer-events: auto;
+}
+
+[data-visible='true'] .animate a {
   opacity: 1;
   pointer-events: auto;
 }

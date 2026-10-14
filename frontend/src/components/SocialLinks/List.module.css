@@ -7,24 +7,7 @@
   justify-content: center;
 }
 
-.list li {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .list a {
   --icon-size: 1.5rem;
   --padding: .5rem;
-}
-
-.list li:last-child a > span {
-  right: auto;
-  left: 100%;
-  flex-direction: row-reverse;
-  translate: .5rem 0;
-}
-
-.list li:last-child span > svg {
-  transform: rotate(180deg);
 }
