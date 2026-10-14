@@ -50,6 +50,14 @@
   color: var(--initial-color);
 }
 
+.flowchart > svg:nth-of-type(even) {
+  --rotation-direction: 1;
+}
+
+.flowchart > svg:nth-of-type(odd) {
+  --rotation-direction: -1;
+}
+
 .user {
   width: 1.5rem;
   color: var(--node-success-color);
@@ -59,7 +67,7 @@
 .backend {
   animation:
     node-state var(--node-duration) ease-in-out both,
-    response-node-state var(--node-duration) ease-in-out forwards;
+    node-state var(--node-duration) ease-in-out forwards;
 
   animation-delay:
     calc(var(--step) * var(--step-duration)),
@@ -178,36 +186,26 @@
 @keyframes node-state {
   0% {
     color: var(--initial-color);
+    transform: scale(1) rotate(0deg);
   }
 
   20% {
     color: var(--node-activity-color);
+    transform:
+      scale(1.2)
+      rotate(calc(5deg * var(--rotation-direction)));
   }
 
   50% {
     color: var(--node-active-color);
+    transform:
+      scale(1.05)
+      rotate(calc(-5deg * var(--rotation-direction)));
   }
 
   100% {
     color: var(--node-success-color);
-  }
-}
-
-@keyframes response-node-state {
-  0% {
-    color: var(--initial-color);
-  }
-
-  20% {
-    color: var(--node-activity-color);
-  }
-
-  50% {
-    color: var(--node-active-color);
-  }
-
-  100% {
-    color: var(--node-success-color);
+    transform: scale(1) rotate(0deg);
   }
 }
 

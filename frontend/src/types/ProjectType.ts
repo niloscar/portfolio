@@ -19,6 +19,7 @@ export type TechType =
   | 'html'
   | 'css'
   | 'react'
+  | 'maplibre'
   | 'javascript'
   | 'typescript'
   | 'vite'

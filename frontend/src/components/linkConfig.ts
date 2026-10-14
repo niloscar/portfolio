@@ -28,7 +28,8 @@ import {
   EnvelopeSimpleIcon,
   GlobeIcon,
   CrosshairIcon,
-  LinkedinLogoIcon
+  LinkedinLogoIcon,
+  MapTrifoldIcon
 } from '@phosphor-icons/react'
 
 import type { ElementType } from 'react'
@@ -61,6 +62,12 @@ const LINK_CONFIG = {
     icon: SiReact,
     url: 'https://react.dev',
     color: '#61dafb'
+  },
+  maplibre: {
+    name: 'MapLibre',
+    icon: MapTrifoldIcon,
+    url: 'https://maplibre.org',
+    color: '#95befa'
   },
   javascript: {
     name: 'JavaScript',
