@@ -3,7 +3,7 @@ export interface Project {
   name: string
   description: string
   technicalOverview: string
-  responsibility?: string
+  responsibility?: string | string[]
   technicalChallenges?: string
   techStack: TechType[]
   links?: ExternalLink[]
@@ -50,6 +50,7 @@ export type ExternalLinkType =
 export type SocialLinkType =
   | 'github'
   | 'linkedin'
+  | 'mailto'
 
 export type LinkType =
   | TechType

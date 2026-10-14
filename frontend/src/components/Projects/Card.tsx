@@ -54,9 +54,7 @@ export default function Card({ project }: { project: Project }) {
       },
       {
         threshold: 0,
-        rootMargin: isMobile
-          ? '0px 0px -60px 0px'
-          : '0px'
+        rootMargin: isMobile ? '0px 0px -60px 0px' : '0px'
       }
     )
 
@@ -95,18 +93,23 @@ export default function Card({ project }: { project: Project }) {
         <div
           ref={figureBottomRef}
           className={styles.figureBottomSentinel}
-          aria-hidden='true'
+          aria-hidden="true"
         />
 
-        {project.links && <ExternalLinks links={project.links} />}
+        {project.links && (
+          <ExternalLinks 
+            links={project.links} 
+            theme="dark" 
+            animate={true} 
+            position="absolute"
+            tooltipPosition="bottom"
+          />
+        )}
         {project.techStack && <TechStack techStack={project.techStack} />}
       </div>
 
       <header>
-        <Link
-          className={styles['title-link']}
-          to={`/project/${project.id}`}
-        >
+        <Link className={styles['title-link']} to={`/project/${project.id}`}>
           <h3 className={styles.title}>{project.name}</h3>
         </Link>
       </header>
@@ -117,7 +120,7 @@ export default function Card({ project }: { project: Project }) {
         className={styles.links}
         aria-label={`Länkar för projektet ${project.name}`}
       >
-        <LinkForward 
+        <LinkForward
           to={`/project/${project.id}`}
           ariaLabel={`Läs mer om projektet ${project.name}`}
         >
@@ -132,7 +135,6 @@ function getProjectImage(filename?: string) {
   if (!filename) return '/img/placeholder.png'
 
   return (
-    projectImages[`../../assets/projects/${filename}`] ??
-    '/img/placeholder.png'
+    projectImages[`../../assets/projects/${filename}`] ?? '/img/placeholder.png'
   )
 }

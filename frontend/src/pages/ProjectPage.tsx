@@ -9,7 +9,7 @@ export default function ProjectPage() {
         <h1 className="h-size-2">Projekt</h1>
       </Header>
 
-      <main>
+      <main className="center">
         <ProjectDetails />
       </main>
     </>

@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import type { Project } from '../../types/ProjectType'
 import { MOCK_PROJECTS } from '../../mocks/projects'
 import { MOCK_TECH_STACK } from '../../mocks/techStack'
+import ExternalLinks from './ExternalLinks'
 import TechStackList from '../TechStack/List'
 import UiBox from '../ui/UiBox'
 import Ellipsis from '../ui/Ellipsis'
 import SmallHeading from '../ui/SmallHeading'
+
+import type { Project } from '../../types/ProjectType'
 
 import styles from './Details.module.css'
 
@@ -62,21 +64,18 @@ export default function ProjectDetails() {
 
       {!isLoading && !errorMessage && project && (
         <>
+        <div className={styles['project-header']}>
           <h2 className="h-size-3">{project.name}</h2>
 
           <p>{project.description}</p>
 
-          {/* {project.links && (
-            <ul className={styles['external-links']}>
-              {project.links.map((link, index) => (
-                <li key={index}>
-                  <a href={link.url} target="_blank" rel="noopener">
-                    {cleanUrl(link.url)}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )} */}
+          {project.links && (
+            <ExternalLinks
+              links={project.links}
+              theme="light"
+            />
+          )}
+          </div>
 
           {project.technicalOverview && (
             <>
@@ -88,7 +87,15 @@ export default function ProjectDetails() {
           {project.responsibility && (
             <>
               <h3 className="h-size-4">Ansvar</h3>
-              <p>{project.responsibility}</p>
+              {Array.isArray(project.responsibility) ? (
+                <ul className={styles['responsibility-list']}>
+                  {project.responsibility.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p>{project.responsibility}</p>
+              )}
             </>
           )}
 
@@ -109,6 +116,7 @@ export default function ProjectDetails() {
               <TechStackList 
                 technologies={technologies} 
                 align="center"
+                tooltips
               />
             </div>
           )}

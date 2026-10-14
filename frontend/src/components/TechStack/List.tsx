@@ -7,9 +7,10 @@ import styles from './List.module.css'
 interface TechStackListProps {
   technologies: Technology[]
   align?: 'center' | 'start'
+  tooltips?: boolean
 }
 
-export default function TechStackList({ technologies, align = 'start' }: TechStackListProps) {
+export default function TechStackList({ technologies, align = 'start', tooltips = false }: TechStackListProps) {
   return (
     <ul className={`${styles.list} ${styles[align]}`}>
       {technologies.map((technology, index) => (
@@ -19,6 +20,8 @@ export default function TechStackList({ technologies, align = 'start' }: TechSta
             slug={technology.slug}
             count={technologies.length}
             theme="light"
+            tooltip={tooltips}
+            tooltipPosition={'bottom'}
           />
         </li>
       ))}
