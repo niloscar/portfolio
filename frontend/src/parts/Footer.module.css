@@ -13,6 +13,10 @@
 
   color: var(--text-color);
   text-align: center;
+
+  @media (max-width: 768px) {
+    padding: 1rem 0;
+  }
 }
 
 .footer::before {
@@ -23,17 +27,15 @@
 
   background-color: var(--footer-bg);
 
-  clip-path: polygon(
-    0 var(--footer-angle),
-    100% 0,
-    100% 100%,
-    0 100%
-  );
+  clip-path: polygon(0 var(--footer-angle),
+      100% 0,
+      100% 100%,
+      0 100%);
 
   z-index: 0;
 }
 
-.footer > * {
+.footer>* {
   position: relative;
   z-index: 1;
 }
