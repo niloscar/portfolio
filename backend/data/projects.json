@@ -113,10 +113,14 @@
     "id": 6,
     "name": "Portfolio 2026",
     "description": "Den här portfolion är byggd för att samla mina projekt, erfarenheter och tekniska kompetenser på ett lättöverskådligt sätt. Fokus ligger på att snabbt ge en bild av vad jag har arbetat med och vilka tekniker jag använder.",
-    "technicalOverview": "Portfolion är byggd med React och TypeScript och driftsatt på Vercel. En separat backend är planerad och har påbörjats men är ännu inte en del av den färdiga applikationen.",
+    "technicalOverview": "Portfolion är byggd med React och TypeScript i frontend och har ett separat API i Node.js, Express och TypeScript. Projekt- och teknikdata lagras i JSON-filer i backend och hämtas av frontend via API-endpoints för projekt och tech stack. Frontend och backend är strukturerade som separata delar i samma projekt och delar gemensamma TypeScript-typer.",
+    "responsibility": "Frontend- och backendutveckling, API-design, projektstruktur och deployment.",
+    "technicalChallenges": "Att strukturera frontend, backend och delade typer tydligt, separera datalagring från presentation samt bygga ett enkelt API-lager som gör projekt- och teknikdata återanvändbar i frontend.",
     "techStack": [
       "react",
       "typescript",
+      "nodejs",
+      "express",
       "vercel"
     ],
     "links": [
