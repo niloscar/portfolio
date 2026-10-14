@@ -36,6 +36,8 @@
 .box > svg {
   width: var(--icon-size);
   height: var(--icon-size);
+
+  pointer-events: none;
 }
 
 .box:hover {

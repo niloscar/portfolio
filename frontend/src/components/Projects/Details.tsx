@@ -116,6 +116,7 @@ export default function ProjectDetails() {
               <TechStackList 
                 technologies={technologies} 
                 align="center"
+                tooltips
               />
             </div>
           )}
