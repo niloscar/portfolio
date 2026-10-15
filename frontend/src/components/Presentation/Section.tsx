@@ -23,7 +23,8 @@ export default function PresentationSection() {
           Jag gillar att bygga digitala produkter som löser problem i verkliga livet.
         </p>
         <p>
-          För mig innebär det att i första hand förstå behovet och därefter tekniken – och att se hur idé, arkitektur, logik och användarupplevelse påverkar varandra.</p>
+          För mig innebär det att i första hand förstå behovet och därefter tekniken – och hur idé, arkitektur, logik och användarupplevelse påverkar varandra.
+        </p>
         <p>
           Det är också där jag trivs bäst: när jag får arbeta med flera delar av samma produkt.
         </p>
