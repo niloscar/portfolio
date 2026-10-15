@@ -1,5 +1,5 @@
 .errorBox {
-  gap: 8px;
+  flex-direction: column;
 }
 
 .errorBox .icon {

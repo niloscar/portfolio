@@ -18,7 +18,6 @@ export default function ProjectsGrid() {
     const fetchProjects = async () => {
       try {
         const data = await getProjects()
-
         setProjects(data)
       } catch (error) {
         console.error('Fel vid hämtning av projekt:', error)

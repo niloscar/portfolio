@@ -28,57 +28,48 @@ export default function ProjectDetails() {
 
   const errorMessage = idError ?? error
 
-  useEffect(() => {
-    if (idError) return
+useEffect(() => {
+  if (idError) return
 
-    const fetchProjects = async () => {
-      try {
-        const data = await getProjectById(projectId)
+  const fetchProject = async () => {
+    setIsLoading(true)
+    setError(null)
+    setProject(null)
 
-        setProject(data)
-      } catch (error) {
-        setError('Fel vid hämtning av projekt')
-      } finally {
-        setIsLoading(false)
-      }
+    try {
+      const data = await getProjectById(projectId)
+      setProject(data)
+    } catch {
+      setError('Fel vid hämtning av projekt')
+    } finally {
+      setIsLoading(false)
     }
+  }
 
-    fetchProjects()
-  }, [projectId, idError])
+  fetchProject()
+}, [projectId, idError])
 
   return (
     <>
-      {errorMessage && (
-        <ErrorBox message={errorMessage} />
-      )}
+      {errorMessage && <ErrorBox message={errorMessage} />}
 
       {isLoading && !errorMessage && (
         <UiBox>
-            <span>Hämtar projekt</span>
-            <Ellipsis />
-        </UiBox>
-      )}
-
-      {isLoading && !errorMessage && (
-        <UiBox>
-            <span>Hämtar projekt</span>
-            <Ellipsis />
+          <span>Hämtar projekt</span>
+          <Ellipsis />
         </UiBox>
       )}
 
       {!isLoading && !errorMessage && project && (
-        <>
-        <div className={styles['project-header']}>
-          <h2 className="h-size-3">{project.name}</h2>
+        <div className={styles.project}>
+          <div className={styles['project-header']}>
+            <h2 className="h-size-3">{project.name}</h2>
 
-          <p>{project.description}</p>
+            <p>{project.description}</p>
 
-          {project.links && (
-            <ExternalLinks
-              links={project.links}
-              theme="light"
-            />
-          )}
+            {project.links && (
+              <ExternalLinks links={project.links} theme="light" />
+            )}
           </div>
 
           {project.technicalOverview && (
@@ -112,26 +103,20 @@ export default function ProjectDetails() {
 
           {project.techStack.length > 0 && (
             <div className={styles['tech-stack-section']}>
-              <SmallHeading
-                align="center"
-              >
-                Teknikstack
-              </SmallHeading>
-              <TechStackList 
-                technologies={project.techStack} 
+              <SmallHeading align="center">Teknikstack</SmallHeading>
+              <TechStackList
+                technologies={project.techStack}
                 align="center"
                 tooltips
               />
             </div>
           )}
-        </>
+        </div>
       )}
     </>
   )
 }
 
 export function cleanUrl(url: string) {
-  return url
-    .replace(/^https?:\/\//, '')
-    .replace(/\/+$/, '')
+  return url.replace(/^https?:\/\//, '').replace(/\/+$/, '')
 }
