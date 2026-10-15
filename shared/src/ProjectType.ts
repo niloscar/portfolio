@@ -1,4 +1,6 @@
-export interface Project {
+import type { Technology } from './TechStackType.js'
+
+export interface ProjectData {
   id: number
   name: string
   description: string
@@ -8,6 +10,10 @@ export interface Project {
   techStack: TechType[]
   links?: ExternalLink[]
   image?: string
+}
+
+export interface Project extends Omit<ProjectData, 'techStack'> {
+  techStack: Technology[]
 }
 
 export interface ProjectLink {

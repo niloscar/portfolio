@@ -4,7 +4,7 @@ import ExternalLinks from './ExternalLinks'
 import TechStack from './CardTechStack'
 import { LinkForward } from '../ui/Link'
 
-import type { Project } from '../../types/ProjectType'
+import type { Project } from '@portfolio/shared'
 
 import styles from './Card.module.css'
 

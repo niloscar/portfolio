@@ -5,7 +5,8 @@
     "description": "",
     "workspaces": [
         "frontend",
-        "backend"
+        "backend",
+        "shared"
     ],
     "directories": {
         "doc": "docs"

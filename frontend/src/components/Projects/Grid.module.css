@@ -3,3 +3,9 @@
   grid-template-columns: 1fr;
   gap: 2rem;
 }
+
+.more-projects {
+  font-size: .8rem;
+  font-style: italic;
+  text-align: center;
+}

@@ -33,7 +33,7 @@ import {
 } from '@phosphor-icons/react'
 
 import type { ElementType } from 'react'
-import type { LinkType } from '../types/ProjectType'
+import type { LinkType } from '@portfolio/shared'
 import type { IconWeight } from '@phosphor-icons/react'
 
 export interface LinkConfig {

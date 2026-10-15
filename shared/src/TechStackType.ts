@@ -1,4 +1,4 @@
-import type { TechType } from './ProjectType'
+import type { TechType } from '@portfolio/shared'
 
 export interface TechStack {
   type: TechStackType
