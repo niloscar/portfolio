@@ -1,4 +1,4 @@
-import type { Technology } from './TechStackType'
+import type { Technology } from './TechStackType.js'
 
 export interface ProjectData {
   id: number
