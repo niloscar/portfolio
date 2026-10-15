@@ -37,8 +37,6 @@ export default function IconBox({
   tooltip,
   tooltipPosition = 'left'
 }: IconBoxProps) {
-
-  console.log('slug:', slug, 'config:', LINK_CONFIG[slug])
   const config: LinkConfig = LINK_CONFIG[slug]
 
   const Icon = config.icon
