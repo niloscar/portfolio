@@ -1,10 +1,26 @@
 import readJsonData from '../utils/readJsonData.js'
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
-import type { Project, ProjectData, Technology, TechStack } from '@portfolio/shared'
+import type {
+  Project,
+  ProjectData,
+  Technology,
+  TechStack
+} from '@portfolio/shared'
 
-const PROJECTS_FILE_PATH = path.resolve('data/projects.json')
-const TECH_STACK_FILE_PATH = path.resolve('data/techStack.json')
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+const PROJECTS_FILE_PATH = path.resolve(
+  __dirname,
+  '../../data/projects.json'
+)
+
+const TECH_STACK_FILE_PATH = path.resolve(
+  __dirname,
+  '../../data/techStack.json'
+)
 
 async function getTechnologies(): Promise<Technology[]> {
   const techStack = await readJsonData<TechStack[]>(TECH_STACK_FILE_PATH)

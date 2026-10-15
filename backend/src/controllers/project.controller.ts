@@ -4,8 +4,6 @@ import * as service from '../services/project.service.js'
 
 import type { Request, Response } from 'express'
 
-const FILE_PATH = path.resolve('data/projects.json')
-
 export async function getProjects(_req: Request, res: Response) {
   const projects = await service.getProjects()
 
