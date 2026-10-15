@@ -20,12 +20,12 @@
         "url": "https://sjukgymnastiken.se"
       }
     ],
-    "image": "sjukgymnastiken-4.png"
+    "image": "sjukgymnastiken.png"
   },
   {
     "id": 2,
     "name": "SailTell för Apple Watch",
-    "description": "App för Apple Watch som hjälper seglare att hålla koll på hastighet och kurs direkt på handleden. Appen kan även spela in seglingspass och sammanställa statistik över bland annat distans, medel- och maxhastighet samt personliga rekord. Appen är under aktiv utveckling och testas för närvarande via TestFlight.",
+    "description": "App för Apple Watch som hjälper seglare att hålla koll på hastighet och kurs direkt på handleden. Appen kan även spela in seglingspass och sammanställa statistik över bland annat distans, medel- och maxhastighet samt personliga rekord. Appen testas för närvarande via TestFlight.",
     "technicalOverview": "Appen är byggd med Swift och SwiftUI för watchOS. Core Location används för att läsa in position, hastighet och kurs i realtid samt för att spela in seglingspass.",
     "responsibility": "Produktutveckling, apparkitektur och implementation av hela Apple Watch-appen.",
     "technicalChallenges": "Att hantera kontinuerlig positionsdata på ett tillförlitligt sätt, filtrera bort osäkra mätvärden och samtidigt hålla appen lätt och tydlig att använda under pågående segling.",
@@ -61,7 +61,7 @@
         "url": "https://web.sailtell.app"
       }
     ],
-    "image": "sailtell-web-2.png"
+    "image": "sailtell-web.png"
   },
   {
     "id": 4,
