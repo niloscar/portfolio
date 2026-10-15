@@ -50,6 +50,14 @@
         "link": "https://vite.dev/",
         "weight": 4,
         "color": "#646CFF"
+      },
+      {
+        "name": "MapLibre GL JS",
+        "slug": "maplibre",
+        "logo": "https://cdn.jsdelivr.net/npm/simple-icons@v16/icons/maplibre.svg",
+        "link": "https://maplibre.org/maplibre-gl-js/docs/",
+        "weight": 4,
+        "color": "#396CB2"
       }
     ]
   },
