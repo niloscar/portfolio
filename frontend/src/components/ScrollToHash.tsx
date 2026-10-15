@@ -1,25 +1,23 @@
-import { useEffect } from 'react'
+import { useLayoutEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 
 export default function ScrollToHash() {
   const { hash } = useLocation()
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!hash) return
 
-    requestAnimationFrame(() => {
-      const element = document.getElementById(hash.slice(1))
+    const element = document.getElementById(hash.slice(1))
 
-      if (!element) return
+    if (!element) return
 
-      element.scrollIntoView()
+    element.scrollIntoView()
 
-      history.replaceState(
-        history.state,
-        '',
-        window.location.pathname + window.location.search
-      )
-    })
+    history.replaceState(
+      history.state,
+      '',
+      window.location.pathname + window.location.search
+    )
   }, [hash])
 
   return null
