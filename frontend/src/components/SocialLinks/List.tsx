@@ -14,7 +14,7 @@ const SOCIAL_LINKS = [
   },
   {
     slug: 'mailto',
-    href: 'mailto:oscar+portfolio@ondproduktion.se'
+    href: 'mailto:hello@oscarnilsson.dev'
   }
 ] as const
 
