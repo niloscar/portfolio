@@ -11,11 +11,26 @@ await fs.mkdir(OUTPUT_DIR, { recursive: true })
 
 const files = await fs.readdir(INPUT_DIR)
 
+const supportedExtensions = new Set([
+  '.jpg',
+  '.jpeg',
+  '.png',
+  '.webp'
+])
+
 for (const file of files) {
+  const extension = path.extname(file).toLowerCase()
+
+  if (!supportedExtensions.has(extension)) {
+    continue
+  }
+  
   const inputPath = path.join(INPUT_DIR, file)
   const name = path.parse(file).name
 
   for (const size of sizes) {
+    console.log('Processing:', inputPath)
+
     await sharp(inputPath)
       .resize(size, size, {
         fit: 'cover'
