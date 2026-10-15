@@ -1,4 +1,4 @@
-import readJsonData from '../utils/readJsonData.js'
+import { readJsonData } from '../utils/jsonData.js'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -37,13 +37,13 @@ export async function getVisibleTechs(_req: Request, res: Response) {
   }
 
   const filteredTechStack = techStack
-    .map(stack => ({
+    .map((stack) => ({
       ...stack,
-      technologies: stack.technologies.filter(technology =>
+      technologies: stack.technologies.filter((technology) =>
         visibleTechs.includes(technology.slug)
       )
     }))
-    .filter(stack => stack.technologies.length > 0)
+    .filter((stack) => stack.technologies.length > 0)
 
   res.status(200).json(filteredTechStack)
 }

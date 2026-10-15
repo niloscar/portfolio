@@ -1,16 +1,16 @@
+import 'dotenv/config'
 import express from 'express'
-import dotenv from 'dotenv'
 
+import analyticsRouter from './routes/analytics.routes.js'
 import projectRouter from './routes/project.routes.js'
 import techStackRouter from './routes/techStack.routes.js'
 
 const app = express()
 
-dotenv.config()
-
 app.use(express.json())
 app.use(express.static('public'))
 
+app.use('/api/analytics', analyticsRouter)
 app.use('/api/projects', projectRouter)
 app.use('/api/tech-stack', techStackRouter)
 

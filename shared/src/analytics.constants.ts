@@ -1,0 +1,23 @@
+export const TRAFFIC_SOURCES = [
+  'email',
+  'linkedin',
+  'instagram',
+  'facebook',
+  'x',
+  'tiktok',
+  'reddit',
+  'youtube',
+  'github',
+  'gitlab',
+  'stackoverflow',
+  'devto',
+  'hackernews',
+  'medium',
+  'google',
+  'bing',
+  'duckduckgo',
+  'brave',
+  'ecosia',
+  'direct',
+  'other'
+] as const
