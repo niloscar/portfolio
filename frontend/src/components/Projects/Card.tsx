@@ -73,6 +73,7 @@ export default function Card({ project }: { project: Project }) {
   }, [project.id])
 
   const projectImage = getProjectImage(project.image)
+  const projectImage2x = getProjectImage(project.image, 880)
 
   return (
     <article
@@ -85,6 +86,9 @@ export default function Card({ project }: { project: Project }) {
         <figure>
           <img
             src={projectImage}
+            srcSet={`${projectImage} 1x, ${projectImage2x} 2x`}
+            width={440}
+            height={440}
             alt={`Bild för projektet ${project.name}`}
             className={styles.image}
           />
@@ -131,10 +135,11 @@ export default function Card({ project }: { project: Project }) {
   )
 }
 
-function getProjectImage(filename?: string) {
-  if (!filename) return '/img/placeholder.png'
+function getProjectImage(filename?: string, size = 440) {
+  if (!filename) return '/img/placeholder.webp'
 
-  return (
-    projectImages[`../../assets/projects/${filename}`] ?? '/img/placeholder.png'
-  )
+  const name = filename.replace(/\.[^.]+$/, '')
+  const path = `../../assets/projects/${name}-${size}.webp`
+
+  return projectImages[path] ?? '/img/placeholder.webp'
 }
