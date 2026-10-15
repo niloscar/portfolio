@@ -1,6 +1,9 @@
 # Dependencies
 node_modules
 
+# Design source files
+resources/
+
 # Build output
 dist
 dist-ssr
