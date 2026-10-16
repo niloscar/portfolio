@@ -1,7 +1,5 @@
 import { isTrafficSource, type TrafficSource } from '@portfolio/shared'
 
-const TRAFFIC_SOURCE_KEY = 'traffic-source'
-
 const HOSTNAME_TO_SOURCE_MAP: Record<string, TrafficSource> = {
   'linkedin.com': 'linkedin',
   'instagram.com': 'instagram',
@@ -28,7 +26,7 @@ const HOSTNAME_TO_SOURCE_MAP: Record<string, TrafficSource> = {
   'ecosia.org': 'ecosia'
 }
 
-function getInitialTrafficSource(): TrafficSource {
+export default function getTrafficSource(): TrafficSource {
   const params = new URLSearchParams(window.location.search)
   const ref = params.get('ref')
 
@@ -40,29 +38,19 @@ function getInitialTrafficSource(): TrafficSource {
     return 'direct'
   }
 
-  const hostname = new URL(document.referrer).hostname
-    .toLowerCase()
-    .replace(/^www\./, '')
+  try {
+    const hostname = new URL(document.referrer).hostname
+      .toLowerCase()
+      .replace(/^www\./, '')
 
-  const match = Object.entries(HOSTNAME_TO_SOURCE_MAP)
-    .find(([domain]) =>
-      hostname === domain ||
-      hostname.endsWith(`.${domain}`)
-    )
+    const match = Object.entries(HOSTNAME_TO_SOURCE_MAP)
+      .find(([domain]) =>
+        hostname === domain ||
+        hostname.endsWith(`.${domain}`)
+      )
 
-  return match?.[1] ?? 'other'
-}
-
-export default function getTrafficSource(): TrafficSource {
-  const storedSource = sessionStorage.getItem(TRAFFIC_SOURCE_KEY)
-
-  if (storedSource && isTrafficSource(storedSource)) {
-    return storedSource
+    return match?.[1] ?? 'other'
+  } catch {
+    return 'other'
   }
-
-  const source = getInitialTrafficSource()
-
-  sessionStorage.setItem(TRAFFIC_SOURCE_KEY, source)
-
-  return source
 }

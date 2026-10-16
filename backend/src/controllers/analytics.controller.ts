@@ -1,6 +1,7 @@
 import * as service from '../services/analytics.service.js'
-import { isTrafficSource, AnalyticsChartInterval } from '@portfolio/shared'
+import { isTrafficSource } from '@portfolio/shared'
 
+import type { AnalyticsChartInterval } from '@portfolio/shared'
 import type { Request, Response } from 'express'
 
 const DEFAULT_LIMIT = 50
@@ -85,6 +86,10 @@ export async function getEvents(req: Request, res: Response) {
 }
 
 export async function createEvent(req: Request, res: Response) {
+  if (req.session.userId) {
+    return res.sendStatus(204)
+  }
+
   const { source, path } = req.body ?? {}
 
   if (!isTrafficSource(source)) {

@@ -1,28 +1,33 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { trackEvent } from '../../api/analyticsApi'
 import getTrafficSource from '../../utils/getTrafficSource'
 
-const VISIT_TRACKED_KEY = 'visit-tracked'
+const analyticsEnabled = import.meta.env.VITE_ANALYTICS_ENABLED === 'true'
 
 export default function AnalyticsTracker() {
   const location = useLocation()
+  const hasTracked = useRef(false)
 
   useEffect(() => {
-    if (sessionStorage.getItem(VISIT_TRACKED_KEY)) {
+    if (
+      !analyticsEnabled ||
+      hasTracked.current ||
+      location.pathname === '/login' ||
+      location.pathname.startsWith('/admin')
+    ) {
       return
     }
 
-    const source = getTrafficSource()
-    const path = location.pathname
-
-    sessionStorage.setItem(VISIT_TRACKED_KEY, 'true')
+    hasTracked.current = true
 
     const trackVisit = async () => {
       try {
-        await trackEvent({ source, path })
+        await trackEvent({
+          source: getTrafficSource(),
+          path: location.pathname
+        })
       } catch (error) {
-        sessionStorage.removeItem(VISIT_TRACKED_KEY)
         console.error('Error tracking visit:', error)
       }
     }
