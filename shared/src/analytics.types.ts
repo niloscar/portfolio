@@ -10,10 +10,3 @@ export type EventDataWithTimestamp = EventData & {
 }
 
 export type TrafficSource = (typeof TRAFFIC_SOURCES)[number]
-
-export function isTrafficSource(value: unknown): value is TrafficSource {
-  return (
-    typeof value === 'string' &&
-    TRAFFIC_SOURCES.some(source => source === value)
-  )
-}
