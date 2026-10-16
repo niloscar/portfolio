@@ -1,5 +1,3 @@
-import readJsonData from '../utils/readJsonData.js'
-import path from 'node:path'
 import * as service from '../services/project.service.js'
 
 import type { Request, Response } from 'express'

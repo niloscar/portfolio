@@ -1,4 +1,4 @@
-import type { Technology } from './TechStackType.js'
+import type { Technology } from './techStack.types.js'
 
 export interface ProjectData {
   id: number
@@ -49,21 +49,11 @@ export type TechType =
   | 'github'
 
 export type ExternalLinkType =
-  | 'appstore'
-  | 'github'
-  | 'preview'
-  | 'production'
-  | 'testflight'
+  'appstore' | 'github' | 'preview' | 'production' | 'testflight'
 
-export type SocialLinkType =
-  | 'github'
-  | 'linkedin'
-  | 'mailto'
+export type SocialLinkType = 'github' | 'linkedin' | 'mailto'
 
-export type LinkType =
-  | TechType
-  | ExternalLinkType
-  | SocialLinkType
+export type LinkType = TechType | ExternalLinkType | SocialLinkType
 
 export interface ExternalLink {
   type: ExternalLinkType

@@ -1,0 +1,26 @@
+.analytics-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: .25rem 1rem;
+}
+
+.analytics-list li {
+  display: grid;
+  grid-column: 1 / span 3;
+  grid-template-columns: subgrid;
+}
+
+.analytics-list .headings {
+  font-weight: bold;
+}
+
+.source-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 1rem;
+  margin-bottom: 1rem;
+}
