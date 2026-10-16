@@ -1,6 +1,6 @@
 export { TRAFFIC_SOURCES } from './analytics.constants.js'
 export { isTrafficSource } from './analytics.utils.js'
-export type { EventData, EventDataWithTimestamp, TrafficSource } from './analytics.types.js'
+export type { EventData, EventDataWithTimestamp, TrafficSource, SourceSummary, DateSummary, AnalyticsSummary, EventsPage, GetEventsOptions } from './analytics.types.js'
 
 export type { User, UserCredentials } from './auth.types.js'
 

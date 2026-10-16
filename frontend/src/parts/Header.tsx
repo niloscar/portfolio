@@ -7,7 +7,13 @@ import styles from './Header.module.css'
 
 interface HeaderProps {
   children?: ReactNode
-  back?: string
+  back?: BackLinkProps
+}
+
+type BackLinkProps = {
+  to: string
+  label?: string
+  position?: 'absolute' | 'relative'
 }
 
 export default function Header({ back, children }: HeaderProps) {
@@ -15,11 +21,11 @@ export default function Header({ back, children }: HeaderProps) {
     <header className={styles.header}>
       {back && (
         <LinkBack
-          to={back}
-          ariaLabel="Tillbaka"
-          position="absolute"
+          to={back.to}
+          ariaLabel={back.label ?? 'Tillbaka'}
+          position={back.position ?? 'absolute'}
         >
-          Tillbaka
+          {back.label ?? 'Tillbaka'}
         </LinkBack>
       )}
       {children ?? (
