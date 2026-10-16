@@ -116,7 +116,7 @@ export default function Chart({ sources }: ChartProps) {
 
       <div className={styles['chart-container']}>
         {isLoading ? (
-          <div className={styles['center']}>
+          <div className={`${styles['center']} ${styles['loading']}`}>
             <span>Laddar diagramdata</span>
             <Ellipsis />
           </div>
