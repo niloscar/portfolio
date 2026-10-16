@@ -22,7 +22,8 @@ export async function authenticate({ email, password }: UserCredentials): Promis
 
   return {
     id: user.id,
-    name: user.name,
+    fname: user.fname,
+    lname: user.lname,
     email: user.email
   }
 }

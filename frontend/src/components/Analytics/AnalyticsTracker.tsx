@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { trackEvent } from '../api/analyticsApi'
-import getTrafficSource from '../utils/getTrafficSource'
+import { trackEvent } from '../../api/analyticsApi'
+import getTrafficSource from '../../utils/getTrafficSource'
 
 const VISIT_TRACKED_KEY = 'visit-tracked'
 

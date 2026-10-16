@@ -1,0 +1,15 @@
+.logout-button {
+  margin: 1rem 0;
+  padding: .5rem 1rem;
+  border-radius: .25rem;
+  border: none;
+  backdrop-filter: blur(15px);
+  background-color: #11111111;
+
+  color: var(--text-on-primary);
+  cursor: pointer;
+
+  &:hover {
+    background-color: #11111122;
+  }
+}

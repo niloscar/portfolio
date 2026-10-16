@@ -4,7 +4,7 @@ import type { EventData } from '@portfolio/shared'
 
 export async function getEvents() {
   const { rows } = await db.query(`
-    SELECT source, path, created_at as createdAt
+    SELECT source, path, created_at as "createdAt"
     FROM analytics_events
     ORDER BY created_at DESC
   `)

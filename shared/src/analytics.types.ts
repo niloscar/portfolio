@@ -5,12 +5,15 @@ export interface EventData {
   path: string
 }
 
-export type EventDataWithTimestamp = <T extends EventData>(eventData: T) => T & {
+export type EventDataWithTimestamp = EventData & {
   createdAt: string
 }
 
 export type TrafficSource = (typeof TRAFFIC_SOURCES)[number]
 
-export function isTrafficSource(value: string): value is TrafficSource {
-  return (TRAFFIC_SOURCES as readonly string[]).includes(value)
+export function isTrafficSource(value: unknown): value is TrafficSource {
+  return (
+    typeof value === 'string' &&
+    TRAFFIC_SOURCES.some(source => source === value)
+  )
 }

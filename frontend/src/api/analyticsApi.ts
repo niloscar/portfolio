@@ -2,12 +2,11 @@ import api from '../lib/apiClient'
 import type { EventData, EventDataWithTimestamp } from '@portfolio/shared'
 
 
-export function trackEvent(eventData: EventData) {
-  const response = api.post('/analytics/', eventData)
-  return response
+export async function trackEvent(eventData: EventData): Promise<void> {
+  await api.post('/analytics', eventData)
 }
 
-export function getEvents() {
-  const response = api.get<EventDataWithTimestamp[]>('/analytics/')
-  return response
+export async function getEvents() {
+  const { data } = await api.get<EventDataWithTimestamp[]>('/analytics')
+  return data
 }

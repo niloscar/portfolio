@@ -2,7 +2,8 @@ import { db } from '../db.js'
 
 type AuthUser = {
   id: number
-  name: string
+  fname: string
+  lname: string
   email: string
   passwordHash: string
 }
@@ -13,7 +14,8 @@ export async function findUserByEmail( email: string ): Promise<AuthUser | null>
   const { rows } = await db.query<AuthUser>(`
     SELECT
       id,
-      name,
+      fname,
+      lname,
       email,
       password_hash AS "passwordHash"
     FROM users
@@ -27,7 +29,8 @@ export async function findUserById(id: number): Promise<User | null> {
   const { rows } = await db.query<User>(`
     SELECT
       id,
-      name,
+      fname,
+      lname,
       email
     FROM users
     WHERE id = $1

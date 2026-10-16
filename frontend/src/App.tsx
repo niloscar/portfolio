@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import AnalyticsTracker from './components/AnalyticsTracker'
+import AnalyticsTracker from './components/Analytics/AnalyticsTracker'
 import ScrollToHash from './components/ScrollToHash'
 
 import PublicLayout from './layouts/PublicLayout'
