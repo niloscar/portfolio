@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import useFormat from '../../hooks/useFormat'
 import {
   Area,
   AreaChart,
@@ -8,6 +9,7 @@ import {
   XAxis,
   YAxis
 } from 'recharts'
+import ChartTooltip from './ChartTooltip'
 import { getChartData } from '../../api/analyticsApi'
 import { TRAFFIC_SOURCES } from '@portfolio/shared'
 
@@ -45,6 +47,8 @@ export default function Chart({ sources }: ChartProps) {
   )
   const [points, setPoints] = useState<AnalyticsChartPoint[]>([])
   const [isLoading, setIsLoading] = useState(false)
+
+  const { formatChartPeriod } = useFormat()
 
   const interval = getInterval(period)
   const { from, to } = getDateRange(period)
@@ -133,7 +137,7 @@ export default function Chart({ sources }: ChartProps) {
               <XAxis
                 dataKey="period"
                 ticks={xTicks}
-                tickFormatter={(value) => formatPeriod(value, interval)}
+                tickFormatter={(value) => formatChartPeriod(value, interval)}
               />
 
               <YAxis
@@ -143,9 +147,14 @@ export default function Chart({ sources }: ChartProps) {
               />
 
               <Tooltip
-                labelFormatter={(value) =>
-                  formatPeriod(String(value), interval)
-                }
+                content={({ active, payload, label }) => (
+                  <ChartTooltip
+                    active={active}
+                    payload={payload}
+                    label={label}
+                    interval={interval}
+                  />
+                )}
               />
 
               {[...selectedSources].map((source) => {
@@ -285,26 +294,6 @@ function formatDateForApi(date: Date): string {
   const day = String(date.getDate()).padStart(2, '0')
 
   return `${year}-${month}-${day}`
-}
-
-function formatPeriod(
-  period: string,
-  interval: AnalyticsChartInterval
-): string {
-  const date = new Date(`${period}T12:00:00`)
-
-  return date.toLocaleDateString(
-    'sv-SE',
-    interval === 'month'
-      ? {
-          month: 'short',
-          year: 'numeric'
-        }
-      : {
-          month: 'short',
-          day: 'numeric'
-        }
-  )
 }
 
 const CHART_COLORS = [

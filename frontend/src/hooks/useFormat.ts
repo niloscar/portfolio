@@ -1,3 +1,5 @@
+import type { AnalyticsChartInterval } from "../../../shared/src/analytics.types"
+
 const DEFAULT_LOCALE = 'sv-SE'
 
 export default function useFormat(locale = DEFAULT_LOCALE) {
@@ -43,9 +45,30 @@ export default function useFormat(locale = DEFAULT_LOCALE) {
     })
   }
 
+  const formatChartPeriod = (
+    period: string,
+    interval: AnalyticsChartInterval
+  ): string => {
+    const date = new Date(`${period}T12:00:00`)
+
+    return date.toLocaleDateString(
+      locale,
+      interval === 'month'
+        ? {
+            month: 'short',
+            year: 'numeric'
+          }
+        : {
+            month: 'short',
+            day: 'numeric'
+          }
+    )
+  }
+
   return {
     formatLongTextDate,
     formatShortTextDateTime,
+    formatChartPeriod,
     formatTime
   }
 }
