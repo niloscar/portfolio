@@ -119,6 +119,14 @@ export async function createEvent(req: Request, res: Response) {
     })
   }
 
+  console.log('Analytics event', {
+    eventId,
+    userAgent: req.get('user-agent'),
+    host: req.get('host'),
+    deployment: req.get('x-vercel-deployment-url'),
+    vercelId: req.get('x-vercel-id')
+  })
+
   await service.createEvent({
     eventId,
     source,
