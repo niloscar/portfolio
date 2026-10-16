@@ -8,6 +8,7 @@ const DEFAULT_LIMIT = 50
 const MAX_LIMIT = 100
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/
 const CHART_INTERVALS = ['day', 'week', 'month'] as const
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
 
 export async function getSummary(_req: Request, res: Response) {
   const summary = await service.getSummary()
@@ -90,7 +91,16 @@ export async function createEvent(req: Request, res: Response) {
     return res.sendStatus(204)
   }
 
-  const { source, path } = req.body ?? {}
+  const { eventId, source, path } = req.body ?? {}
+
+  if (
+    typeof eventId !== 'string' ||
+    !UUID_PATTERN.test(eventId)
+  ) {
+    return res.status(400).json({
+      error: 'Invalid event ID'
+    })
+  }
 
   if (!isTrafficSource(source)) {
     return res.status(400).json({
@@ -109,7 +119,11 @@ export async function createEvent(req: Request, res: Response) {
     })
   }
 
-  await service.createEvent({ source, path })
+  await service.createEvent({
+    eventId,
+    source,
+    path
+  })
 
   res.sendStatus(204)
 }

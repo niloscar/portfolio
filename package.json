@@ -17,7 +17,8 @@
         "images:build": "node scripts/optimize-images.mjs",
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "concurrently --names frontend,backend \"npm run dev -w frontend\" \"npm run dev -w backend\"",
-        "dev:host": "concurrently --names frontend,backend \"npm run dev -w frontend -- --host\" \"npm run dev -w backend\""
+        "dev:host": "concurrently --names frontend,backend \"npm run dev -w frontend -- --host\" \"npm run dev -w backend\"",
+        "build": "npm run build --workspace backend && npm run build --workspace frontend"
     },
     "keywords": [],
     "author": "",

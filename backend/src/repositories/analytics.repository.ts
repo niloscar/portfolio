@@ -2,7 +2,7 @@ import { db } from '../db.js'
 
 import type {
   DateSummary,
-  EventData,
+  TrackEventData,
   EventDataWithTimestamp,
   GetEventsOptions,
   SourceSummary,
@@ -87,13 +87,15 @@ export async function getEventsByDate({
 }
 
 export async function createEvent({
+  eventId,
   source,
   path
-}: EventData): Promise<void> {
+}: TrackEventData): Promise<void> {
   await db.query(`
-    INSERT INTO analytics_events (source, path)
-    VALUES ($1, $2)
-  `, [source, path])
+    INSERT INTO analytics_events (event_id, source, path)
+    VALUES ($1, $2, $3)
+    ON CONFLICT (event_id) DO NOTHING
+  `, [eventId, source, path])
 }
 
 export async function getResetDateTime(): Promise<string> {

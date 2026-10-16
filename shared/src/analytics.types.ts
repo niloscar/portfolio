@@ -5,6 +5,10 @@ export interface EventData {
   path: string
 }
 
+export type TrackEventData = EventData & {
+  eventId: string
+}
+
 export type EventDataWithTimestamp = EventData & {
   createdAt: string
 }

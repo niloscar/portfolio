@@ -4,6 +4,7 @@ import { trackEvent } from '../../api/analyticsApi'
 import getTrafficSource from '../../utils/getTrafficSource'
 
 const analyticsEnabled = import.meta.env.VITE_ANALYTICS_ENABLED === 'true'
+const eventId = crypto.randomUUID()
 
 export default function AnalyticsTracker() {
   const location = useLocation()
@@ -24,6 +25,7 @@ export default function AnalyticsTracker() {
     const trackVisit = async () => {
       try {
         await trackEvent({
+          eventId,
           source: getTrafficSource(),
           path: location.pathname
         })

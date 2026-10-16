@@ -2,7 +2,7 @@ import * as repository from '../repositories/analytics.repository.js'
 
 import type {
   AnalyticsSummary,
-  EventData,
+  TrackEventData,
   EventsPage,
   GetEventsOptions,
   GetAnalyticsChartOptions,
@@ -57,7 +57,7 @@ export async function getEvents({
 }
 
 export async function createEvent(
-  eventData: EventData
+  eventData: TrackEventData
 ): Promise<void> {
   await repository.createEvent(eventData)
 }

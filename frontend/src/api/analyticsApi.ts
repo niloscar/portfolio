@@ -2,14 +2,14 @@ import api from '../lib/apiClient'
 
 import type {
   AnalyticsSummary,
-  EventData,
+  TrackEventData,
   EventsPage,
   GetEventsOptions,
   GetAnalyticsChartOptions,
   AnalyticsChartData
 } from '@portfolio/shared'
 
-export async function trackEvent(eventData: EventData): Promise<void> {
+export async function trackEvent(eventData: TrackEventData): Promise<void> {
   await api.post('/analytics', eventData)
 }
 
