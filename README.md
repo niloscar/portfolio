@@ -1,57 +1,37 @@
 # Portfolio
 
-Personal portfolio built to present my projects, technical skills, education and work experience.
+Personal portfolio for presenting my projects, technical skills, education and work experience.
 
-The project is structured as a small full-stack application with a React frontend and a Node.js backend.
+Built as a small full-stack application with a React frontend, Node.js backend and shared TypeScript types.
 
 ## Tech stack
-
-### Frontend
 
 - React
 - TypeScript
 - Vite
 - React Router
+- Node.js
 - CSS Modules
 
-### Backend
-
-- Node.js
-- TypeScript
-
-## Project structure
+## Structure
 
 ```text
 .
 ├── frontend/   # React application
-├── backend/    # Backend/API
-└── docs/       # Project documentation
+├── backend/    # API, authentication and analytics
+├── shared/     # Shared types and utilities
+└── scripts/    # Development and build utilities
 ```
 
-The frontend contains sections for:
-
-- Projects and project details
-- Technical skills
-- Education and courses
-- Work experience
-- Personal presentation and social links
+The repository uses npm workspaces to manage the applications and shared package.
 
 ## Development
 
-Install dependencies from the project root:
-
 ```bash
 npm install
-```
-
-Start the development environment:
-
-```bash
 npm run dev
 ```
 
-The project uses npm workspaces to manage the frontend and backend from the repository root.
+## Live
 
-## Status
-
-Work in progress.
+[oscarnilsson.dev](https://oscarnilsson.dev)
