@@ -19,15 +19,15 @@ export default function LoginPage() {
       await login(formData.email, formData.password)
       navigate('/admin')
     } catch (error) {
-      setError('Login failed. Please try again.')
+      setError('Inloggningen misslyckades.')
     }
   }
 
   return (
     <main className="center">
-      <h1 className="h-size-2">Login</h1>
+      <h1 className="h-size-2">Logga in</h1>
       <form className="login-form" onSubmit={handleSubmit}>
-        <label htmlFor="email">Email:</label>
+        <label htmlFor="email">Mail</label>
         <input 
           type="email" 
           id="email" 
@@ -37,7 +37,7 @@ export default function LoginPage() {
           required 
         />
 
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="password">Lösenord</label>
         <input 
           type="password" 
           id="password" 

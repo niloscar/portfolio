@@ -1,22 +1,12 @@
+import axios from 'axios'
 import api from '../lib/apiClient'
+
 import type { User, UserCredentials } from '@portfolio/shared'
 
-
 export async function login(data: UserCredentials): Promise<User> {
-  const response = await fetch('/api/auth/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    credentials: 'include',
-    body: JSON.stringify(data)
-  })
+  const { data: user } = await api.post<User>('/auth/login', data)
 
-  if (!response.ok) {
-    throw new Error('Login failed')
-  }
-
-  return response.json()
+  return user
 }
 
 export async function logout(): Promise<void> {
@@ -24,17 +14,15 @@ export async function logout(): Promise<void> {
 }
 
 export async function getCurrentUser(): Promise<User | null> {
-  const response = await fetch('/api/auth/me', {
-    credentials: 'include'
-  })
+  try {
+    const { data: user } = await api.get<User>('/auth/me')
 
-  if (response.status === 401) {
-    return null
+    return user
+  } catch (error) {
+    if (axios.isAxiosError(error) && error.response?.status === 401) {
+      return null
+    }
+
+    throw error
   }
-
-  if (!response.ok) {
-    throw new Error('Failed to fetch current user')
-  }
-
-  return response.json()
 }

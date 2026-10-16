@@ -1,13 +1,18 @@
 import { useEffect, useState } from 'react'
-import { AuthContext} from './authContext'
-import { getCurrentUser, login as loginRequest, logout as logoutRequest } from '../api/authApi'
+import { AuthContext } from './authContext'
+import {
+  getCurrentUser,
+  login as loginRequest,
+  logout as logoutRequest
+} from '../api/authApi'
 
+import type { ReactNode } from 'react'
 import type { User } from '@portfolio/shared'
 
 export default function AuthProvider({
   children
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   const [user, setUser] = useState<User | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -15,8 +20,8 @@ export default function AuthProvider({
   useEffect(() => {
     const loadUser = async () => {
       try {
-        const user = await getCurrentUser()
-        setUser(user)
+        const currentUser = await getCurrentUser()
+        setUser(currentUser)
       } catch (error) {
         console.error(error)
       } finally {

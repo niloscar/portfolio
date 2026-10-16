@@ -1,15 +1,14 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-import AuthProvider from './contexts/AuthProvider2'
-
 import AnalyticsTracker from './components/AnalyticsTracker'
 import ScrollToHash from './components/ScrollToHash'
 
 import PublicLayout from './layouts/PublicLayout'
 
+import AuthRoute from './routes/AuthRoute'
 import ProtectedRoute from './routes/ProtectedRoute'
+import LoginRoute from './routes/LoginRoute'
 
-import LoginPage from './pages/LoginPage'
 import AdminPage from './pages/AdminPage'
 import StartPage from './pages/StartPage'
 import ProjectPage from './pages/ProjectPage'
@@ -20,24 +19,24 @@ import './App.css'
 function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <AnalyticsTracker />
-        <ScrollToHash />
+      <AnalyticsTracker />
+      <ScrollToHash />
 
-        <Routes>
-          <Route path="/" element={<PublicLayout />}>
-            <Route index element={<StartPage />} />
-            <Route path="project/:id" element={<ProjectPage />} />
-            <Route path="about" element={<AboutPage />} />
-          </Route>
+      <Routes>
+        <Route path="/" element={<PublicLayout />}>
+          <Route index element={<StartPage />} />
+          <Route path="project/:id" element={<ProjectPage />} />
+          <Route path="about" element={<AboutPage />} />
+        </Route>
 
-          <Route path="/login" element={<LoginPage />} />
+        <Route element={<AuthRoute />}>
+          <Route path="/login" element={<LoginRoute />} />
 
           <Route element={<ProtectedRoute />}>
             <Route path="/admin" element={<AdminPage />} />
           </Route>
-        </Routes>
-      </AuthProvider>
+        </Route>
+      </Routes>
     </BrowserRouter>
   )
 }
