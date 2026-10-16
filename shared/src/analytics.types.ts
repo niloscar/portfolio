@@ -38,3 +38,22 @@ export type EventsPage = {
   events: EventDataWithTimestamp[]
   nextCursor: number | null
 }
+
+export type AnalyticsChartInterval = 'day' | 'week' | 'month'
+
+export type AnalyticsChartPoint = {
+  period: string
+  source: TrafficSource
+  count: number
+}
+
+export type AnalyticsChartData = {
+  points: AnalyticsChartPoint[]
+}
+
+export type GetAnalyticsChartOptions = {
+  from: string
+  to: string
+  sources: TrafficSource[]
+  interval: AnalyticsChartInterval
+}

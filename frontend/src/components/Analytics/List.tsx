@@ -1,15 +1,15 @@
-import { useEffect, useState } from 'react'
-import { getEventsByDate, getSummary } from '../../api/analyticsApi'
+import { useState } from 'react'
+import { getEventsByDate } from '../../api/analyticsApi'
+import useFormat from '../../hooks/useFormat'
 import UiBox from '../ui/UiBox'
 import Ellipsis from '../ui/Ellipsis'
 
 import type {
-  AnalyticsSummary,
   DateSummary,
   EventDataWithTimestamp
 } from '@portfolio/shared'
 
-import styles from './AnalyticsViewer.module.css'
+import styles from './List.module.css'
 
 type MonthGroup = {
   month: number
@@ -30,31 +30,27 @@ type DateEvents = {
   isLoading: boolean
 }
 
+interface ListProps {
+  dates: DateSummary[]
+}
+
+
 const EVENTS_PER_PAGE = 50
 
 const now = new Date()
 const currentYear = now.getFullYear()
 const currentMonth = now.getMonth()
 
-export default function AnalyticsViewer() {
-  const [summary, setSummary] = useState<AnalyticsSummary | null>(null)
+export default function AnalyticsViewer({ dates }: ListProps) {
   const [eventsByDate, setEventsByDate] = useState<Record<string, DateEvents>>({})
   const [expandedYears, setExpandedYears] = useState<Set<number>>(() => new Set([currentYear]))
   const [expandedMonths, setExpandedMonths] = useState<Set<string>>(() => new Set([`${currentYear}-${currentMonth}`]))
   const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set())
 
-  useEffect(() => {
-    const fetchSummary = async () => {
-      try {
-        const data = await getSummary()
-        setSummary(data)
-      } catch (error) {
-        console.error('Error fetching analytics summary:', error)
-      }
-    }
-
-    fetchSummary()
-  }, [])
+  const {
+    formatLongTextDate,
+    formatTime
+  } = useFormat()
 
   const loadEvents = async (date: string, cursor?: number) => {
     setEventsByDate((previous) => ({
@@ -144,30 +140,9 @@ export default function AnalyticsViewer() {
     }
   }
 
-  if (!summary) {
-    return null
-  }
-
-  const groupedDates = groupDates(summary.dates)
+  const groupedDates = groupDates(dates)
 
   return (
-    <>
-      <section className={styles['summary']}>
-        <p className={styles['total-visits']}>
-          {summary.total} besök sedan statistiken nollställdes
-          {summary.resetAt && ` (${formatShortTextDateTime(summary.resetAt)})`}
-        </p>
-
-        <ul className={styles['source-stats']}>
-          {summary.sources.map(({ source, count }) => (
-            <li key={source}>
-              <span className={styles['source']}>{source}</span>
-              <span className={styles['count']}>{count} st</span>
-            </li>
-          ))}
-        </ul>
-      </section>
-
       <section className={styles['events']}>
         <ul className={styles['year-list']}>
           {groupedDates.map(({ year, count: yearCount, months }) => {
@@ -214,7 +189,7 @@ export default function AnalyticsViewer() {
                                   <li key={day} className={styles['day-group']}>
                                     <button
                                       type="button"
-                                      className={styles['day-list-heading']}
+                                      className={styles['day-heading']}
                                       onClick={() => toggleDay(day)}
                                       aria-expanded={isExpanded}
                                     >
@@ -291,46 +266,7 @@ export default function AnalyticsViewer() {
           })}
         </ul>
       </section>
-    </>
   )
-}
-
-function formatLongTextDate(date: string): string {
-  const parsedDate = new Date(`${date}T12:00:00`)
-  const thisYear = new Date().getFullYear()
-
-  return parsedDate.toLocaleDateString('sv-SE', {
-    weekday: 'long',
-    year: parsedDate.getFullYear() === thisYear ? undefined : 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
-}
-
-function formatShortTextDateTime(timestamp: string): string {
-  const date = new Date(timestamp)
-  const thisYear = new Date().getFullYear()
-
-  const formattedDate = date.toLocaleDateString('sv-SE', {
-    year: date.getFullYear() === thisYear ? undefined : 'numeric',
-    month: 'long',
-    day: 'numeric'
-  })
-
-  const formattedTime = date.toLocaleTimeString('sv-SE', {
-    hour: '2-digit',
-    minute: '2-digit'
-  })
-
-  return `${formattedDate}, ${formattedTime}`
-}
-
-function formatTime(timestamp: string): string {
-  return new Date(timestamp).toLocaleTimeString('sv-SE', {
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit'
-  })
 }
 
 function groupDates(dates: DateSummary[]): YearGroup[] {

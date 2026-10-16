@@ -4,7 +4,9 @@ import type {
   AnalyticsSummary,
   EventData,
   EventsPage,
-  GetEventsOptions
+  GetEventsOptions,
+  GetAnalyticsChartOptions,
+  AnalyticsChartData
 } from '@portfolio/shared'
 
 export async function trackEvent(eventData: EventData): Promise<void> {
@@ -31,6 +33,27 @@ export async function getEventsByDate({
         date,
         limit,
         ...(cursor !== undefined && { cursor })
+      }
+    }
+  )
+
+  return data
+}
+
+export async function getChartData({
+  from,
+  to,
+  sources,
+  interval
+}: GetAnalyticsChartOptions): Promise<AnalyticsChartData> {
+  const { data } = await api.get<AnalyticsChartData>(
+    '/analytics/chart',
+    {
+      params: {
+        from,
+        to,
+        sources: sources.join(','),
+        interval
       }
     }
   )

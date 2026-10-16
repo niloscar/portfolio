@@ -1,8 +1,9 @@
 import { useAuth } from '../hooks/useAuth'
-import AnalyticsViewer from '../components/Analytics/AnalyticsViewer'
+
+import Header from '../parts/Header'
+import Viewer from '../components/Analytics/Viewer'
 
 import styles from './AdminPage.module.css'
-import Header from '../parts/Header'
 
 export default function AdminPage() {
   const { user, logout } = useAuth()
@@ -16,7 +17,7 @@ export default function AdminPage() {
       <main className={styles['admin-page']}>
         <p className={`h-size-3 ${styles['welcome-message']}`}>Välkommen till adminsidan {user?.fname}!</p>
 
-        <AnalyticsViewer />
+        <Viewer />
 
         <button className={styles['logout-button']} onClick={logout}>
           Logga ut

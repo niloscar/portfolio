@@ -1,0 +1,43 @@
+section.summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: var(--page-width);
+}
+
+.total-visits {
+  margin: 0 0 .5rem;
+  font-size: .8rem;
+  font-style: italic;
+  text-wrap: pretty;
+}
+
+.total-visits .count {
+  font-weight: 600;
+}
+
+.total-visits .reset-at {
+  white-space: nowrap;
+}
+
+.source-stats {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 1rem;
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+  font-size: .8rem;
+}
+
+.source-stats li {
+  display: grid;
+  grid-column: 1 / span 2;
+  grid-template-columns: subgrid;
+}
+
+.source-stats .source {
+  font-weight: bold;
+}

@@ -1,11 +1,12 @@
 import * as service from '../services/analytics.service.js'
-import { isTrafficSource } from '@portfolio/shared'
+import { isTrafficSource, AnalyticsChartInterval } from '@portfolio/shared'
 
 import type { Request, Response } from 'express'
 
 const DEFAULT_LIMIT = 50
 const MAX_LIMIT = 100
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/
+const CHART_INTERVALS = ['day', 'week', 'month'] as const
 
 export async function getSummary(_req: Request, res: Response) {
   const summary = await service.getSummary()
@@ -106,4 +107,47 @@ export async function createEvent(req: Request, res: Response) {
   await service.createEvent({ source, path })
 
   res.sendStatus(204)
+}
+
+export async function getChart(req: Request, res: Response) {
+  const { from, to, sources: rawSources, interval } = req.query
+
+  if (
+    typeof from !== 'string' ||
+    typeof to !== 'string' ||
+    !DATE_PATTERN.test(from) ||
+    !DATE_PATTERN.test(to)
+  ) {
+    return res.status(400).json({ error: 'Invalid date range' })
+  }
+
+  if (
+    typeof interval !== 'string' ||
+    !CHART_INTERVALS.includes(
+      interval as (typeof CHART_INTERVALS)[number]
+    )
+  ) {
+    return res.status(400).json({ error: 'Invalid interval' })
+  }
+
+  if (typeof rawSources !== 'string') {
+    return res.status(400).json({ error: 'Invalid sources' })
+  }
+
+  const sources = rawSources
+    .split(',')
+    .filter(isTrafficSource)
+
+  if (!sources.length) {
+    return res.status(400).json({ error: 'Invalid sources' })
+  }
+
+  const data = await service.getChart({
+    from,
+    to,
+    sources,
+    interval: interval as AnalyticsChartInterval
+  })
+
+  res.status(200).json(data)
 }
