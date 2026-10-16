@@ -25,6 +25,7 @@ main.center {
   padding: .5rem;
   border-radius: .25rem;
   border: 1px solid var(--border);
+  font-size: 1rem;
 }
 
 .submit-button {
@@ -34,6 +35,7 @@ main.center {
   border: none;
   backdrop-filter: blur(15px);
   background-color: #11111111;
+  font-size: 1rem;
 
   color: var(--text-on-primary);
   cursor: pointer;

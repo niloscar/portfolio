@@ -1,10 +1,12 @@
 import { Router } from 'express'
-import { createEvent, getEvents } from '../controllers/analytics.controller.js'
+import { createEvent, getEvents, getSummary } from '../controllers/analytics.controller.js'
 import { requireAuth } from '../middleware/requireAuth.js'
 
 const analyticsRouter = Router()
 
-analyticsRouter.get('/', requireAuth, getEvents)
 analyticsRouter.post('/', createEvent)
+
+analyticsRouter.get('/summary', requireAuth, getSummary)
+analyticsRouter.get('/events', requireAuth, getEvents)
 
 export default analyticsRouter

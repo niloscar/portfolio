@@ -1,26 +1,137 @@
-.analytics-list {
+section.summary, section.events {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--page-width);
+  align-items: center;
+}
+
+.total-visits {
+  font-size: .8rem;
+  font-style: italic;
+  text-wrap: pretty;
+  margin: 0 0 .5rem 0;
+}
+
+.source-stats {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0 1rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: .8rem;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
+}
+
+.source-stats li {
+  display: grid;
+  grid-column: 1 / span 2;
+  grid-template-columns: subgrid;
+}
+
+.source-stats .source {
+  font-weight: bold;
+}
+
+.date-list {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-width: 500px;
+  width: 100%;
+}
+
+.date-list > li {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  width: 100%;
+}
+
+.date-list > li > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.date-list-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+
+  color: inherit;
+  background-color: transparent;
+  border: none;
+
+  cursor: pointer;
+
+  font-size: 1rem;
+
+  padding: 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.date-list-heading span:first-child {
+  font-weight: 600;
+}
+
+.events-list {
   list-style-type: none;
   padding: 0;
   margin: 0;
 
   display: grid;
   grid-template-columns: auto auto auto;
-  gap: .25rem 1rem;
+  gap: .125rem 1rem;
+
+  font-size: .8rem;
 }
 
-.analytics-list li {
+.events-list li {
   display: grid;
   grid-column: 1 / span 3;
   grid-template-columns: subgrid;
+
+  padding: 0 .25rem;
+
+  &:not(.events-list-heading):hover {
+    background-color: #f0f0f0;
+  }
 }
 
-.analytics-list .headings {
+.events-list .events-list-heading {
   font-weight: bold;
 }
 
-.source-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .5rem 1rem;
-  margin-bottom: 1rem;
+.load-more {
+  display: inline-flex;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  margin: 0 auto;
+  gap: .25em;
+  font-size: .8rem;
+  color: var(--text);
+  padding: .125rem .5rem;
+  line-height: 1.5;
+
+  & > svg {
+    margin-top: .35em;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

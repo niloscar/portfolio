@@ -5,7 +5,7 @@ export default function ProjectPage() {
 
   return (
     <>
-      <Header back="/#projects">
+      <Header back={{ to: "/#projects" }}>
         <h1 className="h-size-2">Projekt</h1>
       </Header>
 
