@@ -5,7 +5,9 @@ import type {
   EventData,
   EventDataWithTimestamp,
   GetEventsOptions,
-  SourceSummary
+  SourceSummary,
+  GetAnalyticsChartOptions,
+  AnalyticsChartPoint
 } from '@portfolio/shared'
 
 type EventRow = EventDataWithTimestamp & {
@@ -13,6 +15,10 @@ type EventRow = EventDataWithTimestamp & {
 }
 
 type GetEventsByDateOptions = GetEventsOptions & {
+  resetAt: string
+}
+
+type GetChartDataOptions = GetAnalyticsChartOptions & {
   resetAt: string
 }
 
@@ -98,4 +104,45 @@ export async function getResetDateTime(): Promise<string> {
   `)
 
   return rows[0].resetAt
+}
+
+export async function getChartData({
+  from,
+  to,
+  sources,
+  interval,
+  resetAt
+}: GetChartDataOptions): Promise<AnalyticsChartPoint[]> {
+  const { rows } = await db.query<AnalyticsChartPoint>(`
+    SELECT
+      TO_CHAR(
+        DATE_TRUNC(
+          $1,
+          created_at AT TIME ZONE 'Europe/Stockholm'
+        ),
+        'YYYY-MM-DD'
+      ) AS period,
+      source,
+      COUNT(*)::int AS count
+    FROM analytics_events
+    WHERE
+      created_at >= $2
+      AND created_at >= (
+        $3::date::timestamp AT TIME ZONE 'Europe/Stockholm'
+      )
+      AND created_at < (
+        ($4::date + 1)::timestamp AT TIME ZONE 'Europe/Stockholm'
+      )
+      AND source = ANY($5::text[])
+    GROUP BY period, source
+    ORDER BY period ASC, source ASC
+  `, [
+    interval,
+    resetAt,
+    from,
+    to,
+    sources
+  ])
+
+  return rows
 }

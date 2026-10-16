@@ -8,19 +8,23 @@
 .shimmer::after {
   content: '';
   position: absolute;
-  inset: 0;
-  transform: translateX(-100%);
+  inset-block: 0;
+  left: -100%;
+  width: 300%;
+
   background: linear-gradient(
-    135deg,
-    transparent,
-    var(--shimmer-color, rgba(255, 255, 255, .02)),
-    transparent
+    110deg,
+    transparent 35%,
+    var(--shimmer-color, rgba(255, 255, 255, .2)) 50%,
+    transparent 65%
   );
-  animation: shimmer 1.4s infinite;
+
+  transform: translateX(-33%);
+  animation: shimmer 1.6s ease-in-out infinite;
 }
 
 @keyframes shimmer {
-  100% {
-    transform: translateX(100%);
+  to {
+    transform: translateX(33%);
   }
 }

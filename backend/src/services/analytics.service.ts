@@ -4,7 +4,9 @@ import type {
   AnalyticsSummary,
   EventData,
   EventsPage,
-  GetEventsOptions
+  GetEventsOptions,
+  GetAnalyticsChartOptions,
+  AnalyticsChartData
 } from '@portfolio/shared'
 
 export async function getSummary(): Promise<AnalyticsSummary> {
@@ -58,4 +60,17 @@ export async function createEvent(
   eventData: EventData
 ): Promise<void> {
   await repository.createEvent(eventData)
+}
+
+export async function getChart(
+  options: GetAnalyticsChartOptions
+): Promise<AnalyticsChartData> {
+  const resetAt = await repository.getResetDateTime()
+
+  const points = await repository.getChartData({
+    ...options,
+    resetAt
+  })
+
+  return { points }
 }
