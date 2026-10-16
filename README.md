@@ -34,4 +34,4 @@ npm run dev
 
 ## Live
 
-[oscarnilsson.dev](https://oscarnilsson.dev)
+[oscarnilsson.dev](https://oscarnilsson.dev/?ref=github)
