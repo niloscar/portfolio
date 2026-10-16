@@ -4,7 +4,7 @@ import { lazy, Suspense } from 'react'
 import AnalyticsTracker from './components/Analytics/AnalyticsTracker'
 import ScrollToHash from './components/ScrollToHash'
 
-import PublicLayout from './layouts/PublicLayout'
+import BaseLayout from './layouts/BaseLayout'
 
 import AuthRoute from './routes/AuthRoute'
 import ProtectedRoute from './routes/ProtectedRoute'
@@ -25,22 +25,24 @@ function App() {
       <ScrollToHash />
 
       <Routes>
-        <Route path="/" element={<PublicLayout />}>
-          <Route index element={<StartPage />} />
-          <Route path="project/:id" element={<ProjectPage />} />
-          <Route path="about" element={<AboutPage />} />
-        </Route>
+        <Route element={<BaseLayout />}>
+          <Route path="/" element={<StartPage />} />
+          <Route path="/project/:id" element={<ProjectPage />} />
+          <Route path="/about" element={<AboutPage />} />
 
-        <Route element={<AuthRoute />}>
-          <Route path="/login" element={<LoginRoute />} />
+          <Route element={<AuthRoute />}>
+            <Route path="/login" element={<LoginRoute />} />
 
-          <Route element={<ProtectedRoute />}>
-            <Route path="/admin" element={
-                <Suspense fallback={null}>
-                  <AdminPage />
-                </Suspense>
-              }
-            />
+            <Route element={<ProtectedRoute />}>
+              <Route
+                path="/admin"
+                element={
+                  <Suspense fallback={null}>
+                    <AdminPage />
+                  </Suspense>
+                }
+              />
+            </Route>
           </Route>
         </Route>
       </Routes>

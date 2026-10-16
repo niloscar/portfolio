@@ -3,6 +3,7 @@
     "id": 1,
     "name": "Roslagens sjukgymnastik",
     "description": "Webbplats för Roslagens sjukgymnastik, en privat sjukgymnastikmottagning i Norrtälje. Sidan presenterar mottagningens tjänster och information för patienter samt innehåller funktionalitet för att hantera och publicera innehåll.",
+    "metaDescription": "Webbplats för Roslagens sjukgymnastik i Norrtälje med patientinformation, tjänster och funktionalitet för innehållshantering.",
     "technicalOverview": "Webbplatsen är byggd med React och TypeScript i frontend och PHP med MariaDB i backend. Applikationen är containeriserad med Docker och driftsatt på en egenkonfigurerad VPS med Nginx som reverse proxy.",
     "responsibility": "Fullstackutveckling, tekniska vägval, deployment och drift av webbplatsen.",
     "technicalChallenges": "Att bygga en lösning som både är enkel att administrera och stabil i produktion, samt att själv sätta upp och konfigurera servermiljön för applikation, databas och trafikhantering.",
@@ -26,6 +27,7 @@
     "id": 2,
     "name": "SailTell för Apple Watch",
     "description": "App för Apple Watch som hjälper seglare att hålla koll på hastighet och kurs direkt på handleden. Appen kan även spela in seglingspass och sammanställa statistik över bland annat distans, medel- och maxhastighet samt personliga rekord. Appen testas för närvarande via TestFlight.",
+    "metaDescription": "Apple Watch-app för seglare med hastighet och kurs i realtid, inspelning av seglingspass, statistik och personliga rekord.",
     "technicalOverview": "Appen är byggd med Swift och SwiftUI för watchOS. Core Location används för att läsa in position, hastighet och kurs i realtid samt för att spela in seglingspass.",
     "responsibility": "Produktutveckling, apparkitektur och implementation av hela Apple Watch-appen.",
     "technicalChallenges": "Att hantera kontinuerlig positionsdata på ett tillförlitligt sätt, filtrera bort osäkra mätvärden och samtidigt hålla appen lätt och tydlig att använda under pågående segling.",
@@ -41,6 +43,7 @@
     "id": 3,
     "name": "SailTell Web",
     "description": "Webbapp för att utforska och analysera seglingspass som spelats in med SailTell på Apple Watch. Här kan användaren se tidigare rutter, följa hastighet och kurs över tid samt få en tydligare överblick över sin segling och prestation.",
+    "metaDescription": "Webbapp för analys av seglingspass från SailTell på Apple Watch, med rutter, hastighet, kurs, statistik och visualiseringar.",
     "technicalOverview": "Webbplatsen är byggd med React och TypeScript och har ett separat API i Node.js och Express med PostgreSQL som databas. Frontend är driftsatt på Vercel, backend på Railway och databasen hanteras via Neon.",
     "responsibility": "Fullstackutveckling, systemarkitektur, frontend, backend och deployment.",
     "technicalChallenges": "Att omvandla positionsdata till tydliga visualiseringar, synkronisera karta, tidslinje och statistik samt hålla analyslogik och presentation tydligt separerade.",
@@ -67,6 +70,7 @@
     "id": 4,
     "name": "Bubbles",
     "description": "Communityforum där användare kan skapa egna diskussionsgrupper och bjuda in andra att delta. Det går även att ansöka om medlemskap i befintliga grupper eller gå med direkt via en delad inbjudningslänk.",
+    "metaDescription": "Communityforum där användare kan skapa diskussionsgrupper, bjuda in medlemmar och hantera medlemskap via ansökningar och länkar.",
     "technicalOverview": "Bubbles är byggd med PHP och med PostgreSQL som databas. Applikationen är containeriserad med Docker och har funktionalitet för användare, grupper, medlemsansökningar och inbjudningar via delbara länkar.",
     "techStack": [
       "php",
@@ -85,6 +89,7 @@
     "id": 5,
     "name": "Pizza Arcade",
     "description": "Webbplattform kring arkadspelet Pizza Arcade med användarkonton, produktnivåer, annonser, power-ups, topplista och administrationsfunktioner. Spelupplevelsen är integrerad med plattformens användar- och åtkomstsystem.",
+    "metaDescription": "Webbplattform kring Pizza Arcade med användarkonton, produktnivåer, annonser, power-ups, topplista och administration.",
     "technicalOverview": "Projektet är byggt som ett monorepo med React och TypeScript i frontend och Node.js, Express och TypeScript i backend. PostgreSQL via Neon används för datalagring. Pizza Arcade ligger som en separat spelmodul med egen game loop, rendering och spellogik. Frontend och backend är driftsatta på Vercel.",
     "responsibility": "Projektledning och teknisk planering. Ansvarade för projektstruktur, databasdesign och uppsättning av PostgreSQL-databasen samt byggde backend-API:et med routes och tillhörande logik. I frontend arbetade jag främst med Pizza Arcade och med att hålla spelet så fristående som möjligt från plattformens övriga funktionalitet.",
     "technicalChallenges": "Att strukturera ett större gruppprojekt med tydlig ansvarsfördelning mellan frontend, backend, databas och spelmodul. En central utmaning var att hålla Pizza Arcade relativt fristående från plattformen samtidigt som spelåtkomst, annonser, power-ups och resultat kunde integreras via gemensamma typer och API.",
@@ -100,7 +105,7 @@
     "links": [
       {
         "type": "production",
-        "url": "https://game-monetization.vercel.app"
+        "url": "https://pizza-arcade.vercel.app"
       },
       {
         "type": "github",
@@ -113,6 +118,7 @@
     "id": 6,
     "name": "Portfolio 2026",
     "description": "Den här portfolion är byggd för att samla mina projekt, erfarenheter och tekniska kompetenser på ett lättöverskådligt sätt. Utöver den publika presentationen innehåller applikationen ett eget backend-API, autentisering och ett skyddat analysgränssnitt för att följa hur webbplatsen används.",
+    "metaDescription": "Min portfolio med projekt, erfarenhet och teknisk kompetens samt eget backend-API, autentisering och analysfunktionalitet.",
     "technicalOverview": "Portfolion är byggd med React och TypeScript i frontend och Node.js, Express och TypeScript i backend. Projekt- och teknikdata hämtas via ett eget API, medan PostgreSQL används för autentisering, sessioner och insamlad analysdata. Frontend och backend delar gemensamma TypeScript-typer och applikationen är driftsatt på Vercel.",
     "responsibility": "Design, frontend- och backendutveckling, systemarkitektur, API-design, databasstruktur, autentisering, analysfunktionalitet och deployment.",
     "technicalChallenges": "Att strukturera frontend, backend och delade typer som en sammanhängande applikation samt bygga egen analysfunktionalitet med datainsamling, autentiserad åtkomst, filtrering, paginering och visualisering utan att blanda ihop presentation, API-logik och datalagring.",

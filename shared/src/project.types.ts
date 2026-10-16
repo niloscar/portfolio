@@ -4,6 +4,7 @@ export interface ProjectData {
   id: number
   name: string
   description: string
+  metaDescription?: string
   technicalOverview: string
   responsibility?: string | string[]
   technicalChallenges?: string
