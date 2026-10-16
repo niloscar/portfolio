@@ -1,25 +1,27 @@
-section.summary, section.events {
+section.summary,
+section.events {
   display: flex;
   flex-direction: column;
+  align-items: center;
   width: 100%;
   max-width: var(--page-width);
-  align-items: center;
 }
 
 .total-visits {
+  margin: 0 0 .5rem;
   font-size: .8rem;
   font-style: italic;
   text-wrap: pretty;
-  margin: 0 0 .5rem 0;
 }
 
 .source-stats {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 0 1rem;
-  list-style: none;
   padding: 0;
   margin: 0;
+
+  list-style: none;
   font-size: .8rem;
 
   @media (max-width: 768px) {
@@ -37,65 +39,101 @@ section.summary, section.events {
   font-weight: bold;
 }
 
-.date-list {
+.year-list, .month-list, .day-list {
   display: flex;
   flex-direction: column;
-  gap: .5rem;
-  list-style-type: none;
+  width: 100%;
   padding: 0;
   margin: 0;
+
+  list-style: none;
+}
+
+.year-list {
   max-width: 500px;
-  width: 100%;
+  gap: 1rem;
 }
 
-.date-list > li {
-  display: flex;
-  flex-direction: column;
+.month-list {
+  gap: .75rem;
+}
+
+.day-list {
   gap: .5rem;
+}
+
+.year-group, .month-group, .day-group {
+  display: flex;
+  flex-direction: column;
   width: 100%;
 }
 
-.date-list > li > div {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin-bottom: 2rem;
-}
-
-.date-list-heading {
+.year-heading, .month-heading, .day-list-heading {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
   width: 100%;
-
-  color: inherit;
-  background-color: transparent;
-  border: none;
-
-  cursor: pointer;
-
-  font-size: 1rem;
-
   padding: 0;
+
+  border: none;
+  background-color: transparent;
+  color: inherit;
+
+  text-align: left;
+  cursor: pointer;
 
   &:hover {
     text-decoration: underline;
   }
 }
 
-.date-list-heading span:first-child {
+.year-heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.month-heading {
+  font-size: 1rem;
+  font-weight: 650;
+}
+
+.day-list-heading {
+  font-size: 1rem;
+}
+
+.day-list-heading span:first-child {
   font-weight: 600;
 }
 
-.events-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+.month-list,
+.day-list {
+  padding-top: .5rem;
+}
 
+.month-list {
+  padding-left: .5rem;
+}
+
+.day-list {
+  padding-left: .5rem;
+}
+
+.day-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: .5rem 0 2rem;
+}
+
+.events-list {
   display: grid;
   grid-template-columns: auto auto auto;
   gap: .125rem 1rem;
 
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
   font-size: .8rem;
 }
 
@@ -103,29 +141,30 @@ section.summary, section.events {
   display: grid;
   grid-column: 1 / span 3;
   grid-template-columns: subgrid;
-
   padding: 0 .25rem;
 
-  &:not(.events-list-heading):hover {
+  &:not(.events-list-headings):hover {
     background-color: #f0f0f0;
   }
 }
 
-.events-list .events-list-heading {
+.events-list-headings {
   font-weight: bold;
 }
 
 .load-more {
   display: inline-flex;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  margin: 0 auto;
   gap: .25em;
-  font-size: .8rem;
-  color: var(--text);
+  margin: 0 auto;
   padding: .125rem .5rem;
+
+  border: none;
+  background-color: transparent;
+  color: var(--text);
+
+  font-size: .8rem;
   line-height: 1.5;
+  cursor: pointer;
 
   & > svg {
     margin-top: .35em;
