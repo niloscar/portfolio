@@ -11,6 +11,7 @@ export type {
   SourceSummary, 
   DateSummary, 
   AnalyticsSummary, 
+  TrackEventData,
   EventsPage, 
   GetEventsOptions 
 } from './analytics.types.js'
