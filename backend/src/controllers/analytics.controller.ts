@@ -9,6 +9,7 @@ const MAX_LIMIT = 100
 const DATE_PATTERN = /^\d{4}-\d{2}-\d{2}$/
 const CHART_INTERVALS = ['day', 'week', 'month'] as const
 const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
+const ANALYTICS_HOST = process.env.ANALYTICS_HOST
 
 export async function getSummary(_req: Request, res: Response) {
   const summary = await service.getSummary()
@@ -87,7 +88,10 @@ export async function getEvents(req: Request, res: Response) {
 }
 
 export async function createEvent(req: Request, res: Response) {
-  if (req.session.userId) {
+  if (
+    req.session.userId ||
+    (ANALYTICS_HOST && req.hostname !== ANALYTICS_HOST)
+  ) {
     return res.sendStatus(204)
   }
 
@@ -118,14 +122,6 @@ export async function createEvent(req: Request, res: Response) {
       error: 'Invalid path'
     })
   }
-
-  console.log('Analytics event', {
-    eventId,
-    userAgent: req.get('user-agent'),
-    host: req.get('host'),
-    deployment: req.get('x-vercel-deployment-url'),
-    vercelId: req.get('x-vercel-id')
-  })
 
   await service.createEvent({
     eventId,
