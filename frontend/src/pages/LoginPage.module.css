@@ -25,7 +25,14 @@ main.center {
   padding: .5rem;
   border-radius: .25rem;
   border: 1px solid var(--border);
+  background-color: var(--background);
+  color: var(--text);
   font-size: 1rem;
+
+  &:focus {
+    outline: none;
+    border-color: var(--primary);
+  }
 }
 
 .submit-button {

@@ -5,20 +5,25 @@ import ProjectsSection from '../components/Projects/Section'
 import TechStackSection from '../components/TechStack/Section'
 
 import styles from './StartPage.module.css'
+import Metadata from '../components/Metadata'
 
 export default function StartPage() {
   return (
-    <main className="start-page-main">
-      <div className={styles.intro}>
-        <Header />
+    <>
+      <Metadata />
 
-        <FlowChart direction="horizontal" />
+      <main className="start-page-main">
+        <div className={styles.intro}>
+          <Header />
 
-        <PresentationSection />
-      </div>
+          <FlowChart direction="horizontal" />
 
-      <ProjectsSection />
-      <TechStackSection />
-    </main>
+          <PresentationSection />
+        </div>
+
+        <ProjectsSection />
+        <TechStackSection />
+      </main>
+    </>
   )
 }
