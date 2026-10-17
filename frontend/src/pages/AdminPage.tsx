@@ -4,12 +4,15 @@ import Header from '../parts/Header'
 import Viewer from '../components/Analytics/Viewer'
 
 import styles from './AdminPage.module.css'
+import Metadata from '../components/Metadata'
 
 export default function AdminPage() {
   const { user, logout } = useAuth()
 
   return (
     <>
+      <Metadata title="Admin" description="Adminpanelen" />
+
       <Header back={{ to: "/", label: "Till startsidan" }}>
         <h1 className="h-size-2">Admin</h1>
       </Header>

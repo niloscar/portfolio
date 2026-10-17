@@ -51,3 +51,9 @@ main.center {
     background-color: #11111122;
   }
 }
+
+.error {
+  color: #ff4d4f;
+  font-size: .8rem;
+  margin-top: 1rem;
+}
