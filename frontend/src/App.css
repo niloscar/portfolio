@@ -61,39 +61,30 @@ main.center {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-}
 
-.full-height-section:last-child {
+  &:last-child {
     min-height: calc(100svh - var(--page-padding-y));
   }
-
-h1, h2, h3 {
-  text-align: center;
-  text-wrap-style: balance;
 }
 
-h2 {
-  font-size: 1.5rem;
+.h-size-1, .h-size-2, .h-size-3, .h-size-4 {
   font-weight: 400;
+  margin: 1rem 0;
+  text-align: center;
+  text-wrap-style: balance;
 }
 
 .h-size-1 {
   font-size: 3rem;
   line-height: 1.1;
-  font-weight: 400;
-  margin: 1rem 0;
 }
 
 .h-size-2 {
   font-size: 1.5rem;
-  font-weight: 400;
-  margin: 1rem 0;
 }
 
 .h-size-3 {
   font-size: 1.25rem;
-  font-weight: 400;
-  margin: 1rem 0;
 
   &:first-child {
     margin-top: 0;
@@ -102,7 +93,6 @@ h2 {
 
 .h-size-4 {
   font-size: 1.125rem;
-  font-weight: 400;
   margin: .5rem 0;
 
   &:first-child {
@@ -113,14 +103,11 @@ h2 {
 p {
   text-align: center;
   text-wrap-style: pretty;
-  margin: .8rem 0
-}
+  margin: 0 0 .8rem 0;
 
-section > header + p,
-h2 + p,
-h3 + p,
-p + p {
-  margin-top: 0;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 a {
@@ -135,43 +122,4 @@ a {
 
 .text-center {
   text-align: center;
-}
-
-/* @property --index {
-  syntax: '<integer>';
-  inherits: true;
-  initial-value: 0;
-}
-
-section {
-  --index: calc(sibling-index() - 1);
-  display: contents;
-}
-
-section > header {
-  --height: 4rem;
-
-  position: sticky;
-  top: calc(var(--height) * var(--index));
-  height: var(--height);
-
-  background: #fff;
-
-
-
-  padding: 1rem 0;
-  margin: 0;
-  z-index: 1;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-section > header > h2 {
-  margin: 0;
-} */
-
-p:last-child {
-  margin-bottom: 0;
 }

@@ -2,15 +2,27 @@
   animation: fade-in .25s ease-out both;
 }
 
+.project h1 {
+  margin-bottom: .5rem
+}
+
+.project h2 {
+  margin-top: 2rem;
+}
+
 .project h3 {
   text-align: center;
 }
 
+.project p {
+  margin: 0;
+}
+
+.project .links {
+  background-color: red;
+}
+
 .project-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .5rem;
   margin-bottom: 2rem;
 }
 
@@ -32,7 +44,6 @@
 }
 
 .tech-stack-section {
-  margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: .25rem;
