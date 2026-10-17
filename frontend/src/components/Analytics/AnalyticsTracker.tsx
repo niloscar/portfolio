@@ -4,7 +4,7 @@ import { trackEvent } from '../../api/analyticsApi'
 import getTrafficSource from '../../utils/getTrafficSource'
 
 const analyticsEnabled = import.meta.env.VITE_ANALYTICS_ENABLED === 'true'
-const eventId = crypto.randomUUID()
+const eventId = createId()
 
 export default function AnalyticsTracker() {
   const location = useLocation()
@@ -38,4 +38,17 @@ export default function AnalyticsTracker() {
   }, [location.pathname])
 
   return null
+}
+
+export function createId() {
+  if (typeof crypto.randomUUID === 'function') {
+    return crypto.randomUUID()
+  }
+
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, char => {
+    const value = crypto.getRandomValues(new Uint8Array(1))[0] & 15
+    const result = char === 'x' ? value : (value & 3) | 8
+
+    return result.toString(16)
+  })
 }
