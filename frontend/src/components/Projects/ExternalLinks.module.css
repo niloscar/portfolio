@@ -5,13 +5,16 @@
 
   display: flex;
   gap: .5rem;
-  align-items: flex-start;
+  justify-content: center;
+  margin: 2rem;
 }
 
 .absolute {
+  justify-content: flex-start;
   position: absolute;
   top: 1rem;
   right: 1rem;
+  margin: 0;
 }
 
 .vertical {
