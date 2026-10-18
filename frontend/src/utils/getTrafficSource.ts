@@ -6,24 +6,15 @@ const HOSTNAME_TO_SOURCE_MAP: Record<string, TrafficSource> = {
   'facebook.com': 'facebook',
   'x.com': 'x',
   'twitter.com': 'x',
-  'tiktok.com': 'tiktok',
   'reddit.com': 'reddit',
-  'youtube.com': 'youtube',
-  'youtu.be': 'youtube',
 
   'github.com': 'github',
-  'gitlab.com': 'gitlab',
-  'stackoverflow.com': 'stackoverflow',
-  'dev.to': 'devto',
-  'news.ycombinator.com': 'hackernews',
-  'medium.com': 'medium',
 
   'google.com': 'google',
   'google.se': 'google',
   'bing.com': 'bing',
   'duckduckgo.com': 'duckduckgo',
-  'search.brave.com': 'brave',
-  'ecosia.org': 'ecosia'
+  'search.brave.com': 'brave'
 }
 
 export default function getTrafficSource(): TrafficSource {
