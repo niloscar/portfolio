@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import ExternalLinks from './ExternalLinks'
 import TechStackList from '../TechStack/List'
 import SmallHeading from '../ui/SmallHeading'
@@ -17,6 +18,15 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
         <h1 className="h-size-3">{project.name}</h1>
 
         <p>{project.description}</p>
+
+        {project.relatedProject && (
+          <p className={styles['related-project']}>
+            Relaterat projekt:{' '}
+            <Link to={`/project/${project.relatedProject.id}`}>
+              {project.relatedProject.name}
+            </Link>
+          </p>
+        )}
 
         {project.links && (
           <ExternalLinks links={project.links} theme="light" />

@@ -10,6 +10,10 @@ export interface ProjectData {
   technicalChallenges?: string
   techStack: TechType[]
   links?: ExternalLink[]
+  relatedProject?: {
+    id: number
+    name: string
+  }
   image?: string
 }
 

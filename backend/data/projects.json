@@ -37,6 +37,10 @@
       "swiftui",
       "core-location"
     ],
+    "relatedProject": {
+      "id": 3,
+      "name": "SailTell Web"
+    },
     "image": "sailtell-watch-app.png"
   },
   {
@@ -64,6 +68,10 @@
         "url": "https://web.sailtell.app"
       }
     ],
+    "relatedProject": {
+      "id": 2,
+      "name": "SailTell för Apple Watch"
+    },
     "image": "sailtell-web.png"
   },
   {
