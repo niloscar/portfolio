@@ -25,7 +25,7 @@ export default function TechStack({ techStack }: TechStackProps) {
             theme="dark"
             color={tech.color}
             name={tech.name}
-            // icon={Icon}
+            backdrop
           />
         )
       })}

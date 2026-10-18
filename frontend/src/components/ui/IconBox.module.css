@@ -11,11 +11,6 @@
   border-radius: 4px;
 
   color: #fff;
-  backdrop-filter: blur(15px);
-
-  transition: 
-    background-color .2s ease-in-out,
-    color .2s ease-in-out;
 
   &[data-theme='dark'] {
     background-color: #1113;
@@ -32,15 +27,40 @@
   }
 }
 
+.box::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+
+  border-radius: inherit;
+  background-color: var(--bg-color, var(--accent));
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity .2s ease-in-out;
+}
+
+.box:hover::before {
+  opacity: 1;
+}
+
+.box:hover::before {
+  opacity: 1;
+}
+
 .box > svg {
+  position: relative;
+  z-index: 1;
+
   width: var(--icon-size);
   height: var(--icon-size);
 
   pointer-events: none;
 }
 
-.box:hover {
-  background-color: var(--bg-color, var(--accent));
+.box:hover > svg {
+  color: #fff;
 }
 
 .box:hover > svg {
@@ -49,6 +69,10 @@
 
 .box:active {
   scale: 0.95;
+}
+
+.box[data-backdrop='true'] {
+  backdrop-filter: blur(15px);
 }
 
 .box > .tooltip {
@@ -69,6 +93,8 @@
   transition:
     opacity .2s ease-in-out,
     translate .2s ease-in-out;
+
+  z-index: 2;
 }
 
 .box:hover > .tooltip {
