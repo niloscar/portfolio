@@ -24,6 +24,7 @@ interface IconBoxProps {
   name?: string
   tooltip?: boolean
   tooltipPosition?: TooltipPosition
+  backdrop?: boolean
 }
 
 export default function IconBox({
@@ -35,7 +36,8 @@ export default function IconBox({
   theme = 'light',
   name,
   tooltip,
-  tooltipPosition = 'left'
+  tooltipPosition = 'left',
+  backdrop = false
 }: IconBoxProps) {
   const config: LinkConfig = LINK_CONFIG[slug]
 
@@ -64,6 +66,7 @@ export default function IconBox({
       href={resolvedHref}
       className={styles.box}
       data-theme={theme}
+      data-backdrop={backdrop}
       aria-label={resolvedName}
       title={!tooltip ? resolvedName : undefined}
       target="_blank"

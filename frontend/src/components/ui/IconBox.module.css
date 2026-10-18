@@ -11,9 +11,8 @@
   border-radius: 4px;
 
   color: #fff;
-  backdrop-filter: blur(15px);
 
-  transition: 
+  transition:
     background-color .2s ease-in-out,
     color .2s ease-in-out;
 
@@ -49,6 +48,10 @@
 
 .box:active {
   scale: 0.95;
+}
+
+.box[data-backdrop='true'] {
+  backdrop-filter: blur(15px);
 }
 
 .box > .tooltip {
