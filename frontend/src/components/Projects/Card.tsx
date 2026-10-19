@@ -1,6 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import CardImages from './CardImages'
 import ExternalLinks from './ExternalLinks'
 import TechStack from './CardTechStack'
 import { LinkForward } from '../ui/Link'
@@ -9,11 +8,15 @@ import type { Project } from '@portfolio/shared'
 
 import styles from './Card.module.css'
 
+const projectImages = import.meta.glob('../../assets/projects/*', {
+  eager: true,
+  import: 'default'
+}) as Record<string, string>
+
 const animatedCards = new Set<Project['id']>()
 const animatedCardLinks = new Set<Project['id']>()
 
 export default function Card({ project }: { project: Project }) {
-  const [isImageHovered, setIsImageHovered] = useState(false)
   const cardRef = useRef<HTMLElement>(null)
   const figureBottomRef = useRef<HTMLDivElement>(null)
 
@@ -69,6 +72,9 @@ export default function Card({ project }: { project: Project }) {
     }
   }, [project.id])
 
+  const projectImage = getProjectImage(project.images?.[0])
+  const projectImage2x = getProjectImage(project.images?.[0], 880)
+
   return (
     <article
       ref={cardRef}
@@ -76,37 +82,36 @@ export default function Card({ project }: { project: Project }) {
       data-visible={animatedCards.has(project.id) ? 'true' : 'false'}
       data-links-visible={animatedCardLinks.has(project.id) ? 'true' : 'false'}
     >
-    <div
-      className={styles.visuals}
-      onMouseEnter={() => setIsImageHovered(true)}
-      onMouseLeave={() => setIsImageHovered(false)}
-    >
-      <figure>
-        <CardImages
-          images={project.images}
-          projectName={project.name}
-          isHovered={isImageHovered}
+      <div className={styles.visuals}>
+        <figure>
+          <img
+            src={projectImage}
+            srcSet={`${projectImage} 1x, ${projectImage2x} 2x`}
+            width={440}
+            height={440}
+            alt={`Bild för projektet ${project.name}`}
+            className={styles.image}
+          />
+        </figure>
+
+        <div
+          ref={figureBottomRef}
+          className={styles.figureBottomSentinel}
+          aria-hidden="true"
         />
-      </figure>
 
-      <div
-        ref={figureBottomRef}
-        className={styles.figureBottomSentinel}
-        aria-hidden="true"
-      />
+        {project.links && (
+          <ExternalLinks
+            links={project.links}
+            theme="dark"
+            animate={true}
+            position="absolute"
+            tooltipPosition="bottom"
+          />
+        )}
 
-      {project.links && (
-        <ExternalLinks
-          links={project.links}
-          theme="dark"
-          animate={true}
-          position="absolute"
-          tooltipPosition="bottom"
-        />
-      )}
-
-      {project.techStack && <TechStack techStack={project.techStack} />}
-    </div>
+        {project.techStack && <TechStack techStack={project.techStack} />}
+      </div>
 
       <header>
         <Link className={styles['title-link']} to={`/project/${project.id}`}>
@@ -129,4 +134,13 @@ export default function Card({ project }: { project: Project }) {
       </nav>
     </article>
   )
+}
+
+function getProjectImage(filename?: string, size = 440) {
+  if (!filename) return '/img/placeholder.webp'
+
+  const name = filename.replace(/\.[^.]+$/, '')
+  const path = `../../assets/projects/${name}-${size}.webp`
+
+  return projectImages[path] ?? '/img/placeholder.webp'
 }

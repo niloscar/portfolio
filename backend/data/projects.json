@@ -21,7 +21,7 @@
         "url": "https://sjukgymnastiken.se"
       }
     ],
-    "images": ["sjukgymnastiken.png", "sjukgymnastiken-2.png"]
+    "images": ["sjukgymnastiken.png"]
   },
   {
     "id": 2,
@@ -72,7 +72,7 @@
       "id": 2,
       "name": "SailTell för Apple Watch"
     },
-    "images": ["sailtell-web.png", "sailtell-web-2.png"]
+    "images": ["sailtell-web.png"]
   },
   {
     "id": 4,
