@@ -1,6 +1,7 @@
 export const TRAFFIC_SOURCES = [
   'cv',
   'email',
+  'assignment',
   'linkedin',
   'instagram',
   'facebook',
