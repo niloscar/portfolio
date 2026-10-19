@@ -89,6 +89,7 @@
 }
 
 .visuals figure {
+  position: relative;
   width: 100%;
   height: 100%;
   margin: 0;
@@ -120,21 +121,6 @@
     rgba(255, 255, 255, .25) 48%,
     rgba(255, 255, 255, 0) 48%
   ); */
-}
-
-.image {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: block;
-
-  
-  object-fit: cover;
-  object-position: 40% center;
-
-  @media (max-width: 768px) {
-    object-position: center center;
-  }
 }
 
 nav {

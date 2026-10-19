@@ -14,7 +14,7 @@ export interface ProjectData {
     id: number
     name: string
   }
-  image?: string
+  images?: string[]
 }
 
 export interface Project extends Omit<ProjectData, 'techStack'> {
