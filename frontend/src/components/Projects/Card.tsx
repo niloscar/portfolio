@@ -72,8 +72,8 @@ export default function Card({ project }: { project: Project }) {
     }
   }, [project.id])
 
-  const projectImage = getProjectImage(project.image)
-  const projectImage2x = getProjectImage(project.image, 880)
+  const projectImage = getProjectImage(project.images?.[0])
+  const projectImage2x = getProjectImage(project.images?.[0], 880)
 
   return (
     <article
@@ -101,14 +101,15 @@ export default function Card({ project }: { project: Project }) {
         />
 
         {project.links && (
-          <ExternalLinks 
-            links={project.links} 
-            theme="dark" 
-            animate={true} 
+          <ExternalLinks
+            links={project.links}
+            theme="dark"
+            animate={true}
             position="absolute"
             tooltipPosition="bottom"
           />
         )}
+
         {project.techStack && <TechStack techStack={project.techStack} />}
       </div>
 

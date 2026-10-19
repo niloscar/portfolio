@@ -21,7 +21,7 @@
         "url": "https://sjukgymnastiken.se"
       }
     ],
-    "image": "sjukgymnastiken.png"
+    "images": ["sjukgymnastiken.png"]
   },
   {
     "id": 2,
@@ -41,7 +41,7 @@
       "id": 3,
       "name": "SailTell Web"
     },
-    "image": "sailtell-watch-app.png"
+    "images": ["sailtell-watch-app.png"]
   },
   {
     "id": 3,
@@ -72,7 +72,7 @@
       "id": 2,
       "name": "SailTell för Apple Watch"
     },
-    "image": "sailtell-web.png"
+    "images": ["sailtell-web.png"]
   },
   {
     "id": 4,
@@ -91,7 +91,7 @@
         "url": "https://github.com/niloscar/bubbles"
       }
     ],
-    "image": "bubbles.png"
+    "images": ["bubbles.png"]
   },
   {
     "id": 5,
@@ -120,7 +120,7 @@
         "url": "https://github.com/niloscar/pizza-arcade"
       }
     ],
-    "image": "pizza-arcade.png"
+    "images": ["pizza-arcade.png"]
   },
   {
     "id": 6,
@@ -148,6 +148,6 @@
         "url": "https://github.com/niloscar/portfolio"
       }
     ],
-    "image": "portfolio.png"
+    "images": ["portfolio.png"]
   }
 ]
