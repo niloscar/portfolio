@@ -1,5 +1,6 @@
 import * as service from '../services/analytics.service.js'
 import { isTrafficSource } from '@portfolio/shared'
+import { isBot } from '../utils/isBot.js'
 
 import type { AnalyticsChartInterval } from '@portfolio/shared'
 import type { Request, Response } from 'express'
@@ -90,7 +91,8 @@ export async function getEvents(req: Request, res: Response) {
 export async function createEvent(req: Request, res: Response) {
   if (
     req.session.userId ||
-    (ANALYTICS_HOST && req.hostname !== ANALYTICS_HOST)
+    (ANALYTICS_HOST && req.hostname !== ANALYTICS_HOST) ||
+    isBot(req.get('user-agent'))
   ) {
     return res.sendStatus(204)
   }
