@@ -1,0 +1,15 @@
+.not-found-page i.icon {
+  display: block;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+
+  & > svg {
+    display: block;
+
+    height: 2rem;
+    width: 2rem;
+
+    color: var(--error);
+  }
+}

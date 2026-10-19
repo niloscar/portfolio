@@ -12,6 +12,7 @@ import LoginRoute from './routes/LoginRoute'
 
 import StartPage from './pages/StartPage'
 import ProjectPage from './pages/ProjectPage'
+import NotFoundPage from './pages/NotFoundPage'
 
 import './App.css'
 
@@ -42,6 +43,8 @@ function App() {
               />
             </Route>
           </Route>
+
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

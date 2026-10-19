@@ -1,16 +1,19 @@
 :root {
+  --page-width: 800px;
+  --header-height: 6rem;
+  --page-padding-y: 4rem;
+  --page-padding-x: 2rem;
+
   --text: #555;
   --text-h: #111;
   --bg: #f6f6f6;
   --border: #e5e4e7;
   --code-bg: #f4f3ec;
+
   --accent: #111;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, 
-    rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  --error: #ff0000;
+
+  --footer-bg: #f1f1f1;
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;

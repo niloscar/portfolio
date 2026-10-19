@@ -3,6 +3,6 @@
 }
 
 .errorBox .icon {
-  color: #ff0000;
+  color: var(--error);
   font-size: 1.5rem;
 }
