@@ -34,7 +34,6 @@
   pointer-events: none;
 
   transition:
-    background-color .2s ease-in-out,
     transform var(--translate-duration) ease-in-out
       calc(var(--box-index) * var(--stagger)),
     opacity var(--opacity-duration) ease-in-out

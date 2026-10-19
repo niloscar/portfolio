@@ -12,9 +12,9 @@
 
   color: #fff;
 
-  transition:
+  /* transition:
     background-color .2s ease-in-out,
-    color .2s ease-in-out;
+    color .2s ease-in-out; */
 
   &[data-theme='dark'] {
     background-color: #1113;

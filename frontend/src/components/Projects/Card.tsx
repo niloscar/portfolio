@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import CardImages from './CardImages'
 import ExternalLinks from './ExternalLinks'
@@ -13,6 +13,7 @@ const animatedCards = new Set<Project['id']>()
 const animatedCardLinks = new Set<Project['id']>()
 
 export default function Card({ project }: { project: Project }) {
+  const [isImageHovered, setIsImageHovered] = useState(false)
   const cardRef = useRef<HTMLElement>(null)
   const figureBottomRef = useRef<HTMLDivElement>(null)
 
@@ -75,12 +76,16 @@ export default function Card({ project }: { project: Project }) {
       data-visible={animatedCards.has(project.id) ? 'true' : 'false'}
       data-links-visible={animatedCardLinks.has(project.id) ? 'true' : 'false'}
     >
-    <div className={styles.visuals}>
-      <figure className={styles.figure}>
+    <div
+      className={styles.visuals}
+      onMouseEnter={() => setIsImageHovered(true)}
+      onMouseLeave={() => setIsImageHovered(false)}
+    >
+      <figure>
         <CardImages
-          key={project.id}
           images={project.images}
           projectName={project.name}
+          isHovered={isImageHovered}
         />
       </figure>
 

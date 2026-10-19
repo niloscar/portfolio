@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react'
-
 import styles from './CardImages.module.css'
 
 const projectImages = import.meta.glob('../../assets/projects/*', {
@@ -10,35 +8,14 @@ const projectImages = import.meta.glob('../../assets/projects/*', {
 type Props = {
   images?: string[]
   projectName: string
+  isHovered: boolean
 }
 
-export default function CardImages({ images = [], projectName }: Props) {
-  const [activeIndex, setActiveIndex] = useState(0)
-
-  useEffect(() => {
-    if (images.length <= 1) return
-
-    const interval = window.setInterval(() => {
-      setActiveIndex(current => (current + 1) % images.length)
-    }, 5000)
-
-    return () => window.clearInterval(interval)
-  }, [images.length])
-
-  if (images.length === 0) {
-    return (
-      <img
-        src="/img/placeholder.webp"
-        width={440}
-        height={440}
-        alt=""
-        className={styles.image}
-      />
-    )
-  }
+export default function CardImages({ images = [], projectName, isHovered }: Props) {
+  const activeIndex = isHovered && images.length > 1 ? 1 : 0
 
   return (
-    <>
+    <div className={styles.images}>
       {images.map((filename, index) => {
         const image = getProjectImage(filename)
         const image2x = getProjectImage(filename, 880)
@@ -50,17 +27,13 @@ export default function CardImages({ images = [], projectName }: Props) {
             srcSet={`${image} 1x, ${image2x} 2x`}
             width={440}
             height={440}
-            alt={
-              index === 0
-                ? `Bild för projektet ${projectName}`
-                : ''
-            }
+            alt={index === 0 ? `Bild för projektet ${projectName}` : ''}
             className={styles.image}
             data-active={index === activeIndex}
           />
         )
       })}
-    </>
+    </div>
   )
 }
 
