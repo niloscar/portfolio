@@ -12,7 +12,6 @@ import LoginRoute from './routes/LoginRoute'
 
 import StartPage from './pages/StartPage'
 import ProjectPage from './pages/ProjectPage'
-import AboutPage from './pages/AboutPage'
 
 import './App.css'
 
@@ -28,7 +27,6 @@ function App() {
         <Route element={<BaseLayout />}>
           <Route path="/" element={<StartPage />} />
           <Route path="/project/:id" element={<ProjectPage />} />
-          <Route path="/about" element={<AboutPage />} />
 
           <Route element={<AuthRoute />}>
             <Route path="/login" element={<LoginRoute />} />

@@ -14,6 +14,7 @@
     "scripts": {
         "format": "prettier --write .",
         "format:check": "prettier --check .",
+        "sitemap:build": "node scripts/generate-sitemap.mjs",
         "images:build": "node scripts/optimize-images.mjs",
         "test": "echo \"Error: no test specified\" && exit 1",
         "dev": "concurrently --names frontend,backend \"npm run dev -w frontend\" \"npm run dev -w backend\"",

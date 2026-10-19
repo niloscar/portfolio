@@ -11,7 +11,7 @@ export default function EducationSection() {
 
       <ul className="education-list">
         <li>
-          <h3>Fullstack-utvecklare, Medieinstitutet</h3>
+          <h3>Fullstackutvecklare, Medieinstitutet</h3>
           <p>2025 - pågående</p>
         </li>
         <li>
