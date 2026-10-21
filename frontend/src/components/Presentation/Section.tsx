@@ -26,7 +26,7 @@ export default function PresentationSection() {
           För mig innebär det att i första hand förstå behovet och därefter tekniken – och hur idé, arkitektur, logik och användarupplevelse påverkar varandra.
         </p>
         <p>
-          Det är också där jag trivs bäst: när jag får arbeta med flera delar av samma produkt.
+          Det är också där jag trivs bäst: när jag får arbeta med flera delar av samma produkt för att få dem att bilda en genomtänkt helhet.
         </p>
       </div>
       <footer>
