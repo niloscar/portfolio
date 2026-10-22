@@ -1,5 +1,8 @@
+import { createApplicationSchema } from '@portfolio/shared'
+
 export type FormValues = {
   companyName: string
+  website: string
   location: string
   workplaceModel: string
   period: number[]
@@ -9,41 +12,27 @@ export type FormValues = {
   message: string
 }
 
-export type FormErrors = Partial<
-  Record<keyof FormValues, string>
->
+export type FormErrors = Partial<Record<keyof FormValues, string>>
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const STEP_FIELDS: Record<number, (keyof FormValues)[]> = {
+  1: ['companyName', 'website', 'location', 'workplaceModel', 'period'],
+  2: ['contactPerson', 'email', 'phone'],
+  3: ['message']
+}
 
-export function validateStep(
-  step: number,
-  values: FormValues
-): FormErrors {
+export function validateStep(step: number, values: FormValues): FormErrors {
+  const result = createApplicationSchema.safeParse(values)
+
+  if (result.success) return {}
+
   const errors: FormErrors = {}
+  const fields = STEP_FIELDS[step] ?? []
 
-  if (step === 1) {
-    if (!values.companyName.trim()) {
-      errors.companyName = 'Ange företagets namn.'
-    }
+  for (const issue of result.error.issues) {
+    const field = issue.path[0] as keyof FormValues
 
-    if (!values.location.trim()) {
-      errors.location = 'Ange vilken stad företaget finns i.'
-    }
-
-    if (values.period.length === 0) {
-      errors.period = 'Välj minst en LIA-period.'
-    }
-  }
-
-  if (step === 2) {
-    if (!values.contactPerson.trim()) {
-      errors.contactPerson = 'Ange kontaktpersonens namn.'
-    }
-
-    if (!values.email.trim()) {
-      errors.email = 'Ange en e-postadress.'
-    } else if (!EMAIL_PATTERN.test(values.email.trim())) {
-      errors.email = 'Ange en giltig e-postadress.'
+    if (fields.includes(field) && !errors[field]) {
+      errors[field] = issue.message
     }
   }
 

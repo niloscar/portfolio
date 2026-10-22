@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 export const createApplicationSchema = z.object({
   companyName: z.string().trim().min(1).max(200),
-  website: z.union([z.url().max(2048), z.literal('')]),
+  website: z.string().trim().max(2048),
   location: z.string().trim().min(1).max(100),
   workplaceModel: z.enum(['On-site', 'Hybrid', 'Remote', '']),
   period: z.array(z.union([z.literal(1), z.literal(2)]))

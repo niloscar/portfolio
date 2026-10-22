@@ -6,11 +6,20 @@ import styles from './LocationAutocomplete.module.css'
 type LocationAutocompleteProps = {
   value: string
   onChange: (value: string) => void
+  onBlur?: () => void
   locations: string[]
   error?: string
+  maxLength?: number
 }
 
-export default function LocationAutocomplete({ value, onChange, locations, error }: LocationAutocompleteProps) {
+export default function LocationAutocomplete({   
+  value,
+  onChange,
+  onBlur,
+  locations,
+  error,
+  maxLength 
+}: LocationAutocompleteProps) {
   const id = useId()
 
   const [showSuggestions, setShowSuggestions] = useState(false)
@@ -74,6 +83,7 @@ export default function LocationAutocomplete({ value, onChange, locations, error
         if (!e.currentTarget.contains(e.relatedTarget)) {
           setShowSuggestions(false)
           setActiveIndex(-1)
+          onBlur?.()
         }
       }}
     >
@@ -82,6 +92,7 @@ export default function LocationAutocomplete({ value, onChange, locations, error
         id="location"
         name="location"
         value={value}
+        maxLength={maxLength}
         autoComplete="address-level2"
         role="combobox"
         aria-invalid={!!error}

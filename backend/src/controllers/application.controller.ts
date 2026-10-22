@@ -1,10 +1,18 @@
 import type { Request, Response } from 'express'
 
-import { createApplicationSchema } from '../schemas/application.schema.js'
+import { createApplicationSchema } from '@portfolio/shared'
 import * as applicationRepository from '../repositories/application.repository.js'
 
 export async function createApplication(req: Request, res: Response) {
   const result = createApplicationSchema.safeParse(req.body)
+
+  if (!result.success) {
+    console.error('Application validation failed:', result.error.flatten())
+
+    return res.status(400).json({
+      error: 'Ogiltiga ansökningsuppgifter.'
+    })
+  }
 
   if (!result.success) {
     res.status(400).json({
