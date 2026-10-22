@@ -5,6 +5,7 @@ import NavButtons from './NavButtons'
 import { validateStep } from './validation'
 import { submitApplication } from '../../api/applicationApi'
 import ApplicationConfirmation from './Confirmation'
+import { WORK_LOCATIONS } from './locations'
 
 import type { FormErrors } from './validation'
 
@@ -14,6 +15,7 @@ type FormState = typeof INITIAL_STATE
 
 type FormAction =
   | { type: 'SET_COMPANY_NAME'; payload: string }
+  | { type: 'SET_WEBSITE'; payload: string }
   | { type: 'SET_LOCATION'; payload: string }
   | { type: 'SET_WORKPLACE_MODEL'; payload: string }
   | { type: 'TOGGLE_PERIOD'; payload: number }
@@ -31,6 +33,7 @@ type Transition = {
 
 const INITIAL_STATE = {
   companyName: '',
+  website: '',
   location: '',
   workplaceModel: '',
   period: [] as number[],
@@ -41,30 +44,6 @@ const INITIAL_STATE = {
 }
 
 const WORKPLACE_MODELS = ['On-site', 'Hybrid', 'Remote']
-
-const WORK_LOCATIONS = [
-  'Stockholm',
-  'Göteborg',
-  'Malmö',
-  'Uppsala',
-  'Västerås',
-  'Örebro',
-  'Linköping',
-  'Helsingborg',
-  'Jönköping',
-  'Lund',
-  'Norrköping',
-  'Umeå',
-  'Gävle',
-  'Borås',
-  'Södertälje',
-  'Eskilstuna',
-  'Halmstad',
-  'Växjö',
-  'Karlstad',
-  'Sundsvall',
-  'Annan'
-]
 
 const PERIODS = [
   {
@@ -105,12 +84,15 @@ export default function InterestForm() {
     observer.observe(element)
 
     return () => observer.disconnect()
-  }, [step])
+  }, [])
 
   const formReducer = (state: FormState, action: FormAction) => {
     switch (action.type) {
       case 'SET_COMPANY_NAME':
         return { ...state, companyName: action.payload }
+
+      case 'SET_WEBSITE':
+        return { ...state, website: action.payload }
 
       case 'SET_LOCATION':
         return { ...state, location: action.payload }
@@ -149,7 +131,7 @@ export default function InterestForm() {
   const [formState, dispatch] = useReducer(formReducer, INITIAL_STATE)
 
   function handleChange(
-    type: Exclude<FormAction['type'], 'TOGGLE_PERIOD' | 'RESET'>, 
+    type: Exclude<FormAction['type'], 'TOGGLE_PERIOD' | 'RESET'>,
     value: string
   ) {
     dispatch({ type, payload: value })
@@ -191,7 +173,11 @@ export default function InterestForm() {
 
     try {
       await submitApplication(formState, faxNumber)
-      setSubmitted(true)
+      setTransition({
+        target: STEPS + 1,
+        direction: 'forward',
+        phase: 'leaving'
+      })
     } catch {
       setSubmitError('Ansökan kunde inte skickas. Försök igen.')
     } finally {
@@ -203,7 +189,12 @@ export default function InterestForm() {
     if (e.target !== e.currentTarget || !transition) return
 
     if (transition.phase === 'leaving') {
-      setStep(transition.target)
+      if (transition.target > STEPS) {
+        setSubmitted(true)
+      } else {
+        setStep(transition.target)
+      }
+
       setTransition({ ...transition, phase: 'entering' })
       return
     }
@@ -221,264 +212,328 @@ export default function InterestForm() {
     })
   }
 
-  const animationClass = transition
-    ? styles[`${transition.phase}-${transition.direction}`]
-    : ''
-
-  if (submitted) return <ApplicationConfirmation />
+  const animationClass = !transition
+    ? ''
+    : transition.target > STEPS
+      ? transition.phase === 'leaving'
+        ? styles.fadeOut
+        : styles.fadeIn
+      : styles[`${transition.phase}-${transition.direction}`]
 
   return (
-    <>
-      <h1>Ansökan</h1>
-      <p>Ansök om att bli min LIA-arbetsplats under 2027.</p>
-
-      <div className={styles.stepContainer} style={{ height: stepHeight }}>
-        {step === 1 && (
+    <div className={styles.stepContainer} style={{ height: stepHeight }}>
+      <div ref={stepRef}>
+        {submitted ? (
           <div
-            ref={stepRef}
-            className={`${styles.step} ${animationClass}`}
+            className={animationClass}
             onAnimationEnd={handleStepAnimationEnd}
           >
-            <h2>Arbetsplats</h2>
-            <form className={styles.form} onSubmit={handleSubmit} noValidate>
-              <div className={styles['form-group']}>
-                <label htmlFor="companyName">Företagsnamn</label>
+            <ApplicationConfirmation />
+          </div>
+        ) : (
+          <>
+            <h1>Ansökan</h1>
+            <p>Ansök om att ta emot mig som LIA-studerande under 2027.</p>
 
-                <input
-                  type="text"
-                  id="companyName"
-                  onChange={(e) =>
-                    handleChange('SET_COMPANY_NAME', e.target.value)
-                  }
-                  value={formState.companyName}
-                  aria-invalid={!!errors.companyName}
-                  aria-describedby={
-                    errors.companyName ? 'companyName-error' : undefined
-                  }
-                />
-
-                {errors.companyName && (
-                  <p id="companyName-error" className={styles['field-error']}>
-                    {errors.companyName}
-                  </p>
-                )}
-              </div>
-
-              <div className={styles['form-group']}>
-                <label htmlFor="location">Stad</label>
-
-                <LocationAutocomplete
-                  value={formState.location}
-                  onChange={(value) => handleChange('SET_LOCATION', value)}
-                  locations={WORK_LOCATIONS}
-                  error={errors.location}
-                />
-
-                {errors.location && (
-                  <p id="location-error" className={styles['field-error']}>
-                    {errors.location}
-                  </p>
-                )}
-              </div>
-
-              <fieldset className={styles['form-group']}>
-                <legend>Arbetsform</legend>
-
-                <div className={styles['radio-group']}>
-                  {WORKPLACE_MODELS.map((model) => (
-                    <div key={model}>
-                      <input
-                        type="radio"
-                        id={model}
-                        name="workplaceModel"
-                        value={model}
-                        onChange={(e) =>
-                          handleChange('SET_WORKPLACE_MODEL', e.target.value)
-                        }
-                        checked={formState.workplaceModel === model}
-                      />
-                      <label htmlFor={model}>{model}</label>
-                    </div>
-                  ))}
-                </div>
-              </fieldset>
-
-              <fieldset
-                className={styles['form-group']}
-                aria-invalid={!!errors.period}
-                aria-describedby={errors.period ? 'period-error' : undefined}
+            {step === 1 && (
+              <div
+                className={`${styles.step} ${animationClass}`}
+                onAnimationEnd={handleStepAnimationEnd}
               >
-                <legend>LIA-period</legend>
-
-                <div className={styles['periods-container']}>
-                  {PERIODS.map((period) => (
-                    <div key={period.id} className={styles['checkbox-group']}>
-                      <input
-                        type="checkbox"
-                        id={`period-${period.id}`}
-                        name="period"
-                        value={period.id}
-                        checked={formState.period.includes(period.id)}
-                        onChange={() => {
-                          dispatch({
-                            type: 'TOGGLE_PERIOD',
-                            payload: period.id
-                          })
-
-                          setErrors((prev) => ({ ...prev, period: undefined }))
-                        }}
-                      />
-
-                      <label htmlFor={`period-${period.id}`}>
-                        Period {period.id}:{' '}
-                        {period.dates
-                          .map(
-                            ([start, end]) =>
-                              `${textDate(start)}–${textDate(end)}`
-                          )
-                          .join(' och ')}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-
-                {errors.period && (
-                  <p
-                    id="period-error"
-                    className={styles['field-error']}
-                    role="alert"
-                  >
-                    {errors.period}
-                  </p>
-                )}
-              </fieldset>
-
-              <NavButtons next />
-            </form>
-          </div>
-        )}
-
-        {step === 2 && (
-          <div
-            ref={stepRef}
-            className={`${styles.step} ${animationClass}`}
-            onAnimationEnd={handleStepAnimationEnd}
-          >
-            <h2>Kontaktperson</h2>
-            <form className={styles.form} onSubmit={handleSubmit} noValidate>
-              <div className={styles['form-group']}>
-                <label htmlFor="contactPerson">Kontaktperson</label>
-
-                <input
-                  type="text"
-                  id="contactPerson"
-                  value={formState.contactPerson}
-                  aria-invalid={!!errors.contactPerson}
-                  aria-describedby={
-                    errors.contactPerson ? 'contactPerson-error' : undefined
-                  }
-                  onChange={(e) =>
-                    handleChange('SET_CONTACT_PERSON', e.target.value)
-                  }
-                />
-
-                {errors.contactPerson && (
-                  <p id="contactPerson-error" className={styles['field-error']}>
-                    {errors.contactPerson}
-                  </p>
-                )}
-              </div>
-
-              <div className={styles['form-group']}>
-                <label htmlFor="email">E-post</label>
-
-                <input
-                  type="email"
-                  id="email"
-                  value={formState.email}
-                  aria-invalid={!!errors.email}
-                  aria-describedby={errors.email ? 'email-error' : undefined}
-                  onChange={(e) => handleChange('SET_EMAIL', e.target.value)}
-                />
-
-                {errors.email && (
-                  <p id="email-error" className={styles['field-error']}>
-                    {errors.email}
-                  </p>
-                )}
-              </div>
-
-              <div className={styles['form-group']}>
-                <label htmlFor="phone">Telefon</label>
-                <input
-                  type="tel"
-                  id="phone"
-                  value={formState.phone}
-                  onChange={(e) =>
-                    dispatch({ type: 'SET_PHONE', payload: e.target.value })
-                  }
-                />
-              </div>
-              <NavButtons onBack={() => changeStep(step - 1)} next />
-            </form>
-          </div>
-        )}
-
-        {step === 3 && (
-          <div
-            ref={stepRef}
-            className={`${styles.step} ${animationClass}`}
-            onAnimationEnd={handleStepAnimationEnd}
-          >
-            <h2>Meddelande</h2>
-            <form className={styles.form} onSubmit={handleSubmit} noValidate>
-              <div className={styles['form-group']}>
-                <label htmlFor="message">Meddelande</label>
-                <textarea
-                  id="message"
-                  value={formState.message}
-                  onChange={(e) =>
-                    dispatch({ type: 'SET_MESSAGE', payload: e.target.value })
-                  }
-                ></textarea>
-              </div>
-
-              <div className={styles.honeypot} aria-hidden="true">
-                <label htmlFor="faxNumber">Faxnummer</label>
-                <input
-                  id="faxNumber"
-                  name="faxNumber"
-                  type="text"
-                  value={faxNumber}
-                  onChange={(e) => setFaxNumber(e.target.value)}
-                  tabIndex={-1}
-                  autoComplete="off"
-                />
-              </div>
-
-              {submitError && (
-                <p className={styles['field-error']} role="alert">
-                  {submitError}
-                </p>
-              )}
-
-              <NavButtons onBack={() => changeStep(step - 1)}>
-                <button
-                  type="submit"
-                  data-sending={isSending}
-                  disabled={isSending}
+                <h2>Arbetsplats</h2>
+                <form
+                  className={styles.form}
+                  onSubmit={handleSubmit}
+                  noValidate
                 >
-                  <span>Skicka</span>
-                  <span className={styles['plane-wrapper']}>
-                    <PaperPlaneRightIcon />
-                  </span>
-                </button>
-              </NavButtons>
-            </form>
-          </div>
+                  <div className={styles['form-group']}>
+                    <label htmlFor="companyName">Företagsnamn*</label>
+
+                    <input
+                      type="text"
+                      id="companyName"
+                      onChange={(e) =>
+                        handleChange('SET_COMPANY_NAME', e.target.value)
+                      }
+                      value={formState.companyName}
+                      aria-invalid={!!errors.companyName}
+                      aria-describedby={
+                        errors.companyName ? 'companyName-error' : undefined
+                      }
+                      required
+                    />
+
+                    {errors.companyName && (
+                      <p
+                        id="companyName-error"
+                        className={styles['field-error']}
+                      >
+                        {errors.companyName}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className={styles['form-group']}>
+                    <label htmlFor="website">Webbplats</label>
+                    <input
+                      type="url"
+                      id="website"
+                      value={formState.website}
+                      onChange={(e) => handleChange('SET_WEBSITE', e.target.value)}
+                    />
+                  </div>
+
+                  <div className={styles['form-group']}>
+                    <label htmlFor="location">Stad*</label>
+
+                    <LocationAutocomplete
+                      value={formState.location}
+                      onChange={(value) => handleChange('SET_LOCATION', value)}
+                      locations={WORK_LOCATIONS}
+                      error={errors.location}
+                    />
+
+                    {errors.location && (
+                      <p id="location-error" className={styles['field-error']}>
+                        {errors.location}
+                      </p>
+                    )}
+                  </div>
+
+                  <fieldset className={styles['form-group']}>
+                    <legend>Arbetsform</legend>
+
+                    <div className={styles['radio-group']}>
+                      {WORKPLACE_MODELS.map((model) => (
+                        <div key={model}>
+                          <input
+                            type="radio"
+                            id={model}
+                            name="workplaceModel"
+                            value={model}
+                            onChange={(e) =>
+                              handleChange(
+                                'SET_WORKPLACE_MODEL',
+                                e.target.value
+                              )
+                            }
+                            checked={formState.workplaceModel === model}
+                          />
+                          <label htmlFor={model}>{model}</label>
+                        </div>
+                      ))}
+                    </div>
+                  </fieldset>
+
+                  <fieldset
+                    className={styles['form-group']}
+                    aria-invalid={!!errors.period}
+                    aria-describedby={
+                      errors.period ? 'period-error' : undefined
+                    }
+                  >
+                    <legend>LIA-period*</legend>
+
+                    <div className={styles['periods-container']}>
+                      {PERIODS.map((period) => (
+                        <div
+                          key={period.id}
+                          className={styles['checkbox-group']}
+                        >
+                          <input
+                            type="checkbox"
+                            id={`period-${period.id}`}
+                            name="period"
+                            value={period.id}
+                            checked={formState.period.includes(period.id)}
+                            onChange={() => {
+                              dispatch({
+                                type: 'TOGGLE_PERIOD',
+                                payload: period.id
+                              })
+
+                              setErrors((prev) => ({
+                                ...prev,
+                                period: undefined
+                              }))
+                            }}
+                            required
+                          />
+
+                          <label htmlFor={`period-${period.id}`}>
+                            Period {period.id}:{' '}
+                            {period.dates
+                              .map(
+                                ([start, end]) =>
+                                  `${textDate(start)}–${textDate(end)}`
+                              )
+                              .join(' och ')}
+                          </label>
+                        </div>
+                      ))}
+                    </div>
+
+                    {errors.period && (
+                      <p
+                        id="period-error"
+                        className={styles['field-error']}
+                        role="alert"
+                      >
+                        {errors.period}
+                      </p>
+                    )}
+                  </fieldset>
+
+                  <NavButtons next />
+                </form>
+              </div>
+            )}
+
+            {step === 2 && (
+              <div
+                className={`${styles.step} ${animationClass}`}
+                onAnimationEnd={handleStepAnimationEnd}
+              >
+                <h2>Kontaktperson</h2>
+                <form
+                  className={styles.form}
+                  onSubmit={handleSubmit}
+                  noValidate
+                >
+                  <div className={styles['form-group']}>
+                    <label htmlFor="contactPerson">Namn*</label>
+
+                    <input
+                      type="text"
+                      id="contactPerson"
+                      value={formState.contactPerson}
+                      aria-invalid={!!errors.contactPerson}
+                      aria-describedby={
+                        errors.contactPerson ? 'contactPerson-error' : undefined
+                      }
+                      onChange={(e) =>
+                        handleChange('SET_CONTACT_PERSON', e.target.value)
+                      }
+                      required
+                    />
+
+                    {errors.contactPerson && (
+                      <p
+                        id="contactPerson-error"
+                        className={styles['field-error']}
+                      >
+                        {errors.contactPerson}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className={styles['form-group']}>
+                    <label htmlFor="email">E-post*</label>
+
+                    <input
+                      type="email"
+                      id="email"
+                      value={formState.email}
+                      aria-invalid={!!errors.email}
+                      aria-describedby={
+                        errors.email ? 'email-error' : undefined
+                      }
+                      onChange={(e) =>
+                        handleChange('SET_EMAIL', e.target.value)
+                      }
+                      required
+                    />
+
+                    {errors.email && (
+                      <p id="email-error" className={styles['field-error']}>
+                        {errors.email}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className={styles['form-group']}>
+                    <label htmlFor="phone">Telefon</label>
+                    <input
+                      type="tel"
+                      id="phone"
+                      value={formState.phone}
+                      onChange={(e) =>
+                        dispatch({
+                          type: 'SET_PHONE',
+                          payload: e.target.value
+                        })
+                      }
+                    />
+                  </div>
+
+                  <NavButtons onBack={() => changeStep(step - 1)} next />
+                </form>
+              </div>
+            )}
+
+            {step === 3 && (
+              <div
+                className={`${styles.step} ${animationClass}`}
+                onAnimationEnd={handleStepAnimationEnd}
+              >
+                <h2>Meddelande</h2>
+                <form
+                  className={styles.form}
+                  onSubmit={handleSubmit}
+                  noValidate
+                >
+                  <div className={styles['form-group']}>
+                    <label htmlFor="message">Meddelande</label>
+                    <textarea
+                      id="message"
+                      value={formState.message}
+                      onChange={(e) =>
+                        dispatch({
+                          type: 'SET_MESSAGE',
+                          payload: e.target.value
+                        })
+                      }
+                    ></textarea>
+                  </div>
+
+                  <div className={styles.honeypot} aria-hidden="true">
+                    <label htmlFor="faxNumber">Faxnummer</label>
+                    <input
+                      id="faxNumber"
+                      name="faxNumber"
+                      type="text"
+                      value={faxNumber}
+                      onChange={(e) => setFaxNumber(e.target.value)}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
+
+                  {submitError && (
+                    <p className={styles['field-error']} role="alert">
+                      {submitError}
+                    </p>
+                  )}
+
+                  <NavButtons onBack={() => changeStep(step - 1)}>
+                    <button
+                      type="submit"
+                      data-sending={isSending}
+                      disabled={isSending}
+                    >
+                      <span>Skicka</span>
+                      <span className={styles['plane-wrapper']}>
+                        <PaperPlaneRightIcon />
+                      </span>
+                    </button>
+                  </NavButtons>
+                </form>
+              </div>
+            )}
+          </>
         )}
       </div>
-    </>
+    </div>
   )
 }
 

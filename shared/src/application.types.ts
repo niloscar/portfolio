@@ -1,5 +1,6 @@
 export type CreateApplication = {
   companyName: string
+  website: string
   location: string
   workplaceModel: string
   period: number[]

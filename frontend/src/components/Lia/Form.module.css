@@ -1,56 +1,38 @@
-h1 {
+
+.stepContainer {
+  position: relative;
+  z-index: 0;
+  width: 100%;
+  transition: height 500ms ease;
+}
+
+.stepContainer h1 {
   text-align: center;
   font-weight: 500;
   font-size: 1.25rem;
   margin: 0;
 }
 
-h1 + p {
+.stepContainer h1 + p {
   text-align: center;
-  margin: .5rem auto 2rem auto;
+  margin: .5rem auto 2rem;
 }
 
-h2 {
+.stepContainer h2 {
   margin: 0;
   text-align: center;
   font-weight: 500;
   font-size: 1rem;
 }
 
-h3 {
+.stepContainer h3 {
   margin: 0;
   font-weight: 400;
   font-size: 1rem;
 }
 
-.stepContainer {
-  width: 100%;
-  transition: height 500ms ease;
-  z-index: 0;
-
-  @media (prefers-reduced-motion: reduce) {
-    transition: none;
-  }
-}
-
 .step {
   width: 100%;
-}
-
-.leaving-forward {
-  animation: leave-left 150ms ease-in forwards;
-}
-
-.entering-forward {
-  animation: enter-right 250ms ease-out forwards;
-}
-
-.leaving-backward {
-  animation: leave-right 150ms ease-in forwards;
-}
-
-.entering-backward {
-  animation: enter-left 250ms ease-out forwards;
 }
 
 .form {
@@ -72,19 +54,21 @@ h3 {
   gap: .25rem;
 }
 
-.radio-group, .periods-container {
+.radio-group,
+.periods-container {
   display: flex;
   flex-direction: column;
   gap: .25rem;
 }
 
-.radio-group > div, .checkbox-group {
+.radio-group > div,
+.checkbox-group {
   display: flex;
   align-items: center;
   gap: .125rem;
 }
 
-label[for] {
+.form label[for] {
   font-size: .8rem;
   cursor: pointer;
   user-select: none;
@@ -145,7 +129,6 @@ label[for] {
   background-size: 1rem;
 }
 
-
 .plane-wrapper {
   display: inline-flex;
   align-items: center;
@@ -158,20 +141,20 @@ label[for] {
   transition: transform .18s ease-out;
 }
 
-button:hover .plane-wrapper {
+.form button:hover .plane-wrapper {
   transform: translateX(.25rem);
 }
 
-button:hover .plane-wrapper svg {
+.form button:hover .plane-wrapper svg {
   transform: rotate(-5deg);
 }
 
-button[data-sending='true'] .plane-wrapper {
+.form button[data-sending='true'] .plane-wrapper {
   transition: none;
   animation: fly-x .6s cubic-bezier(.35, 0, .65, 1) forwards;
 }
 
-button[data-sending='true'] .plane-wrapper svg {
+.form button[data-sending='true'] .plane-wrapper svg {
   transition: none;
   animation: fly-y .6s ease-in-out forwards;
 }
@@ -181,13 +164,13 @@ button[data-sending='true'] .plane-wrapper svg {
   border-color: var(--error);
 }
 
-fieldset {
+.form fieldset {
   border: none;
   padding: 0;
   margin: 0;
 }
 
-fieldset legend {
+.form fieldset legend {
   font-weight: 400;
   font-size: .8rem;
   margin-bottom: .25rem;
@@ -208,32 +191,28 @@ fieldset legend {
   line-height: 1.4;
 }
 
-@keyframes fly-x {
-  from {
-    transform: translateX(.25rem);
-  }
-
-  to {
-    transform: translateX(4.15rem);
-  }
+.leaving-forward {
+  animation: leave-left 150ms ease-in forwards;
 }
 
-@keyframes fly-y {
-  0% {
-    transform: translateY(0) rotate(-5deg);
-  }
+.entering-forward {
+  animation: enter-right 250ms ease-out forwards;
+}
 
-  45% {
-    transform: translateY(-.3rem) rotate(-9deg);
-  }
+.leaving-backward {
+  animation: leave-right 150ms ease-in forwards;
+}
 
-  75% {
-    transform: translateY(-.1rem) rotate(2deg);
-  }
+.entering-backward {
+  animation: enter-left 250ms ease-out forwards;
+}
 
-  100% {
-    transform: translateY(-.5rem) rotate(-8deg);
-  }
+.fadeOut {
+  animation: fade-out 250ms ease-in forwards;
+}
+
+.fadeIn {
+  animation: fade-in 300ms ease-out forwards;
 }
 
 @keyframes leave-left {
@@ -264,11 +243,67 @@ fieldset legend {
   }
 }
 
+@keyframes fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes fly-x {
+  from {
+    transform: translateX(.25rem);
+  }
+
+  to {
+    transform: translateX(4.15rem);
+  }
+}
+
+@keyframes fly-y {
+  0% {
+    transform: translateY(0) rotate(-5deg);
+  }
+
+  45% {
+    transform: translateY(-.3rem) rotate(-9deg);
+  }
+
+  75% {
+    transform: translateY(-.1rem) rotate(2deg);
+  }
+
+  100% {
+    transform: translateY(-.5rem) rotate(-8deg);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .stepContainer {
+    transition: none;
+  }
+
   .leaving-forward,
   .entering-forward,
   .leaving-backward,
-  .entering-backward {
+  .entering-backward,
+  .fadeOut,
+  .fadeIn {
+    animation-duration: 1ms;
+  }
+
+  .plane-wrapper,
+  .plane-wrapper svg {
+    transition: none;
+  }
+
+  .form button[data-sending='true'] .plane-wrapper,
+  .form button[data-sending='true'] .plane-wrapper svg {
     animation-duration: 1ms;
   }
 }

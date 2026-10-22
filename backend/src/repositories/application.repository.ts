@@ -7,6 +7,7 @@ export async function createApplication(application: CreateApplication) {
     `
       INSERT INTO lia_applications (
         company_name,
+        website,
         location,
         workplace_model,
         periods,
@@ -15,11 +16,12 @@ export async function createApplication(application: CreateApplication) {
         phone,
         message
       )
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
       RETURNING id
     `,
     [
       application.companyName,
+      application.website || null,
       application.location,
       application.workplaceModel || null,
       application.period,

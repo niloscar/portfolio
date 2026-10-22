@@ -88,9 +88,7 @@ export default function LocationAutocomplete({ value, onChange, locations, error
         aria-describedby={error ? 'location-error' : undefined}
         aria-autocomplete="list"
         aria-expanded={suggestionsVisible}
-        aria-controls={
-          suggestionsVisible ? `${id}-suggestions` : undefined
-        }
+        aria-controls={suggestionsVisible ? `${id}-suggestions` : undefined}
         aria-activedescendant={
           suggestionsVisible && activeIndex >= 0
             ? `${id}-option-${activeIndex}`
@@ -103,6 +101,7 @@ export default function LocationAutocomplete({ value, onChange, locations, error
           setActiveIndex(-1)
         }}
         onKeyDown={handleKeyDown}
+        required
       />
 
       {suggestionsVisible && (
