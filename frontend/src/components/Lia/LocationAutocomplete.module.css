@@ -1,0 +1,50 @@
+
+.autocomplete {
+  position: relative;
+
+  &:has(input:focus-visible) .suggestions {
+    border-color: var(--accent);
+  }
+
+  &[data-open='true'] input {
+    border-radius: 4px 4px 0 0;
+  }
+}
+
+.autocomplete input {
+  width: 100%;
+}
+
+.suggestions {
+  position: absolute;
+  top: calc(100% - 2px);
+  left: 0;
+  right: 0;
+  z-index: 10;
+
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+}
+
+.suggestions li {
+  padding: .5rem;
+  cursor: pointer;
+}
+
+.suggestions li:hover,
+.suggestions .active {
+  background-color: #f3f3f3;
+}
+
+.autocomplete input[aria-invalid='true'],
+.autocomplete input[aria-invalid='true']:focus-visible,
+.autocomplete:has(input[aria-invalid='true']) .suggestions {
+  border-color: var(--error);
+}

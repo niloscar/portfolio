@@ -1,0 +1,31 @@
+.application-status {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: .8rem;
+  margin: -.5rem 0 .5rem 0;
+}
+
+.application-status::before {
+  content: '';
+  width: .5rem;
+  height: .5rem;
+  border-radius: 50%;
+  background-color: var(--success);
+}
+
+.info-container {
+  max-width: 500px;
+  padding: 2rem;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  font-size: .8rem;
+  margin: 3rem auto 0;
+}
+
+.info-container h2 {
+  margin-top: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-bottom: .5rem;
+}

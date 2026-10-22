@@ -1,0 +1,10 @@
+.confirmation h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0 auto .5rem auto;
+}
+
+.confirmation p {
+  text-align: center;
+  margin: 0 auto;
+}

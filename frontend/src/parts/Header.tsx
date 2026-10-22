@@ -1,3 +1,4 @@
+import { useLocation } from 'react-router-dom'
 import { LinkBack } from '../components/ui/Link'
 import { ArrowDownIcon } from '@phosphor-icons/react'
 
@@ -17,8 +18,11 @@ type BackLinkProps = {
 }
 
 export default function Header({ back, children }: HeaderProps) {
+  const { pathname } = useLocation()
+  const isStartPage = pathname === '/'
+
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${isStartPage ? styles.startPage : ''}`}>
       {back && (
         <LinkBack
           to={back.to}
