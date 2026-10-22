@@ -12,7 +12,7 @@ import LoginRoute from './routes/LoginRoute'
 
 import StartPage from './pages/StartPage'
 import ProjectPage from './pages/ProjectPage'
-import RegisterInterestPage from './pages/RegisterInterestPage'
+import ApplicationPage from './pages/ApplicationPage'
 
 import NotFoundPage from './pages/NotFoundPage'
 
@@ -30,7 +30,7 @@ function App() {
         <Route element={<BaseLayout />}>
           <Route path="/" element={<StartPage />} />
           <Route path="/project/:id" element={<ProjectPage />} />
-          <Route path="/lia" element={<RegisterInterestPage />} />
+          <Route path="/lia" element={<ApplicationPage />} />
 
           <Route element={<AuthRoute />}>
             <Route path="/login" element={<LoginRoute />} />

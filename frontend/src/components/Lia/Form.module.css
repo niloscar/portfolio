@@ -23,6 +23,36 @@ h3 {
   font-size: 1rem;
 }
 
+.stepContainer {
+  width: 100%;
+  transition: height 500ms ease;
+  z-index: 0;
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
+.step {
+  width: 100%;
+}
+
+.leaving-forward {
+  animation: leave-left 150ms ease-in forwards;
+}
+
+.entering-forward {
+  animation: enter-right 250ms ease-out forwards;
+}
+
+.leaving-backward {
+  animation: leave-right 150ms ease-in forwards;
+}
+
+.entering-backward {
+  animation: enter-left 250ms ease-out forwards;
+}
+
 .form {
   display: flex;
   flex-direction: column;
@@ -203,5 +233,42 @@ fieldset legend {
 
   100% {
     transform: translateY(-.5rem) rotate(-8deg);
+  }
+}
+
+@keyframes leave-left {
+  to {
+    transform: translateX(-4rem);
+    opacity: 0;
+  }
+}
+
+@keyframes enter-right {
+  from {
+    transform: translateX(4rem);
+    opacity: 0;
+  }
+}
+
+@keyframes leave-right {
+  to {
+    transform: translateX(4rem);
+    opacity: 0;
+  }
+}
+
+@keyframes enter-left {
+  from {
+    transform: translateX(-4rem);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .leaving-forward,
+  .entering-forward,
+  .leaving-backward,
+  .entering-backward {
+    animation-duration: 1ms;
   }
 }

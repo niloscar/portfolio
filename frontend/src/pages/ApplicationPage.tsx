@@ -2,9 +2,9 @@ import Metadata from '../components/Metadata'
 import Header from '../parts/Header'
 import InterestForm from '../components/Lia/Form'
 
-import styles from './RegisterInterestPage.module.css'
+import styles from './ApplicationPage.module.css'
 
-export default function RegisterInterestPage() {
+export default function ApplicationPage() {
 
   return (
     <>
