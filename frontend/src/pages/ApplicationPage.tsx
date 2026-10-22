@@ -14,7 +14,7 @@ export default function ApplicationPage() {
         description="Passar ditt företag in på profilen? Ansök om att ta emot mig som LIA-studerande under 2027."
       />
       <main className={styles.center}>
-        <Header back={{ to: "/", label: "Till startsidan" }}>
+        <Header back={{ to: "/", label: "Till portfolion" }}>
           <h1 className="h-size-2">LIA 2027</h1>
           <p className={styles['application-status']}>Ansökan öppen</p>
         </Header>
