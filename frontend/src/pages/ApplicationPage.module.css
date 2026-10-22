@@ -1,0 +1,49 @@
+.application-status {
+  display: inline-flex;
+  margin: -.5rem 0 .5rem 0;
+  align-items: center;
+  gap: .5rem;
+
+  font-size: .8rem;
+}
+
+.application-status::before {
+  content: '';
+  width: .5rem;
+  height: .5rem;
+
+  border-radius: 50%;
+  background-color: var(--success);
+}
+
+.info-container {
+  max-width: 500px;
+  padding: 2rem;
+  margin: 3rem auto 0;
+
+  background-color: #f0f0f0;
+  border-radius: 4px;
+
+  font-size: .8rem;
+  text-align: center;
+  
+  z-index: 1;
+}
+
+.info-container h2 {
+  margin-top: 0;
+  margin-bottom: .5rem;
+
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.info-container a {
+  display: inline-flex;
+  align-items: center;
+  gap: .125rem;
+}
+
+.info-container a > span {
+  text-decoration: underline;
+}

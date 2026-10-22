@@ -12,6 +12,9 @@
 
   --accent: #111;
   --error: #ff0000;
+  --warning: #ff9800cc;
+  --success: #a6d96acc;
+  --success-hover: #a6d96aee;
 
   --footer-bg: #f1f1f1;
 

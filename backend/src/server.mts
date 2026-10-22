@@ -6,6 +6,7 @@ import connectPgSimple from 'connect-pg-simple'
 import { db } from './db.js'
 
 import analyticsRouter from './routes/analytics.routes.js'
+import applicationRouter from './routes/application.routes.js'
 import authRouter from './routes/auth.routes.js'
 import projectRouter from './routes/project.routes.js'
 import techStackRouter from './routes/techStack.routes.js'
@@ -47,6 +48,7 @@ app.use(session({
 
 app.use('/api/auth', authRouter)
 app.use('/api/analytics', analyticsRouter)
+app.use('/api/applications', applicationRouter)
 app.use('/api/projects', projectRouter)
 app.use('/api/tech-stack', techStackRouter)
 

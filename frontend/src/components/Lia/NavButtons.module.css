@@ -1,0 +1,66 @@
+
+.nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.nav-buttons button {
+  flex: 1;
+  min-width: 0;
+  padding: .5rem 1rem;
+  font-size: .8rem;
+  font-family: inherit;
+  line-height: 1.5;
+  background-color: #1111;
+  border: 1px solid #1111;
+  color: var(--text);
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .25rem;
+  overflow: hidden;
+
+  &:focus-visible {
+    outline: none;
+    border-color: var(--accent);
+  }
+
+  &:only-child {
+    flex: 0 1 calc((100% - 2rem) / 2);
+    margin: 0 auto;
+  }
+
+  &:last-child {
+    background-color: var(--success);
+    border: 1px solid var(--success);
+
+    &:hover {
+      background-color: var(--success-hover);
+      border-color: var(--success-hover);
+    }
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+.plane-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .18s ease-out;
+}
+
+.nav-buttons button:last-child:hover .plane-wrapper {
+  transform: translateX(.25rem);
+}
+
+.nav-buttons button[data-sending='true'] .plane-wrapper {
+  transition: none;
+  animation: fly-x .6s cubic-bezier(.35, 0, .65, 1) forwards;
+}
