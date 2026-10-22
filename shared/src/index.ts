@@ -26,3 +26,5 @@ export type {
   ExternalLinkType
 } from './project.types.js'
 export type { Technology, TechStack } from './techStack.types.js'
+
+export type { CreateApplication } from './application.types.js'
