@@ -10,6 +10,19 @@ import type { FormErrors } from './validation'
 
 import styles from './Form.module.css'
 
+type FormState = typeof INITIAL_STATE
+
+type FormAction =
+  | { type: 'SET_COMPANY_NAME'; payload: string }
+  | { type: 'SET_LOCATION'; payload: string }
+  | { type: 'SET_WORKPLACE_MODEL'; payload: string }
+  | { type: 'TOGGLE_PERIOD'; payload: number }
+  | { type: 'SET_CONTACT_PERSON'; payload: string }
+  | { type: 'SET_EMAIL'; payload: string }
+  | { type: 'SET_PHONE'; payload: string }
+  | { type: 'SET_MESSAGE'; payload: string }
+  | { type: 'RESET' }
+
 type Transition = {
   target: number
   direction: 'forward' | 'backward'
@@ -94,16 +107,13 @@ export default function InterestForm() {
     return () => observer.disconnect()
   }, [step])
 
-  const formReducer = (state: any, action: any) => {
+  const formReducer = (state: FormState, action: FormAction) => {
     switch (action.type) {
       case 'SET_COMPANY_NAME':
         return { ...state, companyName: action.payload }
 
       case 'SET_LOCATION':
         return { ...state, location: action.payload }
-
-      case 'SET_TECH_STACK':
-        return { ...state, techStack: action.payload }
 
       case 'SET_WORKPLACE_MODEL':
         return { ...state, workplaceModel: action.payload }
@@ -112,7 +122,7 @@ export default function InterestForm() {
         return {
           ...state,
           period: state.period.includes(action.payload)
-            ? state.period.filter((id: number) => id !== action.payload)
+            ? state.period.filter((id) => id !== action.payload)
             : [...state.period, action.payload]
         }
 
@@ -138,7 +148,10 @@ export default function InterestForm() {
 
   const [formState, dispatch] = useReducer(formReducer, INITIAL_STATE)
 
-  function handleChange(type: string, value: string) {
+  function handleChange(
+    type: Exclude<FormAction['type'], 'TOGGLE_PERIOD' | 'RESET'>, 
+    value: string
+  ) {
     dispatch({ type, payload: value })
 
     const fields: Record<string, keyof FormErrors> = {
@@ -400,6 +413,7 @@ export default function InterestForm() {
                 <input
                   type="tel"
                   id="phone"
+                  value={formState.phone}
                   onChange={(e) =>
                     dispatch({ type: 'SET_PHONE', payload: e.target.value })
                   }
@@ -422,6 +436,7 @@ export default function InterestForm() {
                 <label htmlFor="message">Meddelande</label>
                 <textarea
                   id="message"
+                  value={formState.message}
                   onChange={(e) =>
                     dispatch({ type: 'SET_MESSAGE', payload: e.target.value })
                   }
