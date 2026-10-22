@@ -9,7 +9,7 @@
 
 .link svg {
   translate: 0 0;
-  transition: translate .18s ease-in-out;
+  transition: translate .18s ease-out;
 }
 
 .link:hover {

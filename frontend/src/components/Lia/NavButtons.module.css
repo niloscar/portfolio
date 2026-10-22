@@ -49,6 +49,21 @@
   }
 }
 
+.back-button,
+.next-button {
+  svg {
+    transition: transform .18s ease-out;
+  }
+}
+
+.back-button:hover svg {
+  transform: translateX(-.25rem);
+}
+
+.next-button:hover svg {
+  transform: translateX(.25rem);
+}
+
 .plane-wrapper {
   display: inline-flex;
   align-items: center;

@@ -12,14 +12,21 @@ export default function NavButtons({ onBack, next, children }: NavButtonsProps) 
   return (
     <div className={styles['nav-buttons']}>
       {onBack && (
-        <button type="button" onClick={onBack}>
+        <button 
+          className={styles['back-button']}
+          type="button" 
+          onClick={onBack}
+          >
           <ArrowLeftIcon />
           <span>Tillbaka</span>
         </button>
       )}
 
       {next && (
-        <button type="submit">
+        <button 
+          type="submit" 
+          className={styles['next-button']}
+        >
           <span>Nästa</span>
           <ArrowRightIcon />
         </button>
