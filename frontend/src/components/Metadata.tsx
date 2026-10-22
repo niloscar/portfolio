@@ -14,6 +14,7 @@ const IS_INDEXABLE = import.meta.env.VITE_INDEXABLE === 'true'
 const DEFAULT_TITLE = 'Oscar Nilsson | Fullstackutvecklare · Portfolio'
 const DEFAULT_DESCRIPTION =
   'Portfolio för Oscar Nilsson, fullstackutvecklare med fokus på modern webbutveckling, produktutveckling och användarupplevelse.'
+const DEFAULT_IMAGE = `${BASE_URL}/og-image.jpg`
 
 function setMeta(attribute: 'name' | 'property', key: string, content: string) {
   let element = document.querySelector<HTMLMetaElement>(
@@ -91,10 +92,12 @@ export default function Metadata({
     setMeta('property', 'og:title', pageTitle)
     setMeta('property', 'og:description', pageDescription)
     setMeta('property', 'og:url', canonicalUrl)
+    setMeta('property', 'og:image', DEFAULT_IMAGE)
 
-    setMeta('name', 'twitter:card', 'summary')
+    setMeta('name', 'twitter:card', 'summary_large_image')
     setMeta('name', 'twitter:title', pageTitle)
     setMeta('name', 'twitter:description', pageDescription)
+    setMeta('name', 'twitter:image', DEFAULT_IMAGE)
 
     setCanonical(canonicalUrl)
     setRobots(shouldNoIndex)
