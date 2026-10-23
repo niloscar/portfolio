@@ -9,6 +9,7 @@ const projects = JSON.parse(
 
 const paths = [
   '/',
+  '/lia',
   ...projects.map(project => `/project/${project.id}`)
 ]
 
