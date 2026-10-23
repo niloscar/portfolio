@@ -1,36 +1,56 @@
 import { useEffect, useState } from 'react'
-import { getSummary } from '../../api/analyticsApi'
+import { fetchSummary } from '../../api/analyticsApi'
 import Summary from './Summary'
 import Chart from './Chart'
 import List from './List'
+import UiBox from '../ui/UiBox'
+import ErrorBox from '../ui/ErrorBox'
+import Ellipsis from '../ui/Ellipsis'
 
 import type { AnalyticsSummary } from '@portfolio/shared'
 
 export default function Viewer() {
   const [summary, setSummary] = useState<AnalyticsSummary | null>(null)
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const fetchSummary = async () => {
+    const loadSummary = async () => {
+      setLoading(true)
+
       try {
-        const data = await getSummary()
+        const data = await fetchSummary()
         setSummary(data)
       } catch (error) {
-        console.error('Kunde inte hämta analysdata:', error)
+        setError((error as Error).message)
+      } finally {
+        setLoading(false)
       }
     }
 
-    fetchSummary()
+    loadSummary()
   }, [])
 
-  if (!summary) {
-    return null
-  }
-
   return (
-    <>
-      <Summary summary={summary} />
-      <Chart sources={summary.sources.map(({ source }) => source)} />
-      <List dates={summary.dates} />
-    </>
+    <section>
+      <h2 className="h-size-3">Analys</h2>
+
+      {loading && !error && (
+        <UiBox>
+          <span>Hämtar analysdata</span>
+          <Ellipsis />
+        </UiBox>
+      )}
+
+      {error && <ErrorBox message={error} />}
+
+      {!loading && !error && summary && (
+        <>
+          <Summary summary={summary} />
+          <Chart sources={summary.sources.map(({ source }) => source)} />
+          <List dates={summary.dates} />
+        </>
+      )}
+    </section>
   )
 }

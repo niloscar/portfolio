@@ -13,7 +13,7 @@ export async function trackEvent(eventData: TrackEventData): Promise<void> {
   await api.post('/analytics', eventData)
 }
 
-export async function getSummary(): Promise<AnalyticsSummary> {
+export async function fetchSummary(): Promise<AnalyticsSummary> {
   const { data } = await api.get<AnalyticsSummary>(
     '/analytics/summary'
   )

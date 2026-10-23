@@ -16,7 +16,7 @@ export const createApplicationSchema = z.object({
     error: 'Välj en giltig arbetsform.'
   }),
 
-  period: z.array(z.union([z.literal(1), z.literal(2)]))
+  periods: z.array(z.union([z.literal(1), z.literal(2)]))
     .min(1, 'Välj minst en LIA-period.')
     .max(2, 'Du kan välja högst två LIA-perioder.')
     .refine(

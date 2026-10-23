@@ -2,6 +2,29 @@ import { db } from '../db.js'
 
 import type { CreateApplication } from '@portfolio/shared/'
 
+export async function getApplications() {
+  const result = await db.query(
+    `
+      SELECT
+        id,
+        company_name as "companyName",
+        website,
+        location,
+        workplace_model as "workplaceModel",
+        periods,
+        contact_person as "contactPerson",
+        email,
+        phone,
+        message,
+        created_at as "createdAt"
+      FROM lia_applications
+      ORDER BY created_at DESC
+    `
+  )
+
+  return result.rows
+}
+
 export async function createApplication(application: CreateApplication) {
   const result = await db.query(
     `
@@ -24,7 +47,7 @@ export async function createApplication(application: CreateApplication) {
       application.website || null,
       application.location,
       application.workplaceModel || null,
-      application.period,
+      application.periods,
       application.contactPerson,
       application.email,
       application.phone || null,
