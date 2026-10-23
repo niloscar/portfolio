@@ -3,9 +3,14 @@ export type CreateApplication = {
   website: string
   location: string
   workplaceModel: string
-  period: number[]
+  periods: number[]
   contactPerson: string
   email: string
   phone: string
   message: string
+}
+
+export type Application = CreateApplication & {
+  id: number
+  createdAt: string
 }

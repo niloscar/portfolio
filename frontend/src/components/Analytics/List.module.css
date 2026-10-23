@@ -37,6 +37,7 @@ section.events {
 
 .year-heading, .month-heading, .day-heading {
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
   gap: 1rem;
   width: 100%;

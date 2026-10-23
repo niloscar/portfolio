@@ -1,0 +1,93 @@
+.application-list-section {
+  width: 100%;
+  max-width: 500px;
+}
+
+.application-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .25rem .5rem;
+  padding: 0;
+}
+
+.application-item,
+.application-item button {
+  display: grid;
+  grid-column: 1 / span 2;
+  grid-template-columns: subgrid;
+  align-items: baseline;
+}
+
+.application-item button {
+  padding: 0;
+
+  font-size: 1rem;
+  font-family: inherit;
+  line-height: 1.5;
+  text-align: left;
+
+  background-color: transparent;
+  border: none;
+  color: var(--text);
+
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.application-item button span {
+  font-size: .8rem;
+}
+
+.application-item {
+  gap: .5rem;
+}
+
+.application-item button:hover {
+  text-decoration: underline;
+}
+
+.application-details {
+  grid-column: 1 / span 2;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .5rem 0;
+  padding: 0;
+  list-style: none;
+  margin: 0;
+  margin-bottom: 1rem;
+  width: 100%;
+  font-size: .8rem;
+}
+
+.application-details :is(ul, li) {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / span 2;
+  padding: 0;
+  line-height: 1.5;
+}
+
+.application-details .application-detail-label {
+  font-weight: 600;
+  margin-right: .25rem;
+  text-align: right;
+}
+
+.application-message-label {
+  font-weight: 600;
+}
+
+.application-message {
+  grid-column: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+}
+
+.application-message p {
+  margin: 0;
+  text-align: left;
+}
+

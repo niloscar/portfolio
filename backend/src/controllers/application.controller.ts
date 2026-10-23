@@ -3,6 +3,12 @@ import type { Request, Response } from 'express'
 import { createApplicationSchema } from '@portfolio/shared'
 import * as applicationRepository from '../repositories/application.repository.js'
 
+export async function getApplications(req: Request, res: Response) {
+  const applications = await applicationRepository.getApplications()
+
+  res.status(200).json(applications)
+}
+
 export async function createApplication(req: Request, res: Response) {
   const result = createApplicationSchema.safeParse(req.body)
 

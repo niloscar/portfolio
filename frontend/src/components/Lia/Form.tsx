@@ -30,7 +30,7 @@ const INITIAL_STATE = {
   website: '',
   location: '',
   workplaceModel: '',
-  period: [] as number[],
+  periods: [] as number[],
   contactPerson: '',
   email: '',
   phone: '',
@@ -83,9 +83,9 @@ export default function InterestForm() {
       case 'TOGGLE_PERIOD':
         return {
           ...state,
-          period: state.period.includes(action.payload)
-            ? state.period.filter((id) => id !== action.payload)
-            : [...state.period, action.payload]
+          periods: state.periods.includes(action.payload)
+            ? state.periods.filter((id) => id !== action.payload)
+            : [...state.periods, action.payload]
         }
       case 'SET_CONTACT_PERSON':
         return { ...state, contactPerson: action.payload }
@@ -304,9 +304,9 @@ export default function InterestForm() {
                   </fieldset>
                   <fieldset
                     className={styles['form-group']}
-                    aria-invalid={!!errors.period}
+                    aria-invalid={!!errors.periods}
                     aria-describedby={
-                      errors.period ? 'period-error' : undefined
+                      errors.periods ? 'periods-error' : undefined
                     }
                   >
                     <legend>LIA-period*</legend>
@@ -319,9 +319,9 @@ export default function InterestForm() {
                           <input
                             type="checkbox"
                             id={`period-${period.id}`}
-                            name="period"
+                            name="periods"
                             value={period.id}
-                            checked={formState.period.includes(period.id)}
+                            checked={formState.periods.includes(period.id)}
                             onChange={() => {
                               dispatch({
                                 type: 'TOGGLE_PERIOD',
@@ -329,30 +329,28 @@ export default function InterestForm() {
                               })
                               setErrors((prev) => ({
                                 ...prev,
-                                period: undefined
+                                periods: undefined
                               }))
                             }}
-                            required
+                            aria-invalid={!!errors.periods}
+                            aria-describedby={errors.periods ? 'periods-error' : undefined}
                           />
                           <label htmlFor={`period-${period.id}`}>
                             Period {period.id}:{' '}
                             {period.dates
-                              .map(
-                                ([start, end]) =>
-                                  `${textDate(start)}–${textDate(end)}`
-                              )
+                              .map(([start, end]) => `${textDate(start)}–${textDate(end)}`)
                               .join(' och ')}
                           </label>
                         </div>
                       ))}
                     </div>
-                    {errors.period && (
+                    {errors.periods && (
                       <p
-                        id="period-error"
+                        id="periods-error"
                         className={styles['field-error']}
                         role="alert"
                       >
-                        {errors.period}
+                        {errors.periods}
                       </p>
                     )}
                   </fieldset>

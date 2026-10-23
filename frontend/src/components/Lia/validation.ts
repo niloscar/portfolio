@@ -5,7 +5,7 @@ export type FormValues = {
   website: string
   location: string
   workplaceModel: string
-  period: number[]
+  periods: number[]
   contactPerson: string
   email: string
   phone: string
@@ -15,7 +15,7 @@ export type FormValues = {
 export type FormErrors = Partial<Record<keyof FormValues, string>>
 
 const STEP_FIELDS: Record<number, (keyof FormValues)[]> = {
-  1: ['companyName', 'website', 'location', 'workplaceModel', 'period'],
+  1: ['companyName', 'website', 'location', 'workplaceModel', 'periods'],
   2: ['contactPerson', 'email', 'phone'],
   3: ['message']
 }

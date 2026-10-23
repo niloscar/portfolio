@@ -36,6 +36,8 @@ interface ListProps {
 
 
 const EVENTS_PER_PAGE = 50
+const CURRENT_YEAR_EXPANDED = false
+const CURRENT_MONTH_EXPANDED = false
 
 const now = new Date()
 const currentYear = now.getFullYear()
@@ -43,8 +45,8 @@ const currentMonth = now.getMonth()
 
 export default function AnalyticsViewer({ dates }: ListProps) {
   const [eventsByDate, setEventsByDate] = useState<Record<string, DateEvents>>({})
-  const [expandedYears, setExpandedYears] = useState<Set<number>>(() => new Set([currentYear]))
-  const [expandedMonths, setExpandedMonths] = useState<Set<string>>(() => new Set([`${currentYear}-${currentMonth}`]))
+  const [expandedYears, setExpandedYears] = useState<Set<number>>(() => new Set(CURRENT_YEAR_EXPANDED ? [currentYear] : []))
+  const [expandedMonths, setExpandedMonths] = useState<Set<string>>(() => new Set(CURRENT_MONTH_EXPANDED ? [`${currentYear}-${currentMonth}`] : []))
   const [expandedDays, setExpandedDays] = useState<Set<string>>(new Set())
 
   const {
