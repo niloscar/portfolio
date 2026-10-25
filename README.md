@@ -29,16 +29,25 @@ The repository uses npm workspaces to manage the applications and shared package
 
 ## Development
 
+Install dependencies:
+
 ```bash
 npm install
-npm run dev
 ```
 
-Create environment files from the provided examples:
+Create environment files from the provided examples and configure them for your local environment:
 
 ```bash
 cp backend/.env.example backend/.env
 cp frontend/.env.example frontend/.env
+```
+
+Initialize an empty PostgreSQL database using [`backend/sql/schema.sql`](backend/sql/schema.sql). The script creates the required tables, indexes and initial analytics settings.
+
+Start the development servers:
+
+```bash
+npm run dev
 ```
 
 ## Live
