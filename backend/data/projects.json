@@ -125,11 +125,11 @@
   {
     "id": 6,
     "name": "Portfolio 2026",
-    "description": "Den här portfolion är byggd för att samla mina projekt, erfarenheter och tekniska kompetenser på ett lättöverskådligt sätt. Utöver den publika presentationen innehåller applikationen ett eget backend-API, autentisering och ett skyddat analysgränssnitt för att följa hur webbplatsen används.",
-    "metaDescription": "Min portfolio med projekt, erfarenhet och teknisk kompetens samt eget backend-API, autentisering och analysfunktionalitet.",
-    "technicalOverview": "Portfolion är byggd med React och TypeScript i frontend och Node.js, Express och TypeScript i backend. Projekt- och teknikdata hämtas via ett eget API, medan PostgreSQL används för autentisering, sessioner och insamlad analysdata. Frontend och backend delar gemensamma TypeScript-typer och applikationen är driftsatt på Vercel.",
-    "responsibility": "Design, frontend- och backendutveckling, systemarkitektur, API-design, databasstruktur, autentisering, analysfunktionalitet och deployment.",
-    "technicalChallenges": "Att strukturera frontend, backend och delade typer som en sammanhängande applikation samt bygga egen analysfunktionalitet med datainsamling, autentiserad åtkomst, filtrering, paginering och visualisering utan att blanda ihop presentation, API-logik och datalagring.",
+    "description": "Den här portfolion är byggd för att samla mina projekt, erfarenheter och tekniska kompetenser på ett lättöverskådligt sätt. Utöver den publika presentationen innehåller applikationen ett eget backend-API, besöksanalys och ett skyddat administrativt gränssnitt. Webbplatsen har också ett flerstegsformulär där företag kan ansöka om att bli LIA-värd, med en adminvy för att läsa inkomna ansökningar.",
+    "metaDescription": "Min fullstackportfolio med projektpresentationer, eget backend-API, besöksanalys och formulär för LIA-ansökningar.",
+    "technicalOverview": "Portfolion är byggd med React och TypeScript i frontend och Node.js, Express och TypeScript i backend. Projekt- och teknikdata hämtas via ett eget API, medan PostgreSQL används för autentisering, sessioner, analysdata och LIA-ansökningar. Frontend och backend delar gemensamma typer och valideringsscheman. Applikationen är driftsatt på Vercel.",
+    "responsibility": "Design, frontend- och backendutveckling, systemarkitektur, API-design, databasstruktur, autentisering, analysfunktionalitet, formulärhantering och deployment.",
+    "technicalChallenges": "Att strukturera frontend, backend och delade typer som en sammanhängande applikation med tydlig separation mellan gränssnitt, API-logik och datalagring. Projektet omfattar även egen besöksanalys med datainsamling och visualisering samt ett flerstegsformulär med validering, spamskydd och lagring av ansökningar som presenteras i en skyddad adminvy.",
     "techStack": [
       "react",
       "typescript",
