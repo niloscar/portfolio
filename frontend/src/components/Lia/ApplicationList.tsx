@@ -78,7 +78,15 @@ export default function ApplicationList() {
                   <div className={styles['application-details']}>
                     <ul>
                       <li><span className={styles['application-detail-label']}>Inkom:</span> {dateTimeToText(application.createdAt)}</li>
-                      {application.website && <li><span className={styles['application-detail-label']}>Webbplats:</span> <a href={application.website} target="_blank" rel="noopener noreferrer">{normalizeUrl(application.website)}</a></li>}
+                      {application.website && <li>
+                        <span className={styles['application-detail-label']}>Webbplats:</span>{' '}
+                        <a 
+                          href={formatWebsite(application.website)?.href} 
+                          target="_blank" rel="noopener noreferrer"
+                        >
+                          {formatWebsite(application.website)?.text ?? application.website}
+                        </a>
+                      </li>}
                       <li><span className={styles['application-detail-label']}>Period:</span> {application.periods.join(' och ')}</li>
                       <li><span className={styles['application-detail-label']}>Kontakt:</span> {application.contactPerson}</li>
                       <li><span className={styles['application-detail-label']}>Email:</span> {application.email}</li>
@@ -100,11 +108,23 @@ export default function ApplicationList() {
   )
 }
 
-function normalizeUrl(url: string): string {
-  return url
-    .toLowerCase()
-    .replace(/^\w+:\/\//, '')
-    .replace(/^www\./, '')
+function formatWebsite(website: string) {
+  try {
+    const url = new URL(
+      /^https?:\/\//i.test(website) ? website : `https://${website}`
+    )
+
+    if (!['http:', 'https:'].includes(url.protocol)) {
+      return null
+    }
+
+    return {
+      href: url.href,
+      text: `${url.host.replace(/^www\./i, '')}${url.pathname === '/' ? '' : url.pathname}${url.search}${url.hash}`
+    }
+  } catch {
+    return null
+  }
 }
 
 function dateTimeToText(dateTime: string): string {
