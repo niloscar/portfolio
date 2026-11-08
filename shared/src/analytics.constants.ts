@@ -2,6 +2,7 @@ export const TRAFFIC_SOURCES = [
   'cv',
   'email',
   'assignment',
+  'brew-even',
   'linkedin',
   'instagram',
   'facebook',
