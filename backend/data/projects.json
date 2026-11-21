@@ -83,7 +83,7 @@
   {
     "id": 4,
     "sortOrder": 7,
-    "isActive": true,
+    "isActive": false,
     "name": "Bubbles",
     "description": "Communityforum där användare kan skapa egna diskussionsgrupper och bjuda in andra att delta. Det går även att ansöka om medlemskap i befintliga grupper eller gå med direkt via en delad inbjudningslänk.",
     "metaDescription": "Communityforum där användare kan skapa diskussionsgrupper, bjuda in medlemmar och hantera medlemskap via ansökningar och länkar.",
@@ -165,7 +165,7 @@
   {
     "id": 7,
     "sortOrder": 1,
-    "isActive": false,
+    "isActive": true,
     "name": "Brew-even",
     "description": "Brew-even hjälper kaffeentusiaster att beräkna kostnaden per kopp hemmabryggd espresso utifrån utrustning, kaffebönor och vatten.\n\nEtt interaktivt diagram visar uppskattad kostnadsutveckling och framtida prognoser.",
     "metaDescription": "Brew-even är en webbapp för att beräkna och visualisera kostnaden för hemmabryggd espresso, med utrustningsinvesteringar, förbrukningskostnader och prognoser.",
