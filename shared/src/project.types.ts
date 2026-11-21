@@ -2,6 +2,8 @@ import type { Technology } from './techStack.types.js'
 
 export interface ProjectData {
   id: number
+  sortOrder: number
+  isActive: boolean
   name: string
   description: string
   metaDescription?: string

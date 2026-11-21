@@ -17,7 +17,9 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
       <div className={styles['project-header']}>
         <h1 className="h-size-3">{project.name}</h1>
 
-        <p>{project.description}</p>
+        {project.description.split('\n\n').map((paragraph, index) => (
+          <p key={index}>{paragraph}</p>
+        ))}
 
         {project.relatedProject && (
           <p className={styles['related-project']}>
