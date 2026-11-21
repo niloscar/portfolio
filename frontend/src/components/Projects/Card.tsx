@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import ExternalLinks from './ExternalLinks'
 import TechStack from './CardTechStack'
 import { LinkForward } from '../ui/Link'
+import { ImageIcon } from '@phosphor-icons/react'
 
 import type { Project } from '@portfolio/shared'
 
@@ -84,14 +85,24 @@ export default function Card({ project }: { project: Project }) {
     >
       <div className={styles.visuals}>
         <figure>
-          <img
-            src={projectImage}
-            srcSet={`${projectImage} 1x, ${projectImage2x} 2x`}
-            width={440}
-            height={440}
-            alt={`Bild för projektet ${project.name}`}
-            className={styles.image}
-          />
+          {projectImage ? (
+            <img
+              src={projectImage}
+              srcSet={projectImage2x ? `${projectImage} 1x, ${projectImage2x} 2x` : undefined}
+              width={440}
+              height={440}
+              alt={`Bild för projektet ${project.name}`}
+              className={styles.image}
+            />
+          ) : (
+            <div
+              className={styles.placeholder}
+              role="img"
+              aria-label={`Projektbild saknas för ${project.name}`}
+            >
+              <ImageIcon size={48} weight="light" aria-hidden="true" />
+            </div>
+          )}
         </figure>
 
         <div
@@ -139,10 +150,10 @@ export default function Card({ project }: { project: Project }) {
 }
 
 function getProjectImage(filename?: string, size = 440) {
-  if (!filename) return '/img/placeholder.webp'
+  if (!filename) return undefined
 
   const name = filename.replace(/\.[^.]+$/, '')
   const path = `../../assets/projects/${name}-${size}.webp`
 
-  return projectImages[path] ?? '/img/placeholder.webp'
+  return projectImages[path]
 }

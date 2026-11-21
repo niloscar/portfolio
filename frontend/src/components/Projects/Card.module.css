@@ -117,6 +117,22 @@
   }
 }
 
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  background-color: #e5e5e5;
+  color: #999;
+}
+
+.placeholder svg {
+  translate: 1rem 0;
+}
+
 nav {
   margin: 1rem 2rem 2rem 2rem;
 }
