@@ -51,7 +51,10 @@ export async function getProjects(): Promise<Project[]> {
   const projects = await readJsonData<ProjectData[]>(PROJECTS_FILE_PATH)
   const technologies = await getTechnologies()
 
-  return projects.map((project) => enrichProject(project, technologies))
+  return projects
+    .filter((project) => project.isActive)
+    .sort((a, b) => a.sortOrder - b.sortOrder)
+    .map((project) => enrichProject(project, technologies))
 }
 
 export async function getProjectById(id: number): Promise<Project | null> {

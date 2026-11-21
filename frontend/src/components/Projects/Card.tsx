@@ -119,7 +119,9 @@ export default function Card({ project }: { project: Project }) {
         </Link>
       </header>
 
-      <p className={styles.description}>{project.description}</p>
+      {project.description.split('\n\n').map((paragraph, index) => (
+        <p key={index} className={styles.description}>{paragraph}</p>
+      ))}
 
       <nav
         className={styles.links}
