@@ -38,7 +38,9 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
       {project.technicalOverview && (
         <>
           <h2 className="h-size-4">Teknisk översikt</h2>
-          <p>{project.technicalOverview}</p>
+          {project.technicalOverview.split('\n\n').map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
         </>
       )}
 
@@ -53,7 +55,9 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
               ))}
             </ul>
           ) : (
-            <p>{project.responsibility}</p>
+            project.responsibility.split('\n\n').map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))
           )}
         </>
       )}
@@ -61,7 +65,9 @@ export default function ProjectDetails({ project }: ProjectDetailsProps) {
       {project.technicalChallenges && (
         <>
           <h2 className="h-size-4">Tekniska utmaningar</h2>
-          <p>{project.technicalChallenges}</p>
+          {project.technicalChallenges.split('\n\n').map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
         </>
       )}
 
