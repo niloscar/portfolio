@@ -1,44 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="90.31mm" height="90.31mm" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 256 256">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: none;
-      }
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 256 256">
+  <style>
+    path {
+      fill: #555;
+    }
 
-      .cls-2 {
-        fill: url(#radial-gradient);
+    @media (prefers-color-scheme: dark) {
+      path {
+        fill: #f6f6f6;
       }
-
-      .cls-3 {
-        fill: #fff;
-      }
-
-      .cls-4 {
-        fill: url(#radial-gradient-2);
-        stroke: #fff;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-        stroke-width: 20px;
-      }
-    </style>
-    <radialGradient id="radial-gradient" cx="125.96" cy="127.87" fx="125.96" fy="127.87" r="121.63" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#ff9671"/>
-      <stop offset=".27" stop-color="#f68a7d"/>
-      <stop offset=".77" stop-color="#e16c9f"/>
-      <stop offset="1" stop-color="#d65db1"/>
-    </radialGradient>
-    <radialGradient id="radial-gradient-2" cx="122.79" cy="93.24" fx="122.79" fy="93.24" r="14.1" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#ff9671"/>
-      <stop offset=".4" stop-color="#ff897b"/>
-      <stop offset="1" stop-color="#ff6f91"/>
-    </radialGradient>
-  </defs>
-  <rect class="cls-1" width="256" height="256" transform="translate(0 256) rotate(-90)"/>
-  <g>
-    <path class="cls-2" d="M160.68,244.84l-103.21,9.47c-5.48.5-10.34-3.53-10.84-9.02L26.58,26.85c-.5-5.48,3.53-10.34,9.02-10.84l125.08-11.48v240.31ZM225.35,228.89L205.3,10.45c-.5-5.48-5.36-9.52-10.84-9.02l-18.83,1.73v240.31l40.7-3.73c5.48-.5,9.52-5.36,9.02-10.84Z"/>
-    <line class="cls-4" x1="142.64" y1="91.42" x2="102.93" y2="95.06"/>
-    <polygon class="cls-3" points="206.68 25.43 223.15 204.91 237.02 27.81 206.68 25.43"/>
-  </g>
-  <polygon points="160.68 4.53 175.63 3.16 175.63 243.46 160.68 244.84 160.68 4.53"/>
+    }
+  </style>
+  <path d="M216.2,26.5c0-8.8-7.2-16.1-16.1-16.1h-8.9s-8,234.6-8,234.6h16.9c8.9,0,16.1-7.2,16.1-16.1V26.5Z"/>
+  <path d="M52.9,10.4c-4.3,0-8.3,1.7-11.4,4.8-3,3-4.7,7-4.7,11.3v202.4c0,8.9,7.3,16.1,16.1,16.1h116.5s8-234.6,8-234.6H52.9ZM157.3,105.6c0,4.4-3.6,8-8,8h-45.5c-4.4,0-8-3.6-8-8v-18.7c0-4.5,3.6-8,8-8h45.5c4.4,0,8,3.5,8,8V105.6Z"/>
 </svg>
