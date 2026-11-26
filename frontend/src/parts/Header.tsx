@@ -35,7 +35,7 @@ export default function Header({ back, children }: HeaderProps) {
       {children ?? (
         <h1 className={`${styles.title} h-size-1`}>
           <span>Oscar Nilsson</span>
-          <span className={styles.subtitle}>Fullstackutvecklare · Portfolio</span>
+          <span className={styles.subtitle}>Fullstackutvecklare</span>
         </h1>
       )}
       {children && <ArrowDownIcon />}
