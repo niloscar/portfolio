@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import { getProjectImage, getProjectIcon } from '../../utils/projectAssets'
 import ExternalLinks from './ExternalLinks'
 import TechStack from './CardTechStack'
 import { LinkForward } from '../ui/Link'
@@ -8,11 +9,6 @@ import { ImageIcon } from '@phosphor-icons/react'
 import type { Project } from '@portfolio/shared'
 
 import styles from './Card.module.css'
-
-const projectImages = import.meta.glob('../../assets/projects/*', {
-  eager: true,
-  import: 'default'
-}) as Record<string, string>
 
 const animatedCards = new Set<Project['id']>()
 const animatedCardLinks = new Set<Project['id']>()
@@ -73,8 +69,18 @@ export default function Card({ project }: { project: Project }) {
     }
   }, [project.id])
 
-  const projectImage = getProjectImage(project.images?.[0])
-  const projectImage2x = getProjectImage(project.images?.[0], 880)
+  const projectImage = getProjectImage(project.slug, project.images?.[0])
+
+  const projectImageSrcSet = [640, 960, 1280]
+    .map(size => {
+      const image = getProjectImage(project.slug, project.images?.[0], size)
+
+      return image ? `${image} ${size}w` : null
+    })
+    .filter(Boolean)
+    .join(', ')
+  
+  const projectIcon = getProjectIcon(project.slug)
 
   return (
     <article
@@ -82,15 +88,17 @@ export default function Card({ project }: { project: Project }) {
       className={styles.card}
       data-visible={animatedCards.has(project.id) ? 'true' : 'false'}
       data-links-visible={animatedCardLinks.has(project.id) ? 'true' : 'false'}
+      data-backdrop-ready={animatedCardLinks.has(project.id) ? 'true' : 'false'}
     >
       <div className={styles.visuals}>
         <figure>
           {projectImage ? (
             <img
               src={projectImage}
-              srcSet={projectImage2x ? `${projectImage} 1x, ${projectImage2x} 2x` : undefined}
-              width={440}
-              height={440}
+              srcSet={projectImageSrcSet || undefined}
+              sizes="(max-width: 900px) calc(100vw - 4rem), (max-width: 1200px) calc((100vw - 6rem) / 2), calc((1200px - 6rem) / 2)"
+              width={640}
+              height={360}
               alt={`Bild för projektet ${project.name}`}
               className={styles.image}
             />
@@ -126,6 +134,13 @@ export default function Card({ project }: { project: Project }) {
 
       <header>
         <Link className={styles['title-link']} to={`/project/${project.id}`}>
+        {projectIcon && (
+          <img
+            src={projectIcon}
+            alt={`Ikon för projektet ${project.name}`}
+            className={styles.icon}
+          />
+        )}
           <h3 className={styles.title}>{project.name}</h3>
         </Link>
       </header>
@@ -147,13 +162,4 @@ export default function Card({ project }: { project: Project }) {
       </nav>
     </article>
   )
-}
-
-function getProjectImage(filename?: string, size = 440) {
-  if (!filename) return undefined
-
-  const name = filename.replace(/\.[^.]+$/, '')
-  const path = `../../assets/projects/${name}-${size}.webp`
-
-  return projectImages[path]
 }

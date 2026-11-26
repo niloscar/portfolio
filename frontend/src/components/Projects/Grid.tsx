@@ -53,13 +53,13 @@ export default function ProjectsGrid() {
       {!isLoading && !error && (
         <p className={`${styles['more-projects']}`}>
           <i>
-            Se fler av mina projekt på min{' '}
+            Se fler av mina projekt på{' '}
             <a
               href="https://github.com/niloscar"
               target="_blank"
               rel="noopener"
             >
-              GitHub-sida
+              GitHub
             </a>
             .
           </i>

@@ -59,6 +59,7 @@ export default function ExternalLinks({
             theme={theme}
             tooltip
             tooltipPosition={position}
+            backdrop={theme === 'dark'}
           />
         )
       })}
