@@ -1,10 +1,7 @@
 .links {
   --padding: .25rem;
   --icon-size: 1rem;
-  --box-width: calc(
-    var(--icon-size) +
-    var(--padding) * 2
-  );
+  --box-width: calc(var(--icon-size) + var(--padding) * 2);
   --gap: .5rem;
 
   --translate-duration: .5s;
@@ -15,17 +12,13 @@
   container-type: inline-size;
   right: 1rem;
   bottom: 1rem;
-  left: var(--clip-percentage);
+  left: 1rem;
 
   display: flex;
   flex-direction: row-reverse;
   flex-wrap: wrap-reverse;
   justify-content: flex-start;
   gap: var(--gap);
-
-  @media (max-width: 768px) {
-    left: 40%;
-  }
 }
 
 .links a {
@@ -34,16 +27,20 @@
   pointer-events: none;
 
   transition:
-    transform var(--translate-duration) ease-in-out
-      calc(var(--box-index) * var(--stagger)),
-    opacity var(--opacity-duration) ease-in-out
-      calc(var(--box-index) * var(--stagger)),
-    pointer-events 0s linear
-      calc(
-        var(--translate-duration) +
-        var(--box-index) * var(--stagger)
-      )
-      allow-discrete;
+    transform var(--translate-duration) ease-in-out calc(var(--box-index) * var(--stagger)),
+    opacity var(--opacity-duration) ease-in-out calc(var(--box-index) * var(--stagger)),
+    pointer-events 0s linear calc(var(--translate-duration) + var(--box-index) * var(--stagger)) allow-discrete;
+}
+
+.links a[data-backdrop='true'] {
+  backdrop-filter: none;
+}
+
+[data-backdrop-ready='true'] .links a[data-backdrop='true'] {
+  backdrop-filter: blur(15px);
+
+  transition:
+    backdrop-filter 1s ease-in-out;
 }
 
 [data-links-visible='true'] .links a {

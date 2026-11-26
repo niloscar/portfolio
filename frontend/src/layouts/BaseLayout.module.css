@@ -4,4 +4,8 @@
   flex: 1;
   width: 100%;
   max-width: var(--page-width);
+
+  &:has(> :global(.start-page-main)) {
+    max-width: var(--page-width-wide);
+  }
 }

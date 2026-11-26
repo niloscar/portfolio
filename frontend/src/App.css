@@ -39,7 +39,14 @@ main {
 }
 
 main.start-page-main {
+  max-width: var(--page-width-wide);
   gap: 2rem;
+
+  > :not(.projects) {
+    width: 100%;
+    max-width: calc(var(--page-width) - var(--page-padding-x) * 2);
+    align-self: center;
+  }
 }
 
 main.center {

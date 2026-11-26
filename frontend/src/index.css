@@ -1,5 +1,6 @@
 :root {
   --page-width: 800px;
+  --page-width-wide: 1200px;
   --header-height: 6rem;
   --page-padding-y: 4rem;
   --page-padding-x: 2rem;
